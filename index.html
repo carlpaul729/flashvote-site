@@ -1,4 +1,4 @@
-```html id="c7e1f5"
+```html id="e2f6b9"
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +33,22 @@ html, body {
   width: auto;
   display: block;
   animation: subtlePulse 6s ease-in-out infinite;
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
 }
 
 @keyframes subtlePulse {
@@ -61,6 +77,8 @@ html, body {
   .hero-image {
     width: 100vw;
     height: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
   .enter-link {
