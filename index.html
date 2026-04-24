@@ -17,17 +17,11 @@
       background: black;
     }
 
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
     .hero {
       position: relative;
       width: 100vw;
       height: 100vh;
-      background-image: url('flashvote-bg.png');
+      background-image: url('enter-flashvote.png');
       background-repeat: no-repeat;
       background-position: center center;
       background-size: 79%;
@@ -37,10 +31,10 @@
     .enter-link {
       position: absolute;
       left: 50%;
-      top: 73%;
+      top: 79%;
       transform: translate(-50%, -50%);
-      width: 220px;
-      height: 65px;
+      width: 210px;
+      height: 55px;
       display: block;
       border-radius: 18px;
       text-decoration: none;
@@ -49,23 +43,18 @@
 
     @keyframes microPulse {
       0% {
-        transform: scale(1);
         filter: brightness(0.96);
       }
       8% {
-        transform: scale(1.004);
         filter: brightness(1);
       }
       14% {
-        transform: scale(1);
         filter: brightness(0.97);
       }
       20% {
-        transform: scale(1.003);
         filter: brightness(1);
       }
       100% {
-        transform: scale(1);
         filter: brightness(0.96);
       }
     }
@@ -86,9 +75,11 @@
 </head>
 
 <body>
-  <div class="hero">
-    <a href="main.html" class="enter-link"></a>
-  </div>
+
+<div class="hero">
+  <a href="main.html" class="enter-link"></a>
+</div>
+
 </body>
 </html>
 ```
