@@ -1,4 +1,4 @@
-```html id="d4f9a7"
+```html id="c1e8f4"
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +12,8 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   background: black;
+  overflow: hidden;
   font-family: Arial, sans-serif;
 }
 
@@ -21,28 +21,12 @@ html, body {
   position: relative;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-/* stretched background darker and enlarged */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("enter-flashvote.png") center center / cover no-repeat;
-  filter: brightness(0.18);
-  transform: scale(1.4);
-}
-
-/* dark overlay to suppress duplicate center */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, transparent 25%, rgba(0,0,0,0.75) 65%);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, rgba(20,20,20,0) 35%, rgba(0,0,0,0.9) 100%);
 }
 
 .hero-image {
@@ -50,8 +34,24 @@ html, body {
   height: 108vh;
   width: auto;
   display: block;
-  z-index: 3;
+  z-index: 2;
   animation: subtlePulse 6s ease-in-out infinite;
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
 }
 
 @keyframes subtlePulse {
@@ -73,18 +73,15 @@ html, body {
   left: 50%;
   top: 74%;
   transform: translateX(-50%);
-  z-index: 4;
+  z-index: 3;
 }
 
 @media (max-width: 768px) {
   .hero-image {
     width: 100vw;
     height: auto;
-  }
-
-  .hero::before,
-  .hero::after {
-    display: none;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
   .enter-link {
