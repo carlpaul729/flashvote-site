@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,79 +7,84 @@
 <title>FlashVote</title>
 
 <style>
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
   background: black;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   overflow: hidden;
-}
-
-.container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
 }
 
 .hero-image {
   width: 92%;
-  height: 92%;
+  max-width: 1400px;
+  height: auto;
   object-fit: contain;
-  display: block;
-  margin: auto;
-  animation: imagePulse 2.6s infinite ease-in-out;
+  animation: subtlePulse 6s ease-in-out infinite;
 }
 
-@keyframes imagePulse {
+@keyframes subtlePulse {
   0% {
-    filter: brightness(1) drop-shadow(0 0 4px rgba(255,140,0,0.10));
+    filter: brightness(1) drop-shadow(0 0 6px rgba(255,140,0,0.12));
   }
-
   50% {
-    filter: brightness(1.03) drop-shadow(0 0 10px rgba(255,140,0,0.18));
+    filter: brightness(1.015) drop-shadow(0 0 10px rgba(255,140,0,0.18));
   }
-
   100% {
-    filter: brightness(1) drop-shadow(0 0 4px rgba(255,140,0,0.10));
+    filter: brightness(1) drop-shadow(0 0 6px rgba(255,140,0,0.12));
   }
 }
 
 .enter-link {
   position: absolute;
-  bottom: 19%;
+  width: 220px;
+  height: 60px;
+  bottom: 18%;
   left: 50%;
   transform: translateX(-50%);
-  width: 20%;
-  height: 7%;
-  display: block;
   z-index: 10;
 }
 
-/* mobile keeps full strength */
 @media (max-width: 768px) {
   .hero-image {
     width: 100%;
-    height: 100%;
   }
 
   .enter-link {
-    width: 42%;
-    height: 8%;
-    bottom: 18%;
+    width: 180px;
+    height: 50px;
+    bottom: 15%;
   }
 }
 
+@media (min-width: 1600px) {
+  .hero-image {
+    width: 88%;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="hero">
   <img src="enter-flashvote.png" alt="FlashVote" class="hero-image">
+
   <a href="main.html" class="enter-link"></a>
 </div>
 
 </body>
 </html>
+```
