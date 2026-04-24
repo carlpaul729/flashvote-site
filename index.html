@@ -1,84 +1,88 @@
-```html id="v4n8q1"
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlashVote</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlashVote</title>
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: black;
-      font-family: Arial, sans-serif;
-    }
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: black;
+}
 
-    .hero {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      background-image: url("enter-flashvote.png");
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: cover;
-      animation: heartbeatPulse 3.2s infinite;
-    }
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('flashvote-bg.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 79%;
+  animation: microPulse 3.2s ease-in-out infinite;
+}
 
-    @keyframes heartbeatPulse {
-      0% {
-        filter: brightness(1) drop-shadow(0 0 0px rgba(255,140,0,0));
-      }
-      8% {
-        filter: brightness(1.012) drop-shadow(0 0 2px rgba(255,140,0,0.06));
-      }
-      14% {
-        filter: brightness(1);
-      }
-      22% {
-        filter: brightness(1.008) drop-shadow(0 0 1px rgba(255,140,0,0.04));
-      }
-      30% {
-        filter: brightness(1);
-      }
-      100% {
-        filter: brightness(1);
-      }
-    }
+.enter-link {
+  position: absolute;
+  left: 50%;
+  top: 73%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  height: 65px;
+  display: block;
+  border-radius: 18px;
+  text-decoration: none;
+}
 
-    .enter-link {
-      position: absolute;
-      width: 210px;
-      height: 55px;
-      left: 50%;
-      top: 79%;
-      transform: translateX(-50%);
-      z-index: 2;
-    }
+@keyframes microPulse {
+  0% {
+    transform: scale(1);
+    filter: brightness(0.96);
+  }
+  8% {
+    transform: scale(1.004);
+    filter: brightness(1);
+  }
+  14% {
+    transform: scale(1);
+    filter: brightness(0.97);
+  }
+  20% {
+    transform: scale(1.003);
+    filter: brightness(1);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(0.96);
+  }
+}
 
-    @media (max-width: 768px) {
-      .hero {
-        background-size: 215%;
-        background-position: center 48%;
-      }
+@media (max-width: 768px) {
+  .hero {
+    background-size: 250%;
+    background-position: center 44%;
+  }
 
-      .enter-link {
-        width: 180px;
-        height: 50px;
-        top: 77%;
-      }
-    }
-  </style>
+  .enter-link {
+    width: 180px;
+    height: 50px;
+    top: 74%;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="hero">
-    <a href="main.html" class="enter-link"></a>
-  </div>
+<div class="hero">
+  <a href="main.html" class="enter-link"></a>
+</div>
 
 </body>
 </html>
