@@ -22,12 +22,12 @@ body {
   height: 100vh;
 }
 
-/* pulse entire image subtly */
 .hero-image {
-  width: 100%;
-  height: 100%;
+  width: 92%;
+  height: 92%;
   object-fit: contain;
   display: block;
+  margin: auto;
   animation: imagePulse 2.6s infinite ease-in-out;
 }
 
@@ -45,7 +45,6 @@ body {
   }
 }
 
-/* clickable button */
 .enter-link {
   position: absolute;
   bottom: 19%;
@@ -55,6 +54,20 @@ body {
   height: 7%;
   display: block;
   z-index: 10;
+}
+
+/* mobile keeps full strength */
+@media (max-width: 768px) {
+  .hero-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .enter-link {
+    width: 42%;
+    height: 8%;
+    bottom: 18%;
+  }
 }
 
 </style>
