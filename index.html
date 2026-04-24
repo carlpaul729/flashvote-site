@@ -11,14 +11,16 @@
       padding: 0;
       width: 100%;
       height: 100%;
-      background: black;
       overflow: hidden;
+      background: black;
+      font-family: Arial, sans-serif;
     }
 
     .hero {
       position: relative;
       width: 100vw;
       height: 100vh;
+      overflow: hidden;
     }
 
     .hero img {
@@ -26,6 +28,7 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      animation: microPulse 3.2s ease-in-out infinite;
     }
 
     .enter-link {
@@ -35,29 +38,75 @@
       left: 50%;
       top: 79%;
       transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    @keyframes microPulse {
+      0%   { filter: brightness(0.96); }
+      8%   { filter: brightness(1); }
+      14%  { filter: brightness(0.97); }
+      20%  { filter: brightness(1); }
+      100% { filter: brightness(0.96); }
     }
 
     @media (max-width: 768px) {
       .hero img {
         object-fit: contain;
+        object-position: center;
       }
 
       .enter-link {
-        width: 180px;
-        height: 50px;
-        top: 74%;
+        width: 170px;
+        height: 48px;
       }
     }
   </style>
 </head>
-
 <body>
 
 <div class="hero">
-  <img src="enter-flashvote.png" alt="FlashVote">
-  <a href="main.html" class="enter-link"></a>
+  <img src="enter-flashvote.png" alt="FlashVote" id="heroImg">
+  <a href="main.html" class="enter-link" id="enterLink"></a>
 </div>
+
+<script>
+function positionMobileButton() {
+  if (window.innerWidth > 768) return;
+
+  var img = document.getElementById('heroImg');
+  var link = document.getElementById('enterLink');
+
+  var nw = img.naturalWidth;
+  var nh = img.naturalHeight;
+  if (!nw || !nh) return;
+
+  var vpW = window.innerWidth;
+  var vpH = window.innerHeight;
+
+  var scale = Math.min(vpW / nw, vpH / nh);
+  var renderedW = nw * scale;
+  var renderedH = nh * scale;
+
+  var imgTop = (vpH - renderedH) / 2;
+  var imgLeft = (vpW - renderedW) / 2;
+
+  var buttonTopPx = imgTop + renderedH * 0.79;
+
+  link.style.top = buttonTopPx + 'px';
+  link.style.left = (imgLeft + renderedW / 2) + 'px';
+  link.style.transform = 'translateX(-50%)';
+}
+
+var img = document.getElementById('heroImg');
+
+if (img.complete && img.naturalWidth) {
+  positionMobileButton();
+} else {
+  img.addEventListener('load', positionMobileButton);
+}
+
+window.addEventListener('resize', positionMobileButton);
+</script>
 
 </body>
 </html>
-<!-- trigger -->
