@@ -1,4 +1,4 @@
-```html id="f93a81"
+```html id="f3b2d8"
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,67 +7,62 @@
 <title>FlashVote</title>
 
 <style>
-body{
-  margin:0;
-  background:black;
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  font-family:Arial;
-  text-align:center;
-  overflow:hidden;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
 }
 
-.container{
-  position:relative;
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
 }
 
-.hero-image{
-  width:92%;
-  max-width:1400px;
-  height:auto;
-  object-fit:contain;
+.hero-image {
+  max-height: 100vh;
+  max-width: 100vw;
+  width: auto;
+  height: auto;
+  display: block;
   animation: subtlePulse 6s ease-in-out infinite;
 }
 
-@keyframes subtlePulse{
-  0%{
-    filter:brightness(1) drop-shadow(0 0 6px rgba(255,140,0,0.12));
+@keyframes subtlePulse {
+  0% {
+    filter: brightness(1);
   }
-  50%{
-    filter:brightness(1.015) drop-shadow(0 0 10px rgba(255,140,0,0.18));
+  50% {
+    filter: brightness(1.01);
   }
-  100%{
-    filter:brightness(1) drop-shadow(0 0 6px rgba(255,140,0,0.12));
-  }
-}
-
-.enter-link{
-  position:absolute;
-  width:220px;
-  height:60px;
-  bottom:18%;
-  left:50%;
-  transform:translateX(-50%);
-}
-
-@media (max-width:768px){
-  .hero-image{
-    width:100%;
-  }
-
-  .enter-link{
-    width:180px;
-    height:50px;
-    bottom:15%;
+  100% {
+    filter: brightness(1);
   }
 }
 
-@media (min-width:1600px){
-  .hero-image{
-    width:88%;
+.enter-link {
+  position: absolute;
+  width: 220px;
+  height: 60px;
+  left: 50%;
+  top: 74%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .enter-link {
+    width: 180px;
+    height: 50px;
+    top: 74%;
   }
 }
 </style>
@@ -75,7 +70,7 @@ body{
 
 <body>
 
-<div class="container">
+<div class="hero">
   <img src="enter-flashvote.png" alt="FlashVote" class="hero-image">
   <a href="main.html" class="enter-link"></a>
 </div>
