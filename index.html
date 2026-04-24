@@ -1,4 +1,4 @@
-```html id="f8c3d1"
+```html id="d4f9a7"
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,23 +27,30 @@ html, body {
   align-items: center;
 }
 
-/* full-screen stretched background */
+/* stretched background darker and enlarged */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
   background: url("enter-flashvote.png") center center / cover no-repeat;
-  filter: brightness(0.35);
-  transform: scale(1.08);
+  filter: brightness(0.18);
+  transform: scale(1.4);
 }
 
-/* locked original image */
+/* dark overlay to suppress duplicate center */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 25%, rgba(0,0,0,0.75) 65%);
+}
+
 .hero-image {
   position: relative;
   height: 108vh;
   width: auto;
   display: block;
-  z-index: 2;
+  z-index: 3;
   animation: subtlePulse 6s ease-in-out infinite;
 }
 
@@ -66,7 +73,7 @@ html, body {
   left: 50%;
   top: 74%;
   transform: translateX(-50%);
-  z-index: 3;
+  z-index: 4;
 }
 
 @media (max-width: 768px) {
@@ -75,8 +82,9 @@ html, body {
     height: auto;
   }
 
-  .hero::before {
-    transform: scale(1);
+  .hero::before,
+  .hero::after {
+    display: none;
   }
 
   .enter-link {
