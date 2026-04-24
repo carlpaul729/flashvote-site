@@ -22,45 +22,26 @@ body {
   height: 100vh;
 }
 
+/* pulse entire image subtly */
 .hero-image {
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
+  animation: imagePulse 2.6s infinite ease-in-out;
 }
 
-/* corrected final pulse */
-.pulse-ring {
-  position: absolute;
-  top: 14.8%;
-  left: 50%;
-  width: 18vw;
-  height: 18vw;
-  max-width: 250px;
-  max-height: 250px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  animation: pulseGlow 2.4s infinite ease-in-out;
-  pointer-events: none;
-}
-
-@keyframes pulseGlow {
+@keyframes imagePulse {
   0% {
-    box-shadow:
-      0 0 10px rgba(255,140,0,0.20),
-      0 0 20px rgba(255,140,0,0.12);
+    filter: brightness(1) drop-shadow(0 0 4px rgba(255,140,0,0.10));
   }
 
   50% {
-    box-shadow:
-      0 0 18px rgba(255,140,0,0.38),
-      0 0 30px rgba(255,140,0,0.18);
+    filter: brightness(1.03) drop-shadow(0 0 10px rgba(255,140,0,0.18));
   }
 
   100% {
-    box-shadow:
-      0 0 10px rgba(255,140,0,0.20),
-      0 0 20px rgba(255,140,0,0.12);
+    filter: brightness(1) drop-shadow(0 0 4px rgba(255,140,0,0.10));
   }
 }
 
@@ -83,7 +64,6 @@ body {
 
 <div class="container">
   <img src="enter-flashvote.png" alt="FlashVote" class="hero-image">
-  <div class="pulse-ring"></div>
   <a href="main.html" class="enter-link"></a>
 </div>
 
