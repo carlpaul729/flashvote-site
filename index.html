@@ -1,105 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FlashVote</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlashVote</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+body {
+  margin: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
 
-    body {
-      background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
 
-    .hero-container {
-      position: relative;
-      width: 100%;
-      max-width: 700px;
-    }
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 
-    .hero-image {
-      width: 100%;
-      display: block;
-    }
+.pulse-ring {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  width: 26vw;
+  height: 26vw;
+  max-width: 360px;
+  max-height: 360px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  box-shadow:
+    0 0 12px rgba(255,140,0,0.5),
+    0 0 24px rgba(255,140,0,0.35);
+  animation: pulseGlow 2.6s infinite ease-in-out;
+}
 
-    /* MICRO PULSE OVERLAY */
-    .pulse-ring {
-      position: absolute;
-      top: 15%;
-      left: 50%;
-      width: 38%;
-      aspect-ratio: 1 / 1;
-      transform: translateX(-50%);
-      border-radius: 50%;
-      box-shadow:
-        0 0 15px rgba(255,140,0,0.6),
-        0 0 30px rgba(255,140,0,0.4);
-      animation: pulseGlow 2.6s infinite ease-in-out;
-      pointer-events: none;
-    }
+@keyframes pulseGlow {
+  0% {
+    transform: translateX(-50%) scale(1);
+    box-shadow:
+      0 0 12px rgba(255,140,0,0.5),
+      0 0 24px rgba(255,140,0,0.35);
+  }
 
-    @keyframes pulseGlow {
-      0% {
-        transform: translateX(-50%) scale(1);
-        box-shadow:
-          0 0 12px rgba(255,140,0,0.5),
-          0 0 24px rgba(255,140,0,0.3);
-      }
+  50% {
+    transform: translateX(-50%) scale(1.015);
+    box-shadow:
+      0 0 20px rgba(255,140,0,0.85),
+      0 0 38px rgba(255,140,0,0.45);
+  }
 
-      50% {
-        transform: translateX(-50%) scale(1.015);
-        box-shadow:
-          0 0 20px rgba(255,140,0,0.9),
-          0 0 38px rgba(255,140,0,0.5);
-      }
+  100% {
+    transform: translateX(-50%) scale(1);
+    box-shadow:
+      0 0 12px rgba(255,140,0,0.5),
+      0 0 24px rgba(255,140,0,0.35);
+  }
+}
 
-      100% {
-        transform: translateX(-50%) scale(1);
-        box-shadow:
-          0 0 12px rgba(255,140,0,0.5),
-          0 0 24px rgba(255,140,0,0.3);
-      }
-    }
+.enter-link {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26%;
+  height: 8%;
+}
 
-    /* BUTTON LINK AREA */
-    .enter-button {
-      position: absolute;
-      bottom: 16%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 42%;
-      height: 7%;
-      cursor: pointer;
-    }
-
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .hero-container {
-        max-width: 100%;
-      }
-    }
-  </style>
+</style>
 </head>
+
 <body>
 
-  <div class="hero-container">
-    <img src="enter-flashvote.jpg" alt="FlashVote" class="hero-image">
-
-    <div class="pulse-ring"></div>
-
-    <a href="main.html" class="enter-button"></a>
-  </div>
+<div class="container">
+  <img src="enter-flashvote.png" alt="FlashVote" class="hero-image">
+  <div class="pulse-ring"></div>
+  <a href="main.html" class="enter-link"></a>
+</div>
 
 </body>
 </html>
