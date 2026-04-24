@@ -29,10 +29,10 @@ body {
   display: block;
 }
 
-/* final pulse alignment */
+/* corrected final pulse */
 .pulse-ring {
   position: absolute;
-  top: 14.4%;
+  top: 14.8%;
   left: 50%;
   width: 18vw;
   height: 18vw;
@@ -40,31 +40,31 @@ body {
   max-height: 250px;
   transform: translateX(-50%);
   border-radius: 50%;
-  animation: pulseGlow 2.6s infinite ease-in-out;
+  animation: pulseGlow 2.4s infinite ease-in-out;
   pointer-events: none;
 }
 
 @keyframes pulseGlow {
   0% {
     box-shadow:
-      0 0 6px rgba(255,140,0,0.15),
-      0 0 14px rgba(255,140,0,0.10);
+      0 0 10px rgba(255,140,0,0.20),
+      0 0 20px rgba(255,140,0,0.12);
   }
 
   50% {
     box-shadow:
-      0 0 12px rgba(255,140,0,0.28),
-      0 0 22px rgba(255,140,0,0.14);
+      0 0 18px rgba(255,140,0,0.38),
+      0 0 30px rgba(255,140,0,0.18);
   }
 
   100% {
     box-shadow:
-      0 0 6px rgba(255,140,0,0.15),
-      0 0 14px rgba(255,140,0,0.10);
+      0 0 10px rgba(255,140,0,0.20),
+      0 0 20px rgba(255,140,0,0.12);
   }
 }
 
-/* button click zone */
+/* clickable button */
 .enter-link {
   position: absolute;
   bottom: 19%;
