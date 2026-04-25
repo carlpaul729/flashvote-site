@@ -12,7 +12,6 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  font-family: Arial, sans-serif;
   background: black;
 }
 
@@ -20,9 +19,11 @@ html, body {
   position: relative;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
-.hero img {
+.backdrop {
+  position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -30,57 +31,16 @@ html, body {
 
 .overlay {
   position: absolute;
-  top: 52%;
+  top: 50%;
   left: 50%;
+  width: 55%;
+  max-width: 700px;
   transform: translate(-50%, -50%);
-  text-align: center;
-  color: white;
-}
-
-.logo {
-  width: 180px;
-  margin-bottom: 20px;
-}
-
-.title {
-  font-size: 5rem;
-  font-weight: bold;
-  margin: 0;
-}
-
-.tagline {
-  font-size: 1.6rem;
-  margin-top: 10px;
-  margin-bottom: 35px;
-}
-
-.enter-btn {
-  display: inline-block;
-  padding: 18px 50px;
-  border: 2px solid orange;
-  border-radius: 14px;
-  color: white;
-  text-decoration: none;
-  font-size: 1.5rem;
-  box-shadow: 0 0 20px orange;
 }
 
 @media (max-width: 768px) {
-  .logo {
-    width: 110px;
-  }
-
-  .title {
-    font-size: 2.8rem;
-  }
-
-  .tagline {
-    font-size: 1rem;
-  }
-
-  .enter-btn {
-    font-size: 1rem;
-    padding: 12px 28px;
+  .overlay {
+    width: 85%;
   }
 }
 </style>
@@ -89,14 +49,8 @@ html, body {
 <body>
 
 <div class="hero">
-  <img src="flashvote-backdrop.png" alt="FlashVote Background">
-
-  <div class="overlay">
-    <img src="logo.png" class="logo" alt="FlashVote Logo">
-    <h1 class="title">FlashVote</h1>
-    <p class="tagline">Sentiment moves fast. Outcomes follow.</p>
-    <a href="about.html" class="enter-btn">Enter FlashVote</a>
-  </div>
+  <img src="flashvote-backdrop.png" class="backdrop" alt="Backdrop">
+  <img src="flashvote-overlay.png" class="overlay" alt="Overlay">
 </div>
 
 </body>
