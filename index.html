@@ -47,6 +47,7 @@
       max-width: 1000px;
       transform: translate(-50%, -50%);
       animation: microPulse 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 10px rgba(255,140,0,0.4));
     }
 
     .overlay img {
@@ -67,23 +68,23 @@
     @keyframes microPulse {
       0% {
         transform: translate(-50%, -50%) scale(1);
-        filter: brightness(0.98);
+        filter: brightness(0.98) drop-shadow(0 0 10px rgba(255,140,0,0.35));
       }
       8% {
         transform: translate(-50%, -50%) scale(1.012);
-        filter: brightness(1);
+        filter: brightness(1) drop-shadow(0 0 14px rgba(255,140,0,0.45));
       }
       14% {
         transform: translate(-50%, -50%) scale(1.004);
-        filter: brightness(0.99);
+        filter: brightness(0.99) drop-shadow(0 0 11px rgba(255,140,0,0.38));
       }
       20% {
         transform: translate(-50%, -50%) scale(1.012);
-        filter: brightness(1);
+        filter: brightness(1) drop-shadow(0 0 14px rgba(255,140,0,0.45));
       }
       100% {
         transform: translate(-50%, -50%) scale(1);
-        filter: brightness(0.98);
+        filter: brightness(0.98) drop-shadow(0 0 10px rgba(255,140,0,0.35));
       }
     }
 
