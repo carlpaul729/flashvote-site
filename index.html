@@ -17,42 +17,63 @@
   <meta name="twitter:image" content="https://flashvotehq.com/flashvote-preview.png">
 
   <style>
-    html, body {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
       width: 100%;
       height: 100%;
+      background: black;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100svh;
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100svh;
+      min-height: 100svh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
       background: black;
     }
 
-    body {
-      position: relative;
-      font-family: Arial, sans-serif;
-    }
-
     .background {
       position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 20.25%;
+      object-position: center 41%;
+      transform: scale(1.01);
     }
 
     .overlay {
       position: absolute;
+      width: clamp(320px, 68%, 1000px);
       top: 50%;
       left: 50%;
-      width: 68%;
-      max-width: 1000px;
-      transform: translate(-50%, -50%);
+      transform: translate3d(-50%, -50%, 0);
+      z-index: 2;
       animation: microPulse 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 10px rgba(255,140,0,0.4));
+      filter: drop-shadow(0 0 10px rgba(255,140,0,0.38));
+      will-change: transform;
     }
 
     .overlay img {
       width: 100%;
       display: block;
+      pointer-events: none;
+      user-select: none;
     }
 
     .enter-button {
@@ -63,55 +84,45 @@
       width: 30%;
       height: 7%;
       display: block;
+      z-index: 3;
     }
 
     @keyframes microPulse {
       0% {
-        transform: translate(-50%, -50%) scale(1);
-        filter: brightness(0.98) drop-shadow(0 0 10px rgba(255,140,0,0.35));
+        transform: translate3d(-50%, -50%, 0) scale(1);
+        filter: brightness(0.985) drop-shadow(0 0 10px rgba(255,140,0,0.34));
       }
+
       8% {
-        transform: translate(-50%, -50%) scale(1.012);
-        filter: brightness(1) drop-shadow(0 0 14px rgba(255,140,0,0.45));
+        transform: translate3d(-50%, -50%, 0) scale(1.010);
+        filter: brightness(1) drop-shadow(0 0 13px rgba(255,140,0,0.42));
       }
+
       14% {
-        transform: translate(-50%, -50%) scale(1.004);
-        filter: brightness(0.99) drop-shadow(0 0 11px rgba(255,140,0,0.38));
+        transform: translate3d(-50%, -50%, 0) scale(1.004);
+        filter: brightness(0.992) drop-shadow(0 0 11px rgba(255,140,0,0.36));
       }
+
       20% {
-        transform: translate(-50%, -50%) scale(1.012);
-        filter: brightness(1) drop-shadow(0 0 14px rgba(255,140,0,0.45));
+        transform: translate3d(-50%, -50%, 0) scale(1.010);
+        filter: brightness(1) drop-shadow(0 0 13px rgba(255,140,0,0.42));
       }
+
       100% {
-        transform: translate(-50%, -50%) scale(1);
-        filter: brightness(0.98) drop-shadow(0 0 10px rgba(255,140,0,0.35));
+        transform: translate3d(-50%, -50%, 0) scale(1);
+        filter: brightness(0.985) drop-shadow(0 0 10px rgba(255,140,0,0.34));
       }
     }
 
     @media (max-width: 768px) {
-      .background {
-        object-position: center 53%;
-      }
-
       .overlay {
         width: 92%;
-        max-width: none;
-        top: 51%;
-      }
-
-      .enter-button {
-        left: 49.25%;
-        bottom: 22%;
-        width: 30%;
-        height: 7%;
       }
     }
 
     @supports (-webkit-touch-callout: none) {
-      @media (max-width: 768px) {
-        .overlay {
-          top: 55%;
-        }
+      .overlay {
+        top: 46%;
       }
     }
   </style>
@@ -119,11 +130,13 @@
 
 <body>
 
-  <img src="flashvote-backdrop.png" alt="FlashVote Background" class="background">
+  <div class="hero">
+    <img src="flashvote-backdrop.png" class="background" alt="FlashVote Background">
 
-  <div class="overlay">
-    <img src="flashvote-overlay.png" alt="FlashVote Overlay">
-    <a href="about.html" class="enter-button"></a>
+    <div class="overlay">
+      <img src="flashvote-overlay.png" alt="FlashVote Overlay">
+      <a href="about.html" class="enter-button"></a>
+    </div>
   </div>
 
 </body>
