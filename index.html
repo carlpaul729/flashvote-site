@@ -46,7 +46,7 @@
       width: 68%;
       max-width: 1000px;
       transform: translate(-50%, -50%);
-      animation: microPulse 3.2s ease-in-out infinite;
+      animation: microPulse 3s ease-in-out infinite;
     }
 
     .overlay img {
@@ -65,11 +65,26 @@
     }
 
     @keyframes microPulse {
-      0%   { filter: brightness(0.97); }
-      8%   { filter: brightness(1); }
-      14%  { filter: brightness(0.98); }
-      20%  { filter: brightness(1); }
-      100% { filter: brightness(0.97); }
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        filter: brightness(0.98);
+      }
+      8% {
+        transform: translate(-50%, -50%) scale(1.008);
+        filter: brightness(1);
+      }
+      14% {
+        transform: translate(-50%, -50%) scale(1.003);
+        filter: brightness(0.99);
+      }
+      20% {
+        transform: translate(-50%, -50%) scale(1.008);
+        filter: brightness(1);
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        filter: brightness(0.98);
+      }
     }
 
     @media (max-width: 768px) {
