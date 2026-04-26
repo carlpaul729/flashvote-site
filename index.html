@@ -96,7 +96,7 @@
       .overlay {
         width: 92%;
         max-width: none;
-        top: 48.5%;
+        top: 51%;
       }
 
       .enter-button {
@@ -104,6 +104,14 @@
         bottom: 22%;
         width: 30%;
         height: 7%;
+      }
+    }
+
+    @supports (-webkit-touch-callout: none) {
+      @media (max-width: 768px) {
+        .overlay {
+          top: 47.8%;
+        }
       }
     }
   </style>
