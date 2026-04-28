@@ -100,9 +100,31 @@
       }
     }
 
+    @media (orientation: landscape) and (max-width: 950px) {
+      .overlay {
+        width: 58%;
+        top: 50%;
+      }
+
+      .background {
+        object-position: center 35%;
+      }
+    }
+
     @supports (-webkit-touch-callout: none) {
       .overlay {
-        top: 47.1%;
+        top: 47.4%;
+      }
+    }
+
+    @supports (-webkit-touch-callout: none) and (orientation: landscape) {
+      .overlay {
+        width: 54%;
+        top: 49%;
+      }
+
+      .background {
+        object-position: center 34%;
       }
     }
   </style>
