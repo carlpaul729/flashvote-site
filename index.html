@@ -41,6 +41,18 @@
       object-position: center 20.25%;
     }
 
+    .vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at center,
+          rgba(0,0,0,0) 38%,
+          rgba(0,0,0,0.18) 72%,
+          rgba(0,0,0,0.34) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
     .overlay {
       position: absolute;
       top: 50%;
@@ -48,6 +60,7 @@
       width: 68%;
       max-width: 1000px;
       transform: translate(-50%, -50%);
+      z-index: 2;
       animation: microPulse 3s ease-in-out infinite;
       filter:
         drop-shadow(0 0 10px rgba(255,140,0,0.35))
@@ -152,6 +165,7 @@
 <body>
 
   <img src="flashvote-backdrop.png" alt="FlashVote Background" class="background">
+  <div class="vignette"></div>
 
   <div class="overlay">
     <img src="flashvote-overlay.png" alt="FlashVote Overlay">
