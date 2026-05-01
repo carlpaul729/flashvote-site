@@ -95,8 +95,7 @@
     .button {
       display: inline-block;
       margin: 10px;
-      padding: 13px 24px;
-      border: 1px solid rgba(255,140,0,0.55);
+      padding: 14px 26px;
       border-radius: 10px;
       color: white;
       text-decoration: none;
@@ -104,9 +103,22 @@
       transition: 0.25s ease;
     }
 
-    .button:hover {
+    .primary {
+      border: 1px solid rgba(255,140,0,0.8);
+      box-shadow: 0 0 16px rgba(255,140,0,0.25);
+    }
+
+    .primary:hover {
+      background: rgba(255,140,0,0.12);
+      box-shadow: 0 0 20px rgba(255,140,0,0.35);
+    }
+
+    .secondary {
+      border: 1px solid rgba(255,140,0,0.4);
+    }
+
+    .secondary:hover {
       background: rgba(255,140,0,0.08);
-      box-shadow: 0 0 14px rgba(255,140,0,0.16);
     }
 
     .steps {
@@ -157,26 +169,37 @@
     <div class="section">
       <div class="section-title">Contract Address</div>
       <div class="ca-box" id="caBox" onclick="copyCA()">
-        CA COMING SOON
+        0xYOURCONTRACTADDRESSHERE
       </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Buy FlashVote</div>
+
+      <a href="https://app.uniswap.org/" target="_blank" class="button primary">
+        Buy on Uniswap
+      </a>
+
+      <a href="https://dexscreener.com/" target="_blank" class="button secondary">
+        View Chart
+      </a>
     </div>
 
     <div class="section">
       <div class="section-title">How to Buy</div>
       <div class="steps">
         1. Connect wallet<br>
-        2. Open launch platform<br>
-        3. Paste contract address<br>
-        4. Swap for FlashVote
+        2. Paste contract address<br>
+        3. Swap for FlashVote
       </div>
     </div>
 
     <div class="section">
-      <div class="section-title">Links</div>
+      <div class="section-title">Follow</div>
 
-      <a href="https://x.com/flashvotehq" target="_blank" class="button">X</a>
-      <a href="#" class="button">Buy (Coming Soon)</a>
-      <a href="#" class="button">Chart (Coming Soon)</a>
+      <a href="https://x.com/flashvotehq" target="_blank" class="button secondary">
+        X
+      </a>
     </div>
 
   </div>
@@ -185,18 +208,17 @@
     function copyCA() {
       const caText = document.getElementById("caBox").innerText;
 
-      if (caText.includes("COMING")) return;
-
       navigator.clipboard.writeText(caText);
 
       const box = document.getElementById("caBox");
       box.classList.add("copied");
 
+      const original = caText;
       box.innerText = "Copied";
 
       setTimeout(() => {
         box.classList.remove("copied");
-        box.innerText = caText;
+        box.innerText = original;
       }, 1500);
     }
   </script>
