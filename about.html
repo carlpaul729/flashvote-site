@@ -78,6 +78,18 @@
       color: rgba(255,255,255,0.9);
       word-break: break-all;
       margin-top: 12px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .ca-box:hover {
+      background: rgba(255,140,0,0.08);
+      box-shadow: 0 0 12px rgba(255,140,0,0.2);
+    }
+
+    .copied {
+      border-color: rgba(0,255,140,0.6);
+      box-shadow: 0 0 10px rgba(0,255,140,0.25);
     }
 
     .button {
@@ -138,13 +150,13 @@
     <div class="section">
       <div class="section-title">What is FlashVote</div>
       <div class="description">
-        FlashVote is a digital asset built around speed, sentiment, and market attention.
+        FlashVote reflects fast-moving digital attention in real time.
       </div>
     </div>
 
     <div class="section">
       <div class="section-title">Contract Address</div>
-      <div class="ca-box">
+      <div class="ca-box" id="caBox" onclick="copyCA()">
         CA COMING SOON
       </div>
     </div>
@@ -162,12 +174,32 @@
     <div class="section">
       <div class="section-title">Links</div>
 
-      <a href="https://x.com/" target="_blank" class="button">X</a>
+      <a href="https://x.com/flashvotehq" target="_blank" class="button">X</a>
       <a href="#" class="button">Buy (Coming Soon)</a>
       <a href="#" class="button">Chart (Coming Soon)</a>
     </div>
 
   </div>
+
+  <script>
+    function copyCA() {
+      const caText = document.getElementById("caBox").innerText;
+
+      if (caText.includes("COMING")) return;
+
+      navigator.clipboard.writeText(caText);
+
+      const box = document.getElementById("caBox");
+      box.classList.add("copied");
+
+      box.innerText = "Copied";
+
+      setTimeout(() => {
+        box.classList.remove("copied");
+        box.innerText = caText;
+      }, 1500);
+    }
+  </script>
 
 </body>
 </html>
