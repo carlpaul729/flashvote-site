@@ -18,13 +18,13 @@
       text-align: center;
     }
 
-    /* HERO SECTION */
+    /* HERO */
     .hero {
       min-height: 60vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 60px 20px;
+      padding: 60px 20px 40px; /* slight bottom space */
     }
 
     .hero-inner {
@@ -48,6 +48,11 @@
     .subtitle {
       color: #ccc;
       font-size: clamp(14px, 2vw, 18px);
+    }
+
+    /* CONTENT WRAPPER (THIS FIXES SCROLL) */
+    .content {
+      padding-bottom: 120px; /* KEY FIX */
     }
 
     /* SECTION TITLES */
@@ -86,7 +91,7 @@
       box-shadow: 0 0 15px rgba(255,122,0,0.6);
     }
 
-    /* BUY SECTION */
+    /* BUY */
     .buy-title {
       margin-top: 60px;
       color: #ff7a00;
@@ -113,24 +118,29 @@
     </div>
   </div>
 
-  <!-- WHAT IS FLASHVOTE -->
-  <div class="section-title">WHAT IS FLASHVOTE</div>
-  <div class="underline"></div>
+  <!-- CONTENT -->
+  <div class="content">
 
-  <div class="section-text">
-    FlashVote reflects fast-moving digital attention in real time.
+    <!-- WHAT IS FLASHVOTE -->
+    <div class="section-title">WHAT IS FLASHVOTE</div>
+    <div class="underline"></div>
+
+    <div class="section-text">
+      FlashVote reflects fast-moving digital attention in real time.
+    </div>
+
+    <!-- CONTRACT -->
+    <div class="section-title">CONTRACT ADDRESS</div>
+    <div class="underline"></div>
+
+    <div class="contract-box">
+      0xYOURCONTRACTADDRESSHERE
+    </div>
+
+    <!-- BUY -->
+    <div class="buy-title">BUY FLASHVOTE</div>
+
   </div>
-
-  <!-- CONTRACT -->
-  <div class="section-title">CONTRACT ADDRESS</div>
-  <div class="underline"></div>
-
-  <div class="contract-box">
-    0xYOURCONTRACTADDRESSHERE
-  </div>
-
-  <!-- BUY -->
-  <div class="buy-title">BUY FLASHVOTE</div>
 
 </body>
 </html>
