@@ -1,178 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FlashVote</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlashVote</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%);
-  color: white;
-  text-align: center;
-}
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* ===== HERO SECTION ===== */
-.hero {
-  position: relative;
-  height: 45vh; /* controls vertical space */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: black;
+      color: white;
+      text-align: center;
+    }
 
-/* SIGNAL LINE (ABSOLUTE — no push down) */
-.signal-line {
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  max-width: 1000px;
-  opacity: 0.95;
-  filter: drop-shadow(0 0 15px rgba(255,120,0,0.7));
-}
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      height: clamp(260px, 42vh, 420px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-/* TITLE */
-h1 {
-  font-size: 42px;
-  margin: 0;
-  z-index: 1;
-}
+    .hero-inner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-.subtitle {
-  color: #ccc;
-  margin-top: 10px;
-  z-index: 1;
-}
+    /* SIGNAL LINE */
+    .signal-line {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(220px, 60vw, 900px);
+      opacity: 0.95;
+      pointer-events: none;
+      filter: drop-shadow(0 0 18px rgba(255,120,0,0.75));
+    }
 
-/* ===== CONTENT ===== */
-.content {
-  margin-top: 20px;
-}
+    /* TITLE */
+    h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      margin: 0;
+      z-index: 1;
+    }
 
-/* SECTION TITLES */
-.section-title {
-  color: #ff7a00;
-  margin-top: 30px;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
+    .subtitle {
+      margin-top: 10px;
+      color: #ccc;
+      z-index: 1;
+    }
 
-.section-line {
-  width: 60px;
-  height: 3px;
-  background: #ff7a00;
-  margin: 0 auto 20px auto;
-  box-shadow: 0 0 10px #ff7a00;
-}
+    /* CONTENT */
+    .section {
+      padding: 40px 20px;
+    }
 
-/* TEXT */
-p {
-  color: #ddd;
-  max-width: 600px;
-  margin: 0 auto 20px auto;
-}
+    .section h2 {
+      color: #ff6a00;
+      margin-bottom: 10px;
+    }
 
-/* CONTRACT */
-.contract-box {
-  display: inline-block;
-  padding: 12px 20px;
-  border: 2px solid #ff7a00;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  box-shadow: 0 0 12px rgba(255,122,0,0.6);
-}
+    .underline {
+      width: 60px;
+      height: 3px;
+      background: #ff6a00;
+      margin: 10px auto 20px auto;
+      box-shadow: 0 0 10px rgba(255,106,0,0.8);
+    }
 
-/* BUTTONS */
-.button {
-  display: inline-block;
-  padding: 12px 22px;
-  margin: 10px;
-  border-radius: 10px;
-  border: 2px solid #ff7a00;
-  color: white;
-  text-decoration: none;
-}
+    .contract-box {
+      display: inline-block;
+      padding: 14px 22px;
+      border: 2px solid #ff6a00;
+      border-radius: 12px;
+      margin-top: 10px;
+      font-size: 14px;
+      box-shadow: 0 0 15px rgba(255,106,0,0.6);
+    }
 
-.button:hover {
-  background: #ff7a00;
-  color: black;
-}
+    .buttons {
+      margin-top: 20px;
+    }
 
-/* FOLLOW */
-.x-button {
-  display: inline-block;
-  padding: 12px 20px;
-  border: 2px solid #ff7a00;
-  border-radius: 10px;
-  color: white;
-  text-decoration: none;
-  margin-top: 20px;
-}
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      border: 2px solid #ff6a00;
+      border-radius: 10px;
+      color: white;
+      text-decoration: none;
+      transition: 0.2s;
+    }
 
-/* MOBILE */
-@media (max-width: 600px) {
-  .hero {
-    height: 50vh;
-  }
+    .btn:hover {
+      background: #ff6a00;
+      color: black;
+      box-shadow: 0 0 15px rgba(255,106,0,0.8);
+    }
 
-  .signal-line {
-    width: 85%;
-    top: 32%;
-  }
+    .follow-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 18px;
+      border: 2px solid #ff6a00;
+      border-radius: 10px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
 
-  h1 {
-    font-size: 32px;
-  }
-}
-</style>
+    .follow-btn:hover {
+      background: #ff6a00;
+      color: black;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<div class="hero">
-  <img src="signal-line.png" class="signal-line">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <img src="signal-line.png" class="signal-line" />
 
-  <h1>FlashVote</h1>
-  <div class="subtitle">Sentiment moves fast. Outcomes follow.</div>
-</div>
-
-<!-- CONTENT -->
-<div class="content">
-
-  <div class="section-title">WHAT IS FLASHVOTE</div>
-  <div class="section-line"></div>
-  <p>FlashVote reflects fast-moving digital attention in real time.</p>
-
-  <div class="section-title">CONTRACT ADDRESS</div>
-  <div class="section-line"></div>
-
-  <div class="contract-box">
-    0xYOURCONTRACTADDRESSHERE
+      <h1>FlashVote</h1>
+      <div class="subtitle">Sentiment moves fast. Outcomes follow.</div>
+    </div>
   </div>
 
-  <div class="section-title">BUY FLASHVOTE</div>
-  <div>
-    <a href="#" class="button">Buy on Uniswap</a>
-    <a href="#" class="button">View Chart</a>
+  <!-- WHAT IS -->
+  <div class="section">
+    <h2>WHAT IS FLASHVOTE</h2>
+    <div class="underline"></div>
+    <p>FlashVote reflects fast-moving digital attention in real time.</p>
   </div>
 
-  <div class="section-title">HOW TO BUY</div>
-  <p>
-    1. Connect wallet<br>
-    2. Paste contract address<br>
-    3. Swap for FlashVote
-  </p>
+  <!-- CONTRACT -->
+  <div class="section">
+    <h2>CONTRACT ADDRESS</h2>
+    <div class="underline"></div>
+    <div class="contract-box">0xYOURCONTRACTADDRESSHERE</div>
+  </div>
 
-  <div class="section-title">FOLLOW</div>
-  <a href="https://x.com/flashvotehq" class="x-button">X</a>
+  <!-- BUY -->
+  <div class="section">
+    <h2>BUY FLASHVOTE</h2>
+    <div class="buttons">
+      <a href="#" class="btn">Buy on Uniswap</a>
+      <a href="#" class="btn">View Chart</a>
+    </div>
+  </div>
 
-</div>
+  <!-- HOW TO BUY -->
+  <div class="section">
+    <h2>HOW TO BUY</h2>
+    <div class="underline"></div>
+    <p>1. Connect wallet</p>
+    <p>2. Paste contract address</p>
+    <p>3. Swap for FlashVote</p>
+  </div>
+
+  <!-- FOLLOW -->
+  <div class="section">
+    <h2>FOLLOW</h2>
+    <a href="https://x.com/flashvotehq" class="follow-btn">X</a>
+  </div>
 
 </body>
 </html>
