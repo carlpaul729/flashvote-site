@@ -5,12 +5,12 @@
     box-sizing: border-box;
 }
 
-/* ===== BODY ===== */
 body {
     background: black;
     color: white;
     font-family: Arial, sans-serif;
     text-align: center;
+    overflow-x: hidden;
 }
 
 /* ===== HERO SECTION ===== */
@@ -18,115 +18,110 @@ body {
     min-height: 100svh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
 
-    padding-top: 2vh;     /* moves content UP */
-    gap: 0.5vh;           /* controls spacing between elements */
+    padding-top: 3vh; /* controls vertical placement */
 }
 
 /* ===== TITLE ===== */
 .title {
     font-size: clamp(42px, 6vw, 90px);
     font-weight: 600;
-    margin-bottom: 0.5vh;   /* tighter */
+
+    margin-bottom: 0.5vh; /* tighter */
 }
 
 /* ===== SIGNAL LINE ===== */
 .signal {
     width: 60%;
     max-width: 700px;
-    margin: 0.5vh 0;        /* tighter */
+
+    margin-bottom: 0.5vh; /* tighter */
 }
 
 /* ===== TAGLINE ===== */
 .tagline {
     font-size: clamp(16px, 2vw, 26px);
     color: #ccc;
-    margin-top: 0.5vh;
-    margin-bottom: 4vh;
+
+    margin-bottom: 6vh; /* IMPORTANT: keeps lower layout spaced correctly */
 }
 
-/* ===== SECTION ===== */
+/* ===== SECTIONS BELOW HERO ===== */
 .section {
-    margin-top: 4vh;
-    padding: 0 20px;
+    padding: 60px 20px;
 }
 
 /* ===== HEADINGS ===== */
-.section h2 {
-    color: #ff6a00;
-    font-size: clamp(20px, 2.5vw, 32px);
+.section-title {
+    color: #ff5a1f;
+    font-size: clamp(20px, 3vw, 32px);
     margin-bottom: 10px;
 }
 
-.underline {
-    width: 50px;
+.section-line {
+    width: 60px;
     height: 3px;
-    background: #ff6a00;
-    margin: 8px auto 20px auto;
+    background: #ff5a1f;
+    margin: 10px auto 30px;
 }
 
 /* ===== TEXT ===== */
-.section p {
-    font-size: clamp(14px, 2vw, 20px);
-    color: #ddd;
+.section-text {
+    font-size: clamp(14px, 1.5vw, 20px);
+    color: #ccc;
+    max-width: 600px;
+    margin: 0 auto 40px;
 }
 
 /* ===== CONTRACT BOX ===== */
 .contract-box {
+    border: 2px solid #ff5a1f;
+    border-radius: 12px;
+    padding: 14px 20px;
     display: inline-block;
-    padding: 14px 24px;
-    border: 2px solid #ff6a00;
-    border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0 0 12px #ff6a00;
-    font-size: clamp(12px, 2vw, 18px);
+    color: white;
+    font-size: clamp(14px, 1.5vw, 18px);
+
+    box-shadow: 0 0 10px rgba(255, 90, 31, 0.5);
 }
 
 /* ===== BUTTONS ===== */
-.buttons {
-    margin-top: 30px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 22px;
-    margin: 10px;
-    border: 2px solid #ff6a00;
-    border-radius: 10px;
-    color: white;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: #ff6a00;
-    color: black;
-    box-shadow: 0 0 15px #ff6a00;
-}
-
-/* ===== HOW TO BUY ===== */
-.steps {
+.button-group {
     margin-top: 20px;
-    font-size: clamp(14px, 2vw, 18px);
 }
 
-/* ===== FOLLOW ===== */
-.follow {
-    margin-top: 30px;
-}
-
-.follow a {
+.button {
     display: inline-block;
-    border: 2px solid #ff6a00;
-    padding: 10px 16px;
+    margin: 10px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: 2px solid #ff5a1f;
+    color: white;
+    text-decoration: none;
+    font-size: clamp(14px, 1.5vw, 18px);
+
+    transition: 0.2s ease;
+}
+
+.button:hover {
+    background: #ff5a1f;
+    color: black;
+    box-shadow: 0 0 12px #ff5a1f;
+}
+
+/* ===== FOLLOW BUTTON ===== */
+.follow-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: 2px solid #ff5a1f;
     border-radius: 8px;
+    display: inline-block;
     color: white;
     text-decoration: none;
 }
 
-.follow a:hover {
-    background: #ff6a00;
+.follow-btn:hover {
+    background: #ff5a1f;
     color: black;
 }
