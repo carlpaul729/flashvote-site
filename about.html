@@ -6,121 +6,222 @@
   <title>FlashVote</title>
 
   <style>
-    html {
-      scroll-behavior: smooth;
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: black;
-      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 60px 20px;
+      background:
+        radial-gradient(circle at center, rgba(255,140,0,0.08), transparent 55%),
+        black;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 700px;
       text-align: center;
     }
 
-    /* HERO */
-    .hero {
-      min-height: 100vh; /* restore full page */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    .logo {
+      width: 110px;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 0 12px rgba(255,140,0,0.35));
     }
 
     h1 {
-      font-size: 48px;
-      margin: 0 0 6px 0; /* tighter */
+      font-size: 34px;
+      margin-bottom: 10px;
+      font-weight: 500;
+      letter-spacing: 1px;
     }
 
-    .signal-line {
-      width: 600px;
-      max-width: 80%;
-      margin: 4px 0 6px; /* tighter */
-      filter: drop-shadow(0 0 18px rgba(255,120,0,0.75));
+    .tagline {
+      font-size: 17px;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 40px;
     }
 
-    .subtitle {
-      color: #ccc;
-      font-size: 16px;
-      margin-bottom: 30px; /* keeps spacing before next section */
+    .section {
+      margin-bottom: 42px;
     }
 
-    /* SECTION TITLES */
     .section-title {
-      color: #ff7a00;
-      font-size: 20px;
-      margin-top: 60px;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,140,0,0.85);
+      margin-bottom: 14px;
     }
 
-    .underline {
-      width: 60px;
-      height: 3px;
-      background: #ff7a00;
-      margin: 8px auto 20px;
-      box-shadow: 0 0 10px #ff7a00;
-    }
-
-    .section-text {
-      color: #ccc;
-      max-width: 600px;
-      margin: auto;
+    .description {
+      font-size: 17px;
       line-height: 1.6;
-      padding: 0 20px;
+      color: rgba(255,255,255,0.88);
     }
 
-    .contract-box {
+    .ca-box {
       display: inline-block;
-      margin-top: 20px;
-      padding: 15px 25px;
-      border-radius: 12px;
-      border: 2px solid #ff7a00;
+      padding: 14px 18px;
+      border: 1px solid rgba(255,140,0,0.45);
+      border-radius: 10px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.9);
+      word-break: break-all;
+      margin-top: 12px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .ca-box:hover {
+      background: rgba(255,140,0,0.08);
+      box-shadow: 0 0 12px rgba(255,140,0,0.2);
+    }
+
+    .copied {
+      border-color: rgba(0,255,140,0.6);
+      box-shadow: 0 0 10px rgba(0,255,140,0.25);
+    }
+
+    .button {
+      display: inline-block;
+      margin: 10px;
+      padding: 14px 26px;
+      border-radius: 10px;
       color: white;
-      box-shadow: 0 0 15px rgba(255,122,0,0.6);
+      text-decoration: none;
+      font-size: 15px;
+      transition: 0.25s ease;
     }
 
-    .buy-title {
-      margin-top: 60px;
-      margin-bottom: 120px; /* IMPORTANT → restores scroll */
-      color: #ff7a00;
-      font-size: 20px;
+    .primary {
+      border: 1px solid rgba(255,140,0,0.8);
+      box-shadow: 0 0 16px rgba(255,140,0,0.25);
     }
 
+    .primary:hover {
+      background: rgba(255,140,0,0.12);
+      box-shadow: 0 0 20px rgba(255,140,0,0.35);
+    }
+
+    .secondary {
+      border: 1px solid rgba(255,140,0,0.4);
+    }
+
+    .secondary:hover {
+      background: rgba(255,140,0,0.08);
+    }
+
+    .steps {
+      font-size: 16px;
+      line-height: 2;
+      color: rgba(255,255,255,0.88);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .description,
+      .steps {
+        font-size: 15px;
+      }
+
+      .button {
+        display: block;
+        width: 100%;
+        max-width: 260px;
+        margin: 12px auto;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- HERO -->
-  <div class="hero">
+  <div class="container">
+
+    <img src="flashvote-icon.png" alt="FlashVote" class="logo">
 
     <h1>FlashVote</h1>
 
-    <img src="signal-line.png" class="signal-line">
-
-    <div class="subtitle">
+    <div class="tagline">
       Sentiment moves fast. Outcomes follow.
+    </div>
+
+    <div class="section">
+      <div class="section-title">What is FlashVote</div>
+      <div class="description">
+        FlashVote reflects fast-moving digital attention in real time.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Contract Address</div>
+      <div class="ca-box" id="caBox" onclick="copyCA()">
+        0xYOURCONTRACTADDRESSHERE
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Buy FlashVote</div>
+
+      <a href="https://app.uniswap.org/" target="_blank" class="button primary">
+        Buy on Uniswap
+      </a>
+
+      <a href="https://dexscreener.com/" target="_blank" class="button secondary">
+        View Chart
+      </a>
+    </div>
+
+    <div class="section">
+      <div class="section-title">How to Buy</div>
+      <div class="steps">
+        1. Connect wallet<br>
+        2. Paste contract address<br>
+        3. Swap for FlashVote
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Follow</div>
+
+      <a href="https://x.com/flashvotehq" target="_blank" class="button secondary">
+        X
+      </a>
     </div>
 
   </div>
 
-  <!-- WHAT IS FLASHVOTE -->
-  <div class="section-title">WHAT IS FLASHVOTE</div>
-  <div class="underline"></div>
+  <script>
+    function copyCA() {
+      const caText = document.getElementById("caBox").innerText;
 
-  <div class="section-text">
-    FlashVote reflects fast-moving digital attention in real time.
-  </div>
+      navigator.clipboard.writeText(caText);
 
-  <!-- CONTRACT -->
-  <div class="section-title">CONTRACT ADDRESS</div>
-  <div class="underline"></div>
+      const box = document.getElementById("caBox");
+      box.classList.add("copied");
 
-  <div class="contract-box">
-    0xYOURCONTRACTADDRESSHERE
-  </div>
+      const original = caText;
+      box.innerText = "Copied";
 
-  <!-- BUY -->
-  <div class="buy-title">BUY FLASHVOTE</div>
+      setTimeout(() => {
+        box.classList.remove("copied");
+        box.innerText = original;
+      }, 1500);
+    }
+  </script>
 
 </body>
 </html>
