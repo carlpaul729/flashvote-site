@@ -18,9 +18,8 @@
       text-align: center;
     }
 
-    /* HERO SECTION */
+    /* HERO */
     .hero {
-      position: relative;
       height: clamp(260px, 42vh, 420px);
       display: flex;
       justify-content: center;
@@ -28,55 +27,59 @@
     }
 
     .hero-inner {
-      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* SIGNAL LINE */
-    .signal-line {
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: clamp(220px, 60vw, 900px);
-      opacity: 0.95;
-      pointer-events: none;
-      filter: drop-shadow(0 0 18px rgba(255,120,0,0.75));
-    }
-
-    /* TITLE */
     h1 {
       font-size: clamp(32px, 5vw, 48px);
       margin: 0;
-      z-index: 1;
+      letter-spacing: 1px;
+    }
+
+    /* SIGNAL LINE (FINAL POSITIONING) */
+    .signal-line {
+      width: clamp(200px, 50vw, 700px);
+      margin: 10px 0;
+      opacity: 0.95;
+      filter: drop-shadow(0 0 18px rgba(255,120,0,0.75));
     }
 
     .subtitle {
-      margin-top: 10px;
       color: #ccc;
-      z-index: 1;
+      margin-top: 4px;
+      font-size: clamp(14px, 2vw, 18px);
     }
 
-    /* CONTENT */
+    /* SECTIONS */
     .section {
-      padding: 40px 20px;
+      padding: 50px 20px;
     }
 
     .section h2 {
       color: #ff6a00;
       margin-bottom: 10px;
+      font-size: clamp(18px, 2.5vw, 26px);
+      letter-spacing: 1px;
     }
 
     .underline {
       width: 60px;
       height: 3px;
       background: #ff6a00;
-      margin: 10px auto 20px auto;
-      box-shadow: 0 0 10px rgba(255,106,0,0.8);
+      margin: 10px auto 25px auto;
+      box-shadow: 0 0 12px rgba(255,106,0,0.9);
     }
 
+    p {
+      color: #ddd;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* CONTRACT BOX */
     .contract-box {
       display: inline-block;
       padding: 14px 22px;
@@ -85,8 +88,10 @@
       margin-top: 10px;
       font-size: 14px;
       box-shadow: 0 0 15px rgba(255,106,0,0.6);
+      word-break: break-all;
     }
 
+    /* BUTTONS */
     .buttons {
       margin-top: 20px;
     }
@@ -94,34 +99,37 @@
     .btn {
       display: inline-block;
       margin: 10px;
-      padding: 12px 20px;
+      padding: 12px 22px;
       border: 2px solid #ff6a00;
       border-radius: 10px;
       color: white;
       text-decoration: none;
-      transition: 0.2s;
+      transition: all 0.2s ease;
     }
 
     .btn:hover {
       background: #ff6a00;
       color: black;
-      box-shadow: 0 0 15px rgba(255,106,0,0.8);
+      box-shadow: 0 0 18px rgba(255,106,0,0.9);
     }
 
+    /* FOLLOW BUTTON */
     .follow-btn {
       display: inline-block;
       margin-top: 15px;
-      padding: 12px 18px;
+      padding: 12px 20px;
       border: 2px solid #ff6a00;
       border-radius: 10px;
       text-decoration: none;
       color: white;
       font-weight: bold;
+      transition: 0.2s;
     }
 
     .follow-btn:hover {
       background: #ff6a00;
       color: black;
+      box-shadow: 0 0 18px rgba(255,106,0,0.9);
     }
   </style>
 </head>
@@ -131,10 +139,15 @@
   <!-- HERO -->
   <div class="hero">
     <div class="hero-inner">
-      <img src="signal-line.png" class="signal-line" />
 
       <h1>FlashVote</h1>
-      <div class="subtitle">Sentiment moves fast. Outcomes follow.</div>
+
+      <img src="signal-line.png" class="signal-line" />
+
+      <div class="subtitle">
+        Sentiment moves fast. Outcomes follow.
+      </div>
+
     </div>
   </div>
 
