@@ -13,9 +13,10 @@ html, body {
   font-family: Arial, sans-serif;
   color: white;
   text-align: center;
+  overflow-x: hidden;
 }
 
-/* === BACKGROUND PULSE GLOW === */
+/* === BACKGROUND GLOW === */
 body::after {
   content: "";
   position: fixed;
@@ -37,11 +38,43 @@ body::after {
   100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
 }
 
+/* === SIGNAL LINE === */
+.signal-line {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  width: 600px;
+  height: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, transparent, #ff8c00, transparent);
+  box-shadow: 0 0 20px rgba(255,140,0,0.6);
+  overflow: visible;
+}
+
+.signal-line::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -20px;
+  width: 4px;
+  height: 40px;
+  background: #ff8c00;
+  box-shadow: 0 0 20px rgba(255,140,0,0.9);
+  transform: translateX(-50%);
+  animation: pulseLine 2s ease-in-out infinite;
+}
+
+@keyframes pulseLine {
+  0% { height: 20px; opacity: 0.6; }
+  50% { height: 60px; opacity: 1; }
+  100% { height: 20px; opacity: 0.6; }
+}
+
 /* === CONTENT === */
 .container {
   position: relative;
   z-index: 1;
-  padding: 60px 20px;
+  padding: 120px 20px 60px;
   max-width: 800px;
   margin: auto;
 }
@@ -50,7 +83,7 @@ body::after {
 h1 {
   font-size: 42px;
   margin-bottom: 10px;
-  text-shadow: 0 0 10px rgba(255,140,0,0.2);
+  text-shadow: 0 0 12px rgba(255,140,0,0.25);
 }
 
 .tagline {
@@ -91,6 +124,7 @@ p {
   border-radius: 8px;
   margin-top: 10px;
   font-size: 14px;
+  box-shadow: 0 0 15px rgba(255,140,0,0.15);
 }
 
 /* === BUTTONS === */
@@ -107,7 +141,7 @@ p {
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 25px rgba(255,140,0,0.45);
+  box-shadow: 0 0 25px rgba(255,140,0,0.6);
 }
 
 /* === HOW TO BUY === */
@@ -116,11 +150,7 @@ p {
   line-height: 1.8;
 }
 
-/* === FOLLOW BUTTON === */
-.follow-btn {
-  margin-top: 20px;
-}
-
+/* === FOLLOW === */
 .follow-btn a {
   display: inline-block;
   border: 1px solid #ff8c00;
@@ -133,12 +163,21 @@ p {
 
 .follow-btn a:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 25px rgba(255,140,0,0.45);
+  box-shadow: 0 0 25px rgba(255,140,0,0.6);
+}
+
+/* === MOBILE === */
+@media (max-width: 600px) {
+  .signal-line {
+    width: 80%;
+  }
 }
 </style>
 </head>
 
 <body>
+
+<div class="signal-line"></div>
 
 <div class="container">
 
