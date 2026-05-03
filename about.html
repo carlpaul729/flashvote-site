@@ -19,35 +19,37 @@ body {
   text-align: center;
 }
 
-/* HERO (AUTO PERFECT CENTER + SLIGHT LIFT) */
+/* HERO FIXED */
 .hero {
-  min-height: 100svh; /* fixes mobile browser issues */
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* true vertical center */
+  justify-content: center;
   align-items: center;
-  transform: translateY(-8%); /* 🔥 slight lift upward */
+
+  /* 🔥 dynamic spacing instead of translate */
+  padding-top: clamp(40px, 8vh, 120px);
+  padding-bottom: clamp(20px, 6vh, 80px);
 }
 
-/* TITLE */
+/* TITLE (never cut off again) */
 h1 {
-  font-size: 60px;
-  margin: 0 0 6px 0;
+  font-size: clamp(42px, 6vw, 72px);
+  margin: 0 0 10px 0;
 }
 
-/* SIGNAL LINE */
+/* SIGNAL */
 .signal-line {
-  width: 600px;
-  max-width: 80%;
-  margin: 6px 0 10px;
+  width: min(600px, 80%);
+  margin: 10px 0 15px;
   filter: drop-shadow(0 0 25px rgba(255,120,0,1));
 }
 
 /* SUBTITLE */
 .subtitle {
   color: #ddd;
-  font-size: 20px;
-  margin-bottom: 25px;
+  font-size: clamp(16px, 2vw, 22px);
+  margin-bottom: 30px;
 }
 
 /* ORANGE SYSTEM */
@@ -81,7 +83,7 @@ h1 {
   padding: 0 20px;
 }
 
-/* CONTRACT BOX */
+/* CONTRACT */
 .contract-box {
   display: inline-block;
   margin-top: 25px;
@@ -159,7 +161,6 @@ h1 {
 
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <h1>FlashVote</h1>
   <img src="signal-line.png" class="signal-line">
@@ -168,27 +169,23 @@ h1 {
   </div>
 </div>
 
-<!-- WHAT -->
 <div class="section-title">WHAT IS FLASHVOTE</div>
 <div class="underline"></div>
 <div class="section-text">
   FlashVote reflects fast-moving digital attention in real time.
 </div>
 
-<!-- CONTRACT -->
 <div class="section-title">CONTRACT ADDRESS</div>
 <div class="underline"></div>
 <div class="contract-box">
   0xYOURCONTRACTADDRESSHERE
 </div>
 
-<!-- BUY -->
 <div class="buy-title">BUY FLASHVOTE</div>
 
 <a href="#" class="button">Buy on Uniswap</a>
 <a href="#" class="button">View Chart</a>
 
-<!-- HOW -->
 <div class="section-title">HOW TO BUY</div>
 <div class="underline"></div>
 
@@ -198,7 +195,6 @@ h1 {
   3. Swap for FlashVote
 </div>
 
-<!-- FOLLOW -->
 <div class="section-title">FOLLOW</div>
 <div class="underline"></div>
 
