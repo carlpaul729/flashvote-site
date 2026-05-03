@@ -1,127 +1,105 @@
-/* ===== RESET ===== */
+/* RESET */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background: black;
-    color: white;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    overflow-x: hidden;
+  background: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
 
-/* ===== HERO SECTION ===== */
+/* HERO */
 .hero {
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    padding-top: 3vh; /* controls vertical placement */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-/* ===== TITLE ===== */
+/* TITLE */
 .title {
-    font-size: clamp(42px, 6vw, 90px);
-    font-weight: 600;
-
-    margin-bottom: 0.5vh; /* tighter */
+  font-size: clamp(40px, 6vw, 80px);
+  margin-bottom: 20px;
 }
 
-/* ===== SIGNAL LINE ===== */
-.signal {
-    width: 60%;
-    max-width: 700px;
-
-    margin-bottom: 0.5vh; /* tighter */
-}
-
-/* ===== TAGLINE ===== */
+/* TAGLINE */
 .tagline {
-    font-size: clamp(16px, 2vw, 26px);
-    color: #ccc;
-
-    margin-bottom: 6vh; /* IMPORTANT: keeps lower layout spaced correctly */
+  font-size: clamp(16px, 2vw, 24px);
+  color: #ccc;
 }
 
-/* ===== SECTIONS BELOW HERO ===== */
+/* SECTIONS */
 .section {
-    padding: 60px 20px;
+  padding: 60px 20px;
 }
 
-/* ===== HEADINGS ===== */
+/* HEADINGS */
 .section-title {
-    color: #ff5a1f;
-    font-size: clamp(20px, 3vw, 32px);
-    margin-bottom: 10px;
+  color: #ff5a1f;
+  font-size: clamp(20px, 3vw, 30px);
 }
 
 .section-line {
-    width: 60px;
-    height: 3px;
-    background: #ff5a1f;
-    margin: 10px auto 30px;
+  width: 60px;
+  height: 3px;
+  background: #ff5a1f;
+  margin: 10px auto 30px;
 }
 
-/* ===== TEXT ===== */
+/* TEXT */
 .section-text {
-    font-size: clamp(14px, 1.5vw, 20px);
-    color: #ccc;
-    max-width: 600px;
-    margin: 0 auto 40px;
+  font-size: clamp(14px, 1.5vw, 18px);
+  color: #ccc;
+  max-width: 600px;
+  margin: auto;
 }
 
-/* ===== CONTRACT BOX ===== */
+/* CONTRACT */
 .contract-box {
-    border: 2px solid #ff5a1f;
-    border-radius: 12px;
-    padding: 14px 20px;
-    display: inline-block;
-    color: white;
-    font-size: clamp(14px, 1.5vw, 18px);
-
-    box-shadow: 0 0 10px rgba(255, 90, 31, 0.5);
+  border: 2px solid #ff5a1f;
+  border-radius: 10px;
+  padding: 12px 20px;
+  display: inline-block;
+  margin-top: 20px;
 }
 
-/* ===== BUTTONS ===== */
+/* BUTTONS */
 .button-group {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .button {
-    display: inline-block;
-    margin: 10px;
-    padding: 12px 24px;
-    border-radius: 10px;
-    border: 2px solid #ff5a1f;
-    color: white;
-    text-decoration: none;
-    font-size: clamp(14px, 1.5vw, 18px);
-
-    transition: 0.2s ease;
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 20px;
+  border: 2px solid #ff5a1f;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
 }
 
 .button:hover {
-    background: #ff5a1f;
-    color: black;
-    box-shadow: 0 0 12px #ff5a1f;
+  background: #ff5a1f;
+  color: black;
 }
 
-/* ===== FOLLOW BUTTON ===== */
+/* FOLLOW */
 .follow-btn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: 2px solid #ff5a1f;
-    border-radius: 8px;
-    display: inline-block;
-    color: white;
-    text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 2px solid #ff5a1f;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
 }
 
 .follow-btn:hover {
-    background: #ff5a1f;
-    color: black;
+  background: #ff5a1f;
+  color: black;
 }
