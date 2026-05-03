@@ -32,23 +32,28 @@
       text-align: center;
     }
 
-    .logo {
-      width: 110px;
-      margin-bottom: 24px;
-      filter: drop-shadow(0 0 12px rgba(255,140,0,0.35));
-    }
-
+    /* TITLE */
     h1 {
       font-size: 34px;
-      margin-bottom: 10px;
+      margin-bottom: 6px; /* tighter */
       font-weight: 500;
       letter-spacing: 1px;
     }
 
+    /* SIGNAL LINE (NEW - CORRECT WAY) */
+    .signal-line {
+      width: 520px;
+      max-width: 85%;
+      margin: 6px auto 8px; /* tight + centered */
+      display: block;
+      filter: drop-shadow(0 0 16px rgba(255,140,0,0.55));
+    }
+
+    /* TAGLINE */
     .tagline {
       font-size: 17px;
       color: rgba(255,255,255,0.78);
-      margin-bottom: 40px;
+      margin-bottom: 36px; /* slightly tightened */
     }
 
     .section {
@@ -132,6 +137,10 @@
         font-size: 28px;
       }
 
+      .signal-line {
+        width: 85%;
+      }
+
       .description,
       .steps {
         font-size: 15px;
@@ -151,9 +160,10 @@
 
   <div class="container">
 
-    <img src="flashvote-icon.png" alt="FlashVote" class="logo">
-
     <h1>FlashVote</h1>
+
+    <!-- SIGNAL LINE INSERTED HERE -->
+    <img src="signal-line.png" class="signal-line" alt="signal">
 
     <div class="tagline">
       Sentiment moves fast. Outcomes follow.
