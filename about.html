@@ -3,231 +3,169 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>FlashVote</title>
 
 <style>
-html, body {
+body {
   margin: 0;
-  padding: 0;
   background: black;
-  font-family: Arial, sans-serif;
   color: white;
+  font-family: Arial, sans-serif;
   text-align: center;
-  overflow-x: hidden;
 }
 
-/* === BACKGROUND GLOW === */
-body::after {
-  content: "";
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 600px;
-  height: 600px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(255,122,0,0.15), transparent 70%);
-  filter: blur(80px);
-  animation: pulseGlow 4s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-@keyframes pulseGlow {
-  0% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-  100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-}
-
-/* === SIGNAL WAVEFORM (MATCHES BRAND) === */
-.signal-line {
-  position: absolute;
-  top: 80px;
-  left: 50%;
-  width: 600px;
-  height: 60px;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.signal-bar {
-  width: 2px;
-  background: #ff7a00;
-  box-shadow: 0 0 10px rgba(255,122,0,0.8);
-  animation: wave 1.8s ease-in-out infinite;
-}
-
-/* symmetrical waveform */
-.signal-bar:nth-child(1) { height: 10px; animation-delay: 0s; }
-.signal-bar:nth-child(2) { height: 18px; animation-delay: 0.1s; }
-.signal-bar:nth-child(3) { height: 28px; animation-delay: 0.2s; }
-.signal-bar:nth-child(4) { height: 42px; animation-delay: 0.3s; }
-.signal-bar:nth-child(5) { height: 65px; animation-delay: 0.4s; }
-.signal-bar:nth-child(6) { height: 42px; animation-delay: 0.3s; }
-.signal-bar:nth-child(7) { height: 28px; animation-delay: 0.2s; }
-.signal-bar:nth-child(8) { height: 18px; animation-delay: 0.1s; }
-.signal-bar:nth-child(9) { height: 10px; animation-delay: 0s; }
-
-@keyframes wave {
-  0% { transform: scaleY(0.6); opacity: 0.6; }
-  50% { transform: scaleY(1.2); opacity: 1; }
-  100% { transform: scaleY(0.6); opacity: 0.6; }
-}
-
-/* === CONTENT === */
+/* CONTAINER */
 .container {
-  position: relative;
-  z-index: 1;
-  padding: 140px 20px 60px;
-  max-width: 800px;
+  max-width: 700px;
   margin: auto;
+  padding: 60px 20px;
 }
 
-/* === TITLE === */
+/* SIGNAL LINE */
+.signal-line {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 30px;
+  opacity: 0.9;
+  animation: pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; transform: scaleX(0.98); }
+  50% { opacity: 1; transform: scaleX(1.02); }
+  100% { opacity: 0.6; transform: scaleX(0.98); }
+}
+
+/* TITLE */
 h1 {
   font-size: 42px;
-  margin-bottom: 10px;
-  text-shadow: 0 0 12px rgba(255,122,0,0.25);
+  margin: 10px 0;
 }
 
+/* TAGLINE */
 .tagline {
-  font-size: 16px;
   color: #ccc;
   margin-bottom: 40px;
 }
 
-/* === SECTION TITLES === */
+/* SECTION HEADERS */
 .section-title {
   color: #ff7a00;
-  font-size: 14px;
-  letter-spacing: 2px;
-  margin: 40px 0 15px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 
-/* === DIVIDER === */
-.section-divider {
+/* SMALL GLOW LINE */
+.divider {
   width: 60px;
   height: 2px;
-  margin: 25px auto;
-  background: linear-gradient(to right, transparent, #ff7a00, transparent);
-  box-shadow: 0 0 12px rgba(255,122,0,0.5);
+  background: #ff7a00;
+  margin: 10px auto 20px;
+  box-shadow: 0 0 10px #ff7a00;
 }
 
-/* === TEXT === */
-p {
-  font-size: 15px;
+/* TEXT */
+.text {
   color: #ddd;
-  line-height: 1.6;
+  margin-bottom: 30px;
 }
 
-/* === CONTRACT BOX === */
-.contract-box {
+/* CONTRACT BOX */
+.contract {
   display: inline-block;
   padding: 12px 20px;
   border: 1px solid #ff7a00;
   border-radius: 8px;
-  margin-top: 10px;
-  font-size: 14px;
-  box-shadow: 0 0 15px rgba(255,122,0,0.15);
+  margin-bottom: 30px;
 }
 
-/* === BUTTONS === */
-.btn {
+/* BUTTONS */
+.buttons {
+  margin: 20px 0;
+}
+
+.button {
   display: inline-block;
+  padding: 12px 20px;
   margin: 10px;
-  padding: 12px 20px;
   border: 1px solid #ff7a00;
-  border-radius: 8px;
+  border-radius: 10px;
   color: white;
   text-decoration: none;
-  transition: all 0.25s ease;
+  transition: 0.3s;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 25px rgba(255,122,0,0.6);
+.button:hover {
+  background: #ff7a00;
+  color: black;
+  box-shadow: 0 0 15px #ff7a00;
 }
 
-/* === HOW TO BUY === */
+/* HOW TO BUY */
 .steps {
-  margin-top: 10px;
+  color: #ccc;
   line-height: 1.8;
 }
 
-/* === FOLLOW === */
-.follow-btn a {
+/* FOLLOW */
+.follow {
+  margin-top: 40px;
+}
+
+.follow a {
   display: inline-block;
+  padding: 10px 16px;
   border: 1px solid #ff7a00;
-  padding: 10px 18px;
-  border-radius: 8px;
-  text-decoration: none;
+  border-radius: 10px;
   color: white;
-  transition: all 0.25s ease;
+  text-decoration: none;
 }
 
-.follow-btn a:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 25px rgba(255,122,0,0.6);
-}
-
-/* === MOBILE === */
-@media (max-width: 600px) {
-  .signal-line {
-    width: 80%;
-  }
+.follow a:hover {
+  background: #ff7a00;
+  color: black;
 }
 </style>
 </head>
 
 <body>
 
-<!-- SIGNAL LINE -->
-<div class="signal-line">
-  <div class="signal-bar"></div>
-  <div class="signal-bar"></div>
-  <div class="signal-bar"></div>
-  <div class="signal-bar"></div>
-  <div class="signal-bar"></div>
-  <div class="signal-bar"></div>
-  <div class="signal-bar"></div>
-  <div class="signal-bar"></div>
-  <div class="signal-bar"></div>
-</div>
-
 <div class="container">
+
+  <!-- SIGNAL LINE -->
+  <img src="signal-line.png" class="signal-line">
 
   <h1>FlashVote</h1>
   <div class="tagline">Sentiment moves fast. Outcomes follow.</div>
 
   <div class="section-title">WHAT IS FLASHVOTE</div>
-  <div class="section-divider"></div>
-  <p>FlashVote reflects fast-moving digital attention in real time.</p>
+  <div class="divider"></div>
+  <div class="text">
+    FlashVote reflects fast-moving digital attention in real time.
+  </div>
 
   <div class="section-title">CONTRACT ADDRESS</div>
-  <div class="section-divider"></div>
-  <div class="contract-box">0xYOURCONTRACTADDRESSHERE</div>
+  <div class="divider"></div>
+  <div class="contract">0xYOURCONTRACTADDRESSHERE</div>
 
   <div class="section-title">BUY FLASHVOTE</div>
-  <div class="section-divider"></div>
-
-  <a href="#" class="btn">Buy on Uniswap</a>
-  <a href="#" class="btn">View Chart</a>
+  <div class="buttons">
+    <a href="#" class="button">Buy on Uniswap</a>
+    <a href="#" class="button">View Chart</a>
+  </div>
 
   <div class="section-title">HOW TO BUY</div>
-  <div class="section-divider"></div>
-
   <div class="steps">
     1. Connect wallet<br>
     2. Paste contract address<br>
     3. Swap for FlashVote
   </div>
 
-  <div class="section-title">FOLLOW</div>
-  <div class="section-divider"></div>
-
-  <div class="follow-btn">
-    <a href="#">X</a>
+  <div class="follow">
+    <div class="section-title">FOLLOW</div>
+    <a href="https://x.com/flashvotehq" target="_blank">X</a>
   </div>
 
 </div>
