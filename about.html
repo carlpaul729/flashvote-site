@@ -20,39 +20,29 @@
 
     /* HERO */
     .hero {
-      min-height: 60vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 60px 20px 40px; /* slight bottom space */
-    }
-
-    .hero-inner {
+      min-height: 100vh; /* restore full page */
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: 18px;
     }
 
     h1 {
-      font-size: clamp(34px, 5vw, 52px);
-      margin: 0;
+      font-size: 48px;
+      margin: 0 0 6px 0; /* tighter */
     }
 
     .signal-line {
-      width: clamp(220px, 50vw, 750px);
-      opacity: 0.95;
+      width: 600px;
+      max-width: 80%;
+      margin: 4px 0 6px; /* tighter */
       filter: drop-shadow(0 0 18px rgba(255,120,0,0.75));
     }
 
     .subtitle {
       color: #ccc;
-      font-size: clamp(14px, 2vw, 18px);
-    }
-
-    /* CONTENT WRAPPER (THIS FIXES SCROLL) */
-    .content {
-      padding-bottom: 120px; /* KEY FIX */
+      font-size: 16px;
+      margin-bottom: 30px; /* keeps spacing before next section */
     }
 
     /* SECTION TITLES */
@@ -60,7 +50,6 @@
       color: #ff7a00;
       font-size: 20px;
       margin-top: 60px;
-      letter-spacing: 1px;
     }
 
     .underline {
@@ -71,7 +60,6 @@
       box-shadow: 0 0 10px #ff7a00;
     }
 
-    /* TEXT */
     .section-text {
       color: #ccc;
       max-width: 600px;
@@ -80,7 +68,6 @@
       padding: 0 20px;
     }
 
-    /* CONTRACT BOX */
     .contract-box {
       display: inline-block;
       margin-top: 20px;
@@ -91,9 +78,9 @@
       box-shadow: 0 0 15px rgba(255,122,0,0.6);
     }
 
-    /* BUY */
     .buy-title {
       margin-top: 60px;
+      margin-bottom: 120px; /* IMPORTANT → restores scroll */
       color: #ff7a00;
       font-size: 20px;
     }
@@ -105,42 +92,35 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-inner">
 
-      <h1>FlashVote</h1>
+    <h1>FlashVote</h1>
 
-      <img src="signal-line.png" class="signal-line">
+    <img src="signal-line.png" class="signal-line">
 
-      <div class="subtitle">
-        Sentiment moves fast. Outcomes follow.
-      </div>
-
+    <div class="subtitle">
+      Sentiment moves fast. Outcomes follow.
     </div>
+
   </div>
 
-  <!-- CONTENT -->
-  <div class="content">
+  <!-- WHAT IS FLASHVOTE -->
+  <div class="section-title">WHAT IS FLASHVOTE</div>
+  <div class="underline"></div>
 
-    <!-- WHAT IS FLASHVOTE -->
-    <div class="section-title">WHAT IS FLASHVOTE</div>
-    <div class="underline"></div>
-
-    <div class="section-text">
-      FlashVote reflects fast-moving digital attention in real time.
-    </div>
-
-    <!-- CONTRACT -->
-    <div class="section-title">CONTRACT ADDRESS</div>
-    <div class="underline"></div>
-
-    <div class="contract-box">
-      0xYOURCONTRACTADDRESSHERE
-    </div>
-
-    <!-- BUY -->
-    <div class="buy-title">BUY FLASHVOTE</div>
-
+  <div class="section-text">
+    FlashVote reflects fast-moving digital attention in real time.
   </div>
+
+  <!-- CONTRACT -->
+  <div class="section-title">CONTRACT ADDRESS</div>
+  <div class="underline"></div>
+
+  <div class="contract-box">
+    0xYOURCONTRACTADDRESSHERE
+  </div>
+
+  <!-- BUY -->
+  <div class="buy-title">BUY FLASHVOTE</div>
 
 </body>
 </html>
