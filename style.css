@@ -1,10 +1,11 @@
-/* ===== RESET ===== */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* BODY */
 body {
   background: black;
   color: white;
@@ -12,119 +13,100 @@ body {
   text-align: center;
 }
 
-/* ===== HERO ===== */
+/* HERO SECTION */
 .hero {
-  min-height: 100vh;
-
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: flex-start;
+  padding-top: clamp(40px, 8vh, 100px);
 }
 
-/* ===== TITLE ===== */
+/* TITLE */
 .title {
-  font-size: clamp(40px, 6vw, 80px);
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
-/* ===== SIGNAL ===== */
-.signal {
-  width: 60%;
-  max-width: 700px;
-
+/* SIGNAL LINE */
+.signal-line {
+  width: min(90vw, 900px);
+  height: auto;
   margin: 10px 0;
+
+  animation: pulseGlow 2.5s ease-in-out infinite;
 }
 
-/* ===== TAGLINE ===== */
+/* TAGLINE */
 .tagline {
-  font-size: clamp(16px, 2vw, 24px);
-  color: #ccc;
-
-  margin-top: 5px;
+  font-size: clamp(14px, 2vw, 22px);
+  margin-bottom: 40px;
 }
 
-/* ===== SECTIONS ===== */
-.section {
-  padding: 60px 20px;
-}
-
-/* ===== HEADINGS ===== */
-.section-title {
-  color: #ff5a1f;
-  font-size: clamp(20px, 3vw, 30px);
-}
-
-.section-line {
-  width: 60px;
-  height: 3px;
-  background: #ff5a1f;
-
-  margin: 10px auto 30px;
-}
-
-/* ===== TEXT ===== */
-.section-text {
-  font-size: clamp(14px, 1.5vw, 18px);
-  color: #ccc;
-
+/* CONTENT SECTION */
+.content {
+  width: 90%;
   max-width: 600px;
-  margin: auto;
 }
 
-/* ===== CONTRACT BOX ===== */
+/* HEADINGS */
+h2 {
+  color: orange;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-size: clamp(16px, 2.5vw, 24px);
+}
+
+/* CONTRACT BOX */
 .contract-box {
-  border: 2px solid #ff5a1f;
-  border-radius: 10px;
-
-  padding: 12px 20px;
-  display: inline-block;
-
-  margin-top: 20px;
+  border: 1px solid orange;
+  padding: 10px;
+  margin: 15px auto;
+  width: 100%;
+  max-width: 400px;
 }
 
-/* ===== BUTTONS ===== */
-.button-group {
-  margin-top: 20px;
+/* BUTTONS */
+.buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin: 15px 0;
+  flex-wrap: wrap;
 }
 
-.button {
-  display: inline-block;
-
-  margin: 10px;
-  padding: 12px 20px;
-
-  border: 2px solid #ff5a1f;
-  border-radius: 10px;
-
-  color: white;
-  text-decoration: none;
-
-  transition: 0.2s ease;
-}
-
-.button:hover {
-  background: #ff5a1f;
-  color: black;
-
-  box-shadow: 0 0 12px #ff5a1f;
-}
-
-/* ===== FOLLOW ===== */
-.follow-btn {
-  display: inline-block;
-
-  margin-top: 20px;
-  padding: 10px 20px;
-
-  border: 2px solid #ff5a1f;
-  border-radius: 8px;
-
+.btn {
+  border: 1px solid orange;
+  padding: 10px 15px;
   text-decoration: none;
   color: white;
+  transition: 0.3s;
 }
 
-.follow-btn:hover {
-  background: #ff5a1f;
+.btn:hover {
+  background: orange;
   color: black;
+}
+
+/* 🔥 ANIMATION */
+@keyframes pulseGlow {
+  0% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 8px rgba(255,100,0,0.4));
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.02);
+    filter: brightness(1.4) drop-shadow(0 0 20px rgba(255,120,0,0.9));
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 8px rgba(255,100,0,0.4));
+    opacity: 0.9;
+  }
 }
