@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FlashVote</title>
 
   <style>
@@ -18,119 +18,81 @@
       text-align: center;
     }
 
-    /* HERO */
+    /* HERO SECTION */
     .hero {
-      height: clamp(260px, 42vh, 420px);
+      min-height: 60vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 60px 20px;
     }
 
     .hero-inner {
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 18px;
     }
 
     h1 {
-      font-size: clamp(32px, 5vw, 48px);
+      font-size: clamp(34px, 5vw, 52px);
       margin: 0;
-      letter-spacing: 1px;
     }
 
-    /* SIGNAL LINE (FINAL POSITIONING) */
     .signal-line {
-      width: clamp(200px, 50vw, 700px);
-      margin: 10px 0;
+      width: clamp(220px, 50vw, 750px);
       opacity: 0.95;
       filter: drop-shadow(0 0 18px rgba(255,120,0,0.75));
     }
 
     .subtitle {
       color: #ccc;
-      margin-top: 4px;
       font-size: clamp(14px, 2vw, 18px);
     }
 
-    /* SECTIONS */
-    .section {
-      padding: 50px 20px;
-    }
-
-    .section h2 {
-      color: #ff6a00;
-      margin-bottom: 10px;
-      font-size: clamp(18px, 2.5vw, 26px);
+    /* SECTION TITLES */
+    .section-title {
+      color: #ff7a00;
+      font-size: 20px;
+      margin-top: 60px;
       letter-spacing: 1px;
     }
 
     .underline {
       width: 60px;
       height: 3px;
-      background: #ff6a00;
-      margin: 10px auto 25px auto;
-      box-shadow: 0 0 12px rgba(255,106,0,0.9);
+      background: #ff7a00;
+      margin: 8px auto 20px;
+      box-shadow: 0 0 10px #ff7a00;
     }
 
-    p {
-      color: #ddd;
+    /* TEXT */
+    .section-text {
+      color: #ccc;
       max-width: 600px;
-      margin: 0 auto;
+      margin: auto;
       line-height: 1.6;
+      padding: 0 20px;
     }
 
     /* CONTRACT BOX */
     .contract-box {
       display: inline-block;
-      padding: 14px 22px;
-      border: 2px solid #ff6a00;
-      border-radius: 12px;
-      margin-top: 10px;
-      font-size: 14px;
-      box-shadow: 0 0 15px rgba(255,106,0,0.6);
-      word-break: break-all;
-    }
-
-    /* BUTTONS */
-    .buttons {
       margin-top: 20px;
-    }
-
-    .btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 22px;
-      border: 2px solid #ff6a00;
-      border-radius: 10px;
+      padding: 15px 25px;
+      border-radius: 12px;
+      border: 2px solid #ff7a00;
       color: white;
-      text-decoration: none;
-      transition: all 0.2s ease;
+      box-shadow: 0 0 15px rgba(255,122,0,0.6);
     }
 
-    .btn:hover {
-      background: #ff6a00;
-      color: black;
-      box-shadow: 0 0 18px rgba(255,106,0,0.9);
+    /* BUY SECTION */
+    .buy-title {
+      margin-top: 60px;
+      color: #ff7a00;
+      font-size: 20px;
     }
 
-    /* FOLLOW BUTTON */
-    .follow-btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 20px;
-      border: 2px solid #ff6a00;
-      border-radius: 10px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      transition: 0.2s;
-    }
-
-    .follow-btn:hover {
-      background: #ff6a00;
-      color: black;
-      box-shadow: 0 0 18px rgba(255,106,0,0.9);
-    }
   </style>
 </head>
 
@@ -142,7 +104,7 @@
 
       <h1>FlashVote</h1>
 
-      <img src="signal-line.png" class="signal-line" />
+      <img src="signal-line.png" class="signal-line">
 
       <div class="subtitle">
         Sentiment moves fast. Outcomes follow.
@@ -151,43 +113,24 @@
     </div>
   </div>
 
-  <!-- WHAT IS -->
-  <div class="section">
-    <h2>WHAT IS FLASHVOTE</h2>
-    <div class="underline"></div>
-    <p>FlashVote reflects fast-moving digital attention in real time.</p>
+  <!-- WHAT IS FLASHVOTE -->
+  <div class="section-title">WHAT IS FLASHVOTE</div>
+  <div class="underline"></div>
+
+  <div class="section-text">
+    FlashVote reflects fast-moving digital attention in real time.
   </div>
 
   <!-- CONTRACT -->
-  <div class="section">
-    <h2>CONTRACT ADDRESS</h2>
-    <div class="underline"></div>
-    <div class="contract-box">0xYOURCONTRACTADDRESSHERE</div>
+  <div class="section-title">CONTRACT ADDRESS</div>
+  <div class="underline"></div>
+
+  <div class="contract-box">
+    0xYOURCONTRACTADDRESSHERE
   </div>
 
   <!-- BUY -->
-  <div class="section">
-    <h2>BUY FLASHVOTE</h2>
-    <div class="buttons">
-      <a href="#" class="btn">Buy on Uniswap</a>
-      <a href="#" class="btn">View Chart</a>
-    </div>
-  </div>
-
-  <!-- HOW TO BUY -->
-  <div class="section">
-    <h2>HOW TO BUY</h2>
-    <div class="underline"></div>
-    <p>1. Connect wallet</p>
-    <p>2. Paste contract address</p>
-    <p>3. Swap for FlashVote</p>
-  </div>
-
-  <!-- FOLLOW -->
-  <div class="section">
-    <h2>FOLLOW</h2>
-    <a href="https://x.com/flashvotehq" class="follow-btn">X</a>
-  </div>
+  <div class="buy-title">BUY FLASHVOTE</div>
 
 </body>
 </html>
