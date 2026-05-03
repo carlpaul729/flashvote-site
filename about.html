@@ -24,26 +24,27 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* KEY CHANGE */
   align-items: center;
+  padding-top: 80px; /* CONTROLS how high everything sits */
 }
 
 h1 {
-  font-size: 60px; /* BIGGER */
-  margin: 0 0 8px 0;
+  font-size: 60px;
+  margin: 0 0 4px 0; /* tighter */
 }
 
 .signal-line {
   width: 600px;
   max-width: 80%;
-  margin: 6px 0 10px;
+  margin: 4px 0 6px; /* tighter */
   filter: drop-shadow(0 0 25px rgba(255,120,0,1));
 }
 
 .subtitle {
   color: #ddd;
-  font-size: 20px; /* BIGGER */
-  margin-bottom: 40px;
+  font-size: 20px;
+  margin-bottom: 20px; /* MUCH tighter */
 }
 
 /* ORANGE COLOR SYSTEM */
@@ -55,8 +56,8 @@ h1 {
 /* SECTION TITLES */
 .section-title {
   color: var(--orange-bright);
-  font-size: 26px; /* BIGGER */
-  margin-top: 70px;
+  font-size: 26px;
+  margin-top: 40px; /* was 70 — pulled UP */
   text-shadow: 0 0 12px rgba(255,122,0,0.7);
 }
 
@@ -70,7 +71,7 @@ h1 {
 
 .section-text {
   color: #ccc;
-  font-size: 18px; /* BIGGER */
+  font-size: 18px;
   max-width: 700px;
   margin: auto;
   line-height: 1.7;
@@ -103,10 +104,8 @@ h1 {
   transition: 0.25s ease;
 }
 
-/* HOVER = BRIGHTER + GLOW */
 .button:hover,
 .contract-box:hover {
-  color: white;
   border-color: #ffb366;
   box-shadow: 0 0 25px #ff9a2f, 0 0 50px rgba(255,122,0,0.6);
   transform: translateY(-2px);
@@ -121,7 +120,7 @@ h1 {
   text-shadow: 0 0 12px rgba(255,122,0,0.7);
 }
 
-/* HOW TO BUY */
+/* HOW */
 .how {
   margin-top: 40px;
   font-size: 18px;
