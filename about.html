@@ -13,94 +13,187 @@ html, body {
   color: #fff;
   font-family: Arial, sans-serif;
   text-align: center;
+  overflow-x: hidden;
 }
 
 /* ===== HERO ===== */
 .hero {
-  padding: 80px 20px 40px;
+  position: relative;
+  padding: 120px 20px 80px;
+  overflow: hidden;
 }
 
+/* Glow */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, rgba(255,122,26,0.2), transparent 60%);
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+/* GRID */
+.hero-grid {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 220px;
+  background-image:
+    linear-gradient(rgba(255,122,26,0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,122,26,0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.3;
+  transform: perspective(600px) rotateX(60deg);
+}
+
+/* PARTICLES */
+.particles {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#ff7a1a 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.08;
+  animation: moveParticles 20s linear infinite;
+}
+
+/* TEXT */
 h1 {
   font-size: 64px;
   margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
 }
 
 .tagline {
   font-size: 20px;
   color: #ccc;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 2;
 }
 
-/* ===== WAVEFORM ===== */
+/* ===== SIGNAL SYSTEM ===== */
 .wave-container {
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto 60px;
-  height: 120px;
+  margin: 0 auto;
+  height: 160px;
   position: relative;
+  z-index: 2;
 }
 
+/* LINE */
 .wave-line {
   position: absolute;
   top: 50%;
-  left: 0;
   width: 100%;
   height: 2px;
   background: linear-gradient(to right, transparent, #ff7a1a, transparent);
+  box-shadow: 0 0 20px rgba(255,122,26,0.9);
 }
 
+/* BARS */
 .wave-bars {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
-  align-items: center;
   gap: 3px;
 }
 
+/* Bars */
 .bar {
   width: 2px;
-  background: #ff7a1a;
-  opacity: 0.9;
-  box-shadow: 0 0 6px #ff7a1a;
+  background: linear-gradient(to top, #ff7a1a, #ffb347);
+  box-shadow:
+    0 0 10px #ff7a1a,
+    0 0 30px rgba(255,122,26,0.8);
+  animation: pulse 1.2s infinite ease-in-out;
 }
 
 /* Symmetrical heights */
 .bar:nth-child(1) { height: 6px; }
-.bar:nth-child(2) { height: 10px; }
-.bar:nth-child(3) { height: 18px; }
-.bar:nth-child(4) { height: 28px; }
-.bar:nth-child(5) { height: 45px; }
-.bar:nth-child(6) { height: 70px; }
-.bar:nth-child(7) { height: 95px; }
-.bar:nth-child(8) { height: 120px; }
-.bar:nth-child(9) { height: 95px; }
-.bar:nth-child(10) { height: 70px; }
-.bar:nth-child(11) { height: 45px; }
-.bar:nth-child(12) { height: 28px; }
-.bar:nth-child(13) { height: 18px; }
-.bar:nth-child(14) { height: 10px; }
+.bar:nth-child(2) { height: 12px; }
+.bar:nth-child(3) { height: 20px; }
+.bar:nth-child(4) { height: 35px; }
+.bar:nth-child(5) { height: 60px; }
+.bar:nth-child(6) { height: 90px; }
+.bar:nth-child(7) { height: 120px; }
+.bar:nth-child(8) { height: 150px; }
+.bar:nth-child(9) { height: 120px; }
+.bar:nth-child(10) { height: 90px; }
+.bar:nth-child(11) { height: 60px; }
+.bar:nth-child(12) { height: 35px; }
+.bar:nth-child(13) { height: 20px; }
+.bar:nth-child(14) { height: 12px; }
 .bar:nth-child(15) { height: 6px; }
+
+/* ===== LOGO CORE ===== */
+.logo-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: radial-gradient(circle, #111 30%, #000 100%);
+  border: 2px solid rgba(255,122,26,0.8);
+
+  box-shadow:
+    0 0 20px rgba(255,122,26,0.7),
+    0 0 50px rgba(255,122,26,0.4);
+
+  z-index: 5;
+}
+
+/* Inner F */
+.logo-core span {
+  font-size: 42px;
+  font-weight: bold;
+  color: #ff7a1a;
+  text-shadow:
+    0 0 10px #ff7a1a,
+    0 0 25px rgba(255,122,26,0.8);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes pulse {
+  0%,100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.4); }
+}
+
+@keyframes glowPulse {
+  0%,100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes moveParticles {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100px); }
+}
 
 /* ===== CONTENT ===== */
 .container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 0 20px 100px;
+  padding: 60px 20px 100px;
 }
 
 .section-title {
   color: #ff7a1a;
   font-weight: bold;
   margin-top: 40px;
-  margin-bottom: 10px;
   font-size: 22px;
 }
 
 .text {
   color: #ccc;
-  font-size: 16px;
   margin-bottom: 25px;
 }
 
@@ -109,8 +202,6 @@ h1 {
   padding: 12px;
   margin: 20px auto;
   max-width: 420px;
-  font-size: 14px;
-  word-break: break-all;
 }
 
 .buttons {
@@ -118,7 +209,6 @@ h1 {
   display: flex;
   justify-content: center;
   gap: 15px;
-  flex-wrap: wrap;
 }
 
 .btn {
@@ -126,7 +216,6 @@ h1 {
   padding: 10px 20px;
   text-decoration: none;
   color: #fff;
-  transition: 0.2s;
 }
 
 .btn:hover {
@@ -135,19 +224,15 @@ h1 {
 }
 
 .steps {
-  margin-top: 10px;
   color: #ccc;
-  font-size: 15px;
   line-height: 1.6;
 }
 
 .x-btn {
-  display: inline-block;
   border: 2px solid #ff7a1a;
   padding: 10px 16px;
+  display: inline-block;
   margin-top: 10px;
-  text-decoration: none;
-  color: #fff;
 }
 
 .x-btn:hover {
@@ -160,29 +245,29 @@ h1 {
 <body>
 
 <div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="particles"></div>
+
   <h1>FlashVote</h1>
   <div class="tagline">Sentiment moves fast. Outcomes follow.</div>
 
-  <!-- CLEAN WAVEFORM -->
   <div class="wave-container">
     <div class="wave-line"></div>
+
     <div class="wave-bars">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
     </div>
+
+    <!-- LOGO CENTER -->
+    <div class="logo-core">
+      <span>F</span>
+    </div>
+
   </div>
 </div>
 
