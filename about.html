@@ -1,51 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FlashVote</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px 100px;
+    }
+
+    h1 {
+      font-size: 64px;
+      margin-bottom: 10px;
+    }
+
+    .tagline {
+      font-size: 20px;
+      color: #ccc;
+      margin-bottom: 50px;
+    }
+
+    .section-title {
+      color: #ff7a1a;
+      font-weight: bold;
+      margin-top: 40px;
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    .text {
+      color: #ccc;
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
+
+    .contract-box {
+      border: 2px solid #ff7a1a;
+      padding: 12px;
+      margin: 20px auto;
+      max-width: 420px;
+      font-size: 14px;
+      word-break: break-all;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 2px solid #ff7a1a;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #fff;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #ff7a1a;
+      color: #000;
+    }
+
+    .steps {
+      margin-top: 10px;
+      color: #ccc;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .follow {
+      margin-top: 40px;
+    }
+
+    .x-btn {
+      display: inline-block;
+      border: 2px solid #ff7a1a;
+      padding: 10px 16px;
+      margin-top: 10px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .x-btn:hover {
+      background: #ff7a1a;
+      color: #000;
+    }
+  </style>
 </head>
 
 <body>
 
-  <main class="hero">
+  <div class="container">
 
-    <h1 class="title">FlashVote</h1>
+    <h1>FlashVote</h1>
+    <div class="tagline">
+      Sentiment moves fast. Outcomes follow.
+    </div>
 
-    <img src="signal-line.png" class="signal-line" />
+    <div class="section-title">WHAT IS FLASHVOTE</div>
+    <div class="text">
+      FlashVote reflects fast-moving digital attention in real time.
+    </div>
 
-    <p class="tagline">Sentiment moves fast. Outcomes follow.</p>
+    <div class="section-title">CONTRACT ADDRESS</div>
+    <div class="contract-box">
+      0xYOURCONTRACTADDRESSHERE
+    </div>
 
-    <section class="content">
+    <div class="section-title">BUY FLASHVOTE</div>
 
-      <h2>WHAT IS FLASHVOTE</h2>
-      <p>FlashVote reflects fast-moving digital attention in real time.</p>
+    <div class="buttons">
+      <a href="#" class="btn">Buy on Uniswap</a>
+      <a href="#" class="btn">View Chart</a>
+    </div>
 
-      <h2>CONTRACT ADDRESS</h2>
-      <div class="contract-box">0xYOURCONTRACTADDRESSHERE</div>
+    <div class="section-title">HOW TO BUY</div>
+    <div class="steps">
+      1. Connect wallet<br>
+      2. Paste contract address<br>
+      3. Swap for FlashVote
+    </div>
 
-      <h2>BUY FLASHVOTE</h2>
-      <div class="buttons">
-        <a href="#" class="btn">Buy on Uniswap</a>
-        <a href="#" class="btn">View Chart</a>
-      </div>
+    <div class="section-title follow">FOLLOW</div>
+    <a href="#" class="x-btn">X</a>
 
-      <h2>HOW TO BUY</h2>
-      <p>
-        1. Connect wallet<br>
-        2. Paste contract address<br>
-        3. Swap for FlashVote
-      </p>
-
-      <h2>FOLLOW</h2>
-      <div class="buttons">
-        <a href="#" class="btn">X</a>
-      </div>
-
-    </section>
-
-  </main>
+  </div>
 
 </body>
 </html>
