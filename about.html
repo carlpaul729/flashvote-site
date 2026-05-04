@@ -1,78 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FlashVote</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlashVote</title>
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-      height: 100%;
-    }
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
 
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    text-align: center;
+  }
 
-    .waveform {
-      width: 70%;
-      max-width: 900px;
-      margin-bottom: 30px;
-      opacity: 0.9;
-    }
+  /* HERO */
 
+  .title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .tagline {
+    font-size: 18px;
+    color: #aaa;
+    margin-bottom: 10px;
+  }
+
+  .subtext {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 50px;
+  }
+
+  /* SECTION LABEL */
+
+  .section-label {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 15px;
+  }
+
+  /* CONTRACT BOX */
+
+  .ca-box {
+    border: 1px solid rgba(255,140,0,0.4);
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 13px;
+    word-break: break-all;
+    margin-bottom: 10px;
+  }
+
+  .copy-btn {
+    margin-bottom: 40px;
+    font-size: 12px;
+    color: #ff8c00;
+    cursor: pointer;
+  }
+
+  .copy-btn:hover {
+    text-decoration: underline;
+  }
+
+  /* BUTTONS */
+
+  .actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+
+  .btn {
+    padding: 12px 22px;
+    border-radius: 6px;
+    border: 1px solid #ff8c00;
+    color: #ff8c00;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  .btn:hover {
+    background: #ff8c00;
+    color: #000;
+  }
+
+  /* HOW TO BUY */
+
+  .steps {
+    font-size: 15px;
+    color: #ccc;
+    margin-bottom: 50px;
+    line-height: 1.8;
+  }
+
+  /* FOLLOW */
+
+  .follow-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #ff8c00;
+    border-radius: 6px;
+    color: #ff8c00;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .follow-btn:hover {
+    background: #ff8c00;
+    color: #000;
+  }
+
+  @media (max-width: 600px) {
     .title {
-      font-size: 64px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: -1px;
+      font-size: 36px;
     }
-
-    .tagline {
-      font-size: 20px;
-      color: #ccc;
-    }
-
-    @media (max-width: 768px) {
-      .title {
-        font-size: 42px;
-      }
-
-      .waveform {
-        width: 90%;
-      }
-
-      .tagline {
-        font-size: 16px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
 
-  <div class="hero">
+<div class="container">
 
-    <!-- IMPORTANT: Make sure this file exists in same folder -->
-    <img src="signal-line.png" alt="" class="waveform" />
+  <!-- HERO -->
 
-    <div class="title">FlashVote</div>
+  <div class="title">FlashVote</div>
 
-    <div class="tagline">
-      Sentiment moves fast. Outcomes follow.
-    </div>
-
+  <div class="tagline">
+    Sentiment moves fast. Outcomes follow.
   </div>
+
+  <div class="subtext">
+    FlashVote reflects real-time shifts in digital attention.
+  </div>
+
+  <!-- CONTRACT -->
+
+  <div class="section-label">CONTRACT ADDRESS</div>
+
+  <div class="ca-box" id="contract">
+    0x1234567890abcdef1234567890abcdef12345678
+  </div>
+
+  <div class="copy-btn" onclick="copyCA()">Copy</div>
+
+  <!-- BUY -->
+
+  <div class="section-label">BUY FLASHVOTE</div>
+
+  <div class="actions">
+    <a href="https://app.uniswap.org" target="_blank" class="btn">
+      Buy on Uniswap
+    </a>
+
+    <a href="https://dexscreener.com" target="_blank" class="btn">
+      View Chart
+    </a>
+  </div>
+
+  <!-- HOW TO BUY -->
+
+  <div class="section-label">HOW TO BUY</div>
+
+  <div class="steps">
+    Connect wallet<br>
+    Paste contract address<br>
+    Swap for FlashVote
+  </div>
+
+  <!-- FOLLOW -->
+
+  <div class="section-label">FOLLOW</div>
+
+  <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
+    X (Twitter)
+  </a>
+
+</div>
+
+<script>
+function copyCA() {
+  const text = document.getElementById("contract").innerText;
+  navigator.clipboard.writeText(text);
+
+  const btn = document.querySelector(".copy-btn");
+  btn.innerText = "Copied";
+
+  setTimeout(() => {
+    btn.innerText = "Copy";
+  }, 1500);
+}
+</script>
 
 </body>
 </html>
