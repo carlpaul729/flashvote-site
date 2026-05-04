@@ -13,143 +13,21 @@ html, body {
   color: #fff;
   font-family: Arial, sans-serif;
   text-align: center;
-  overflow-x: hidden;
 }
 
 /* ===== HERO ===== */
 .hero {
-  position: relative;
   padding: 120px 20px 80px;
-  overflow: hidden;
 }
 
-/* Cinematic glow (STATIC) */
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at center, rgba(255,122,26,0.25), transparent 60%);
-  filter: blur(40px);
-  opacity: 0.8;
-}
-
-/* subtle noise feel (no movement) */
-.particles {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(#ff7a1a 1px, transparent 1px);
-  background-size: 28px 28px;
-  opacity: 0.05;
-}
-
-/* TEXT */
 h1 {
   font-size: 64px;
   margin-bottom: 10px;
-  position: relative;
-  z-index: 2;
 }
 
 .tagline {
   font-size: 20px;
   color: #ccc;
-  margin-bottom: 60px;
-  position: relative;
-  z-index: 2;
-}
-
-/* ===== WAVE ===== */
-.wave-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  height: 180px;
-  position: relative;
-  z-index: 2;
-}
-
-/* main line */
-.wave-line {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(to right, transparent, #ff7a1a, transparent);
-  box-shadow: 0 0 20px rgba(255,122,26,0.8);
-}
-
-/* waveform */
-.wave {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  gap: 2px;
-}
-
-/* organic uneven bars */
-.bar {
-  width: 2px;
-  background: linear-gradient(to top, #ff7a1a, #ffb347);
-  opacity: 0.9;
-  box-shadow:
-    0 0 8px #ff7a1a,
-    0 0 20px rgba(255,122,26,0.6);
-}
-
-/* NON-SYMMETRICAL (matches X feel) */
-.bar:nth-child(1){height:4px}
-.bar:nth-child(2){height:7px}
-.bar:nth-child(3){height:12px}
-.bar:nth-child(4){height:9px}
-.bar:nth-child(5){height:16px}
-.bar:nth-child(6){height:25px}
-.bar:nth-child(7){height:38px}
-.bar:nth-child(8){height:60px}
-.bar:nth-child(9){height:95px}
-.bar:nth-child(10){height:140px}
-.bar:nth-child(11){height:75px}
-.bar:nth-child(12){height:42px}
-.bar:nth-child(13){height:28px}
-.bar:nth-child(14){height:20px}
-.bar:nth-child(15){height:15px}
-.bar:nth-child(16){height:10px}
-.bar:nth-child(17){height:7px}
-.bar:nth-child(18){height:5px}
-
-/* ===== LOGO CORE ===== */
-.logo-core {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 85px;
-  height: 85px;
-  border-radius: 50%;
-
-  background: radial-gradient(circle, #111 30%, #000 100%);
-  border: 2px solid rgba(255,122,26,0.7);
-
-  box-shadow:
-    0 0 20px rgba(255,122,26,0.7),
-    0 0 60px rgba(255,122,26,0.3);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  z-index: 5;
-}
-
-/* Logo */
-.logo-core span {
-  font-size: 38px;
-  font-weight: bold;
-  color: #ff7a1a;
-  text-shadow:
-    0 0 8px #ff7a1a,
-    0 0 20px rgba(255,122,26,0.7);
 }
 
 /* ===== CONTENT ===== */
@@ -171,13 +49,16 @@ h1 {
   margin-bottom: 25px;
 }
 
+/* Contract */
 .contract-box {
   border: 2px solid #ff7a1a;
   padding: 12px;
   margin: 20px auto;
   max-width: 420px;
+  word-break: break-all;
 }
 
+/* Buttons */
 .buttons {
   margin-top: 20px;
   display: flex;
@@ -197,11 +78,13 @@ h1 {
   color: #000;
 }
 
+/* Steps */
 .steps {
   color: #ccc;
   line-height: 1.6;
 }
 
+/* X Button */
 .x-btn {
   border: 2px solid #ff7a1a;
   padding: 10px 16px;
@@ -219,30 +102,8 @@ h1 {
 <body>
 
 <div class="hero">
-  <div class="hero-bg"></div>
-  <div class="particles"></div>
-
   <h1>FlashVote</h1>
   <div class="tagline">Sentiment moves fast. Outcomes follow.</div>
-
-  <div class="wave-container">
-
-    <div class="wave-line"></div>
-
-    <div class="wave">
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-    </div>
-
-    <div class="logo-core">
-      <span>F</span>
-    </div>
-
-  </div>
 </div>
 
 <div class="container">
