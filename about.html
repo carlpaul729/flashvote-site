@@ -1,141 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FlashVote</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlashVote Waveform Test</title>
 
-<style>
-html, body {
-  margin: 0;
-  padding: 0;
-  background: #000;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+    }
 
-/* ===== HERO ===== */
-.hero {
-  padding: 120px 20px 80px;
-}
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px;
+      text-align: center;
+    }
 
-h1 {
-  font-size: 64px;
-  margin-bottom: 10px;
-}
+    .waveform {
+      width: 100%;
+      max-width: 900px;
+      display: block;
+      margin: 0 auto;
+    }
 
-.tagline {
-  font-size: 20px;
-  color: #ccc;
-}
+    /* optional test backgrounds */
+    .test-light {
+      background: white;
+      padding: 40px;
+      margin-top: 40px;
+    }
 
-/* ===== CONTENT ===== */
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 60px 20px 100px;
-}
+    .label {
+      color: white;
+      margin-bottom: 10px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
 
-.section-title {
-  color: #ff7a1a;
-  font-weight: bold;
-  margin-top: 40px;
-  font-size: 22px;
-}
-
-.text {
-  color: #ccc;
-  margin-bottom: 25px;
-}
-
-/* Contract */
-.contract-box {
-  border: 2px solid #ff7a1a;
-  padding: 12px;
-  margin: 20px auto;
-  max-width: 420px;
-  word-break: break-all;
-}
-
-/* Buttons */
-.buttons {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.btn {
-  border: 2px solid #ff7a1a;
-  padding: 10px 20px;
-  text-decoration: none;
-  color: #fff;
-}
-
-.btn:hover {
-  background: #ff7a1a;
-  color: #000;
-}
-
-/* Steps */
-.steps {
-  color: #ccc;
-  line-height: 1.6;
-}
-
-/* X Button */
-.x-btn {
-  border: 2px solid #ff7a1a;
-  padding: 10px 16px;
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.x-btn:hover {
-  background: #ff7a1a;
-  color: #000;
-}
-</style>
+    .light-label {
+      color: black;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="hero">
-  <h1>FlashVote</h1>
-  <div class="tagline">Sentiment moves fast. Outcomes follow.</div>
-</div>
+  <div class="container">
 
-<div class="container">
+    <div class="label">Dark Background (your real site)</div>
+    <img src="waveform.png" alt="Waveform" class="waveform" />
 
-  <div class="section-title">WHAT IS FLASHVOTE</div>
-  <div class="text">
-    FlashVote reflects fast-moving digital attention in real time.
+    <div class="test-light">
+      <div class="label light-label">Light Background Test (transparency check)</div>
+      <img src="waveform.png" alt="Waveform" class="waveform" />
+    </div>
+
   </div>
-
-  <div class="section-title">CONTRACT ADDRESS</div>
-  <div class="contract-box">
-    0xYOURCONTRACTADDRESSHERE
-  </div>
-
-  <div class="section-title">BUY FLASHVOTE</div>
-
-  <div class="buttons">
-    <a href="#" class="btn">Buy on Uniswap</a>
-    <a href="#" class="btn">View Chart</a>
-  </div>
-
-  <div class="section-title">HOW TO BUY</div>
-  <div class="steps">
-    1. Connect wallet<br>
-    2. Paste contract address<br>
-    3. Swap for FlashVote
-  </div>
-
-  <div class="section-title">FOLLOW</div>
-  <a href="#" class="x-btn">X</a>
-
-</div>
 
 </body>
 </html>
