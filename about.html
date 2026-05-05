@@ -9,12 +9,17 @@
   html, body {
     margin: 0;
     padding: 0;
-    background: black;
-    color: white;
-    font-family: Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    overflow-x: hidden;
   }
 
-  /* 🔥 FORCE TEST */
+  body {
+    position: relative;
+  }
+
+  /* BACKGROUND IMAGE */
   .bg-image {
     position: fixed;
     inset: 0;
@@ -22,27 +27,230 @@
     height: 100%;
 
     object-fit: cover;
+    object-position: center;
 
-    z-index: 9999; /* TEMP: bring to front */
+    filter: brightness(0.75) contrast(1.05);
+
+    z-index: 0;
   }
 
-  .content {
-    position: relative;
+  /* OVERLAY */
+  .about-overlay {
+    position: fixed;
+    inset: 0;
     z-index: 1;
-    text-align: center;
-    margin-top: 100px;
+
+    background: radial-gradient(
+      ellipse at center,
+      rgba(0,0,0,0.96) 0%,
+      rgba(0,0,0,0.9) 35%,
+      rgba(0,0,0,0.7) 60%,
+      rgba(0,0,0,0.3) 80%,
+      rgba(0,0,0,0) 100%
+    );
   }
+
+  /* CONTENT */
+  .about-content {
+    position: relative;
+    z-index: 2;
+
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    max-width: 560px;
+    padding: 52px 20px 70px;
+    text-align: center;
+  }
+
+  .title {
+    font-size: clamp(36px, 5vw, 46px);
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    margin-bottom: 10px;
+  }
+
+  .tagline {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #aaa;
+    margin-bottom: 14px;
+  }
+
+  .subtext {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #777;
+    margin-bottom: 36px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 1.6px;
+    color: #777;
+    margin-bottom: 10px;
+  }
+
+  .ca-box {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    border: 1px solid rgba(255,140,0,0.42);
+    color: #ddd;
+    margin-bottom: 6px;
+    font-family: monospace;
+    word-break: break-all;
+  }
+
+  .copy-btn {
+    font-size: 11.5px;
+    letter-spacing: 0.4px;
+    color: #ff8c00;
+    cursor: pointer;
+    margin-bottom: 30px;
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+  }
+
+  .copy-btn:hover {
+    opacity: 1;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .btn {
+    padding: 11px 18px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,140,0,0.42);
+    color: #ff8c00;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  .btn:hover {
+    background: rgba(255,140,0,0.06);
+    border-color: rgba(255,140,0,0.85);
+    color: #fff;
+  }
+
+  .steps {
+    font-size: 14px;
+    color: #bbb;
+    line-height: 1.8;
+    margin-bottom: 36px;
+  }
+
+  .follow-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,140,0,0.42);
+    color: #ff8c00;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  .follow-btn:hover {
+    background: rgba(255,140,0,0.06);
+    border-color: rgba(255,140,0,0.85);
+    color: #fff;
+  }
+
+  @media (max-width: 600px) {
+    .title {
+      font-size: 34px;
+    }
+  }
+
 </style>
 </head>
 
 <body>
 
+<!-- BACKGROUND -->
 <img src="flashvote-about-bg.png" class="bg-image">
 
-<div class="content">
-  <h1>FlashVote</h1>
-  <p>If you can see the background, it's working.</p>
+<!-- OVERLAY -->
+<div class="about-overlay"></div>
+
+<!-- CONTENT -->
+<div class="about-content">
+  <div class="container">
+
+    <div class="title">FlashVote</div>
+
+    <div class="tagline">
+      Sentiment moves fast. Outcomes follow.
+    </div>
+
+    <div class="subtext">
+      FlashVote reflects real-time shifts in digital attention.
+    </div>
+
+    <div class="section-label">CONTRACT ADDRESS</div>
+
+    <div class="ca-box" id="contract">
+      0x1234567890abcdef1234567890abcdef12345678
+    </div>
+
+    <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
+
+    <div class="section-label">BUY FLASHVOTE</div>
+
+    <div class="actions">
+      <a href="https://app.uniswap.org" target="_blank" class="btn">
+        Buy on Uniswap
+      </a>
+
+      <a href="https://dexscreener.com" target="_blank" class="btn">
+        View Chart
+      </a>
+    </div>
+
+    <div class="section-label">HOW TO BUY</div>
+
+    <div class="steps">
+      Connect wallet<br>
+      Paste contract address<br>
+      Swap for FlashVote
+    </div>
+
+    <div class="section-label">FOLLOW</div>
+
+    <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
+      X (Twitter)
+    </a>
+
+  </div>
 </div>
+
+<script>
+function copyCA() {
+  const text = document.getElementById("contract").innerText;
+  const btn = document.getElementById("copyBtn");
+
+  navigator.clipboard.writeText(text);
+
+  btn.innerText = "Copied";
+
+  setTimeout(() => {
+    btn.innerText = "Copy";
+  }, 1400);
+}
+</script>
 
 </body>
 </html>
