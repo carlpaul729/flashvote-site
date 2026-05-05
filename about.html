@@ -15,7 +15,7 @@
     overflow-x: hidden;
   }
 
-  /* BACKGROUND (DEBUG VERSION) */
+  /* BACKGROUND IMAGE */
   .bg-image {
     position: fixed;
     inset: 0;
@@ -26,12 +26,8 @@
     object-position: center;
 
     z-index: -2;
-
-    /* fallback so we KNOW it's rendering */
-    background: red;
   }
 
-  /* OVERLAY */
   .about-overlay {
     position: fixed;
     inset: 0;
@@ -47,7 +43,6 @@
     );
   }
 
-  /* CONTENT */
   .about-content {
     position: relative;
     z-index: 1;
@@ -152,8 +147,8 @@
 
 <body>
 
-<!-- BACKGROUND -->
-<img src="/flashvote-about-bg.png" class="bg-image">
+<!-- IMPORTANT: RELATIVE PATH (NO SLASH) -->
+<img src="flashvote-about-bg.png" class="bg-image">
 
 <div class="about-overlay"></div>
 
