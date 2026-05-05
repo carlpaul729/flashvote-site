@@ -14,27 +14,45 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   }
 
-  /* BACKGROUND */
+  /* PAGE WRAPPER */
+  .page {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* BACKGROUND (FIXED ISSUE SOLVED) */
   .about-bg {
-    position: fixed;
-    inset: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
 
     background-image: url('/flashvote-about-bg.png');
     background-size: cover;
-    background-position: center 55%; /* critical fix */
+    background-position: center;
     background-repeat: no-repeat;
 
-    filter: brightness(0.9) contrast(1.03);
+    filter: brightness(0.88) contrast(1.02);
 
-    z-index: 0;
+    z-index: -2;
   }
 
-  /* SUBTLE OVERLAY */
+  /* CENTER PROTECTION OVERLAY */
   .about-overlay {
-    position: fixed;
+    position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.22);
     z-index: -1;
+
+    background: radial-gradient(
+      ellipse at center,
+      rgba(0,0,0,0.92) 0%,
+      rgba(0,0,0,0.85) 40%,
+      rgba(0,0,0,0.6) 65%,
+      rgba(0,0,0,0.2) 85%,
+      rgba(0,0,0,0) 100%
+    );
   }
 
   /* CONTENT */
@@ -42,12 +60,10 @@
     position: relative;
     z-index: 1;
 
-    min-height: 100svh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    animation: fadeIn 0.5s ease;
   }
 
   .container {
@@ -162,18 +178,6 @@
     .title {
       font-size: 34px;
     }
-
-    .about-bg {
-      background-position: center 60%; /* slight mobile adjustment */
-    }
-  }
-
-  /* iOS fix */
-  @supports (-webkit-touch-callout: none) {
-    .about-bg,
-    .about-overlay {
-      height: -webkit-fill-available;
-    }
   }
 
   /* subtle load */
@@ -193,57 +197,61 @@
 
 <body>
 
-<div class="about-bg"></div>
-<div class="about-overlay"></div>
+<div class="page">
 
-<div class="about-content">
-  <div class="container">
+  <div class="about-bg"></div>
+  <div class="about-overlay"></div>
 
-    <div class="title">FlashVote</div>
+  <div class="about-content">
+    <div class="container">
 
-    <div class="tagline">
-      Sentiment moves fast. Outcomes follow.
-    </div>
+      <div class="title">FlashVote</div>
 
-    <div class="subtext">
-      FlashVote reflects real-time shifts in digital attention.
-    </div>
+      <div class="tagline">
+        Sentiment moves fast. Outcomes follow.
+      </div>
 
-    <div class="section-label">CONTRACT ADDRESS</div>
+      <div class="subtext">
+        FlashVote reflects real-time shifts in digital attention.
+      </div>
 
-    <div class="ca-box" id="contract">
-      0x1234567890abcdef1234567890abcdef12345678
-    </div>
+      <div class="section-label">CONTRACT ADDRESS</div>
 
-    <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
+      <div class="ca-box" id="contract">
+        0x1234567890abcdef1234567890abcdef12345678
+      </div>
 
-    <div class="section-label">BUY FLASHVOTE</div>
+      <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
 
-    <div class="actions">
-      <a href="https://app.uniswap.org" target="_blank" class="btn">
-        Buy on Uniswap
+      <div class="section-label">BUY FLASHVOTE</div>
+
+      <div class="actions">
+        <a href="https://app.uniswap.org" target="_blank" class="btn">
+          Buy on Uniswap
+        </a>
+
+        <a href="https://dexscreener.com" target="_blank" class="btn">
+          View Chart
+        </a>
+      </div>
+
+      <div class="section-label">HOW TO BUY</div>
+
+      <div class="steps">
+        Connect wallet<br>
+        Paste contract address<br>
+        Swap for FlashVote
+      </div>
+
+      <div class="section-label">FOLLOW</div>
+
+      <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
+        X (Twitter)
       </a>
 
-      <a href="https://dexscreener.com" target="_blank" class="btn">
-        View Chart
-      </a>
     </div>
-
-    <div class="section-label">HOW TO BUY</div>
-
-    <div class="steps">
-      Connect wallet<br>
-      Paste contract address<br>
-      Swap for FlashVote
-    </div>
-
-    <div class="section-label">FOLLOW</div>
-
-    <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
-      X (Twitter)
-    </a>
-
   </div>
+
 </div>
 
 <script>
