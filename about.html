@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FlashVote</title>
 
 <style>
@@ -13,15 +13,15 @@
     color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     overflow-x: hidden;
-    /* Prevent rubber-banding on some mobile browsers */
-    position: fixed;
-    width: 100%;
-    height: 100%;
+  }
+
+  html {
+    min-height: 100%;
   }
 
   body {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    position: relative;
+    min-height: 100vh;
   }
 
   /* BACKGROUND IMAGE */
@@ -29,9 +29,8 @@
     position: fixed;
     inset: 0;
     width: 100%;
-    /* Use dvh to ensure it fills the dynamic viewport on mobile */
     height: 100vh;
-    height: 100dvh;
+    height: 100lvh;
 
     object-fit: cover;
     object-position: center center;
@@ -42,19 +41,19 @@
     z-index: 0;
     pointer-events: none;
     user-select: none;
-    
-    /* Hardware acceleration to prevent flickering/jumping */
     transform: translateZ(0);
+    backface-visibility: hidden;
     -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
   }
 
-  /* OVERLAY */
+  /* OVERLAY (REFINED — NOT TOO DARK) */
   .about-overlay {
     position: fixed;
     inset: 0;
     width: 100%;
     height: 100vh;
-    height: 100dvh;
+    height: 100lvh;
     z-index: 1;
     pointer-events: none;
 
@@ -68,7 +67,9 @@
     );
 
     transform: translateZ(0);
+    backface-visibility: hidden;
     -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
   }
 
   /* CONTENT */
@@ -76,9 +77,8 @@
     position: relative;
     z-index: 2;
 
-    /* Ensure content area matches the viewport height */
     min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100svh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,7 +86,7 @@
 
   .container {
     max-width: 560px;
-    padding: 60px 20px 80px;
+    padding: 52px 20px 70px;
     text-align: center;
   }
 
@@ -192,18 +192,42 @@
     color: #fff;
   }
 
-  /* Specific fix for mobile portrait height issues */
-  @media (max-width: 600px) and (orientation: portrait) {
-    .bg-image, .about-overlay {
+  @media (max-width: 900px) and (orientation: portrait) {
+    .bg-image {
+      width: 100vw;
       height: 100vh;
-      height: 100dvh;
+      height: 100lvh;
+      object-fit: contain;
+      object-position: center center;
     }
-    
-    .about-content {
-      min-height: 100vh;
-      min-height: 100dvh;
+  }
+
+  @media (max-width: 900px) and (orientation: landscape) {
+    .bg-image,
+    .about-overlay {
+      height: 100vh;
+      height: 100lvh;
+      min-height: 100lvh;
     }
 
+    .bg-image {
+      object-position: center center;
+    }
+  }
+
+  @supports (height: 100svh) {
+    @media (max-width: 900px) {
+      body {
+        min-height: 100svh;
+      }
+
+      .about-content {
+        min-height: 100svh;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
     .title {
       font-size: 34px;
     }
