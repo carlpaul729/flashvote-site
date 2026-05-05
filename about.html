@@ -29,12 +29,13 @@
     object-fit: cover;
     object-position: center;
 
-    filter: brightness(0.75) contrast(1.05);
+    /* 🔥 Slightly brighter to restore orange energy */
+    filter: brightness(0.82) contrast(1.08);
 
     z-index: 0;
   }
 
-  /* OVERLAY */
+  /* OVERLAY (REFINED — NOT TOO DARK) */
   .about-overlay {
     position: fixed;
     inset: 0;
@@ -42,10 +43,10 @@
 
     background: radial-gradient(
       ellipse at center,
-      rgba(0,0,0,0.96) 0%,
-      rgba(0,0,0,0.9) 35%,
-      rgba(0,0,0,0.7) 60%,
-      rgba(0,0,0,0.3) 80%,
+      rgba(0,0,0,0.88) 0%,
+      rgba(0,0,0,0.75) 28%,
+      rgba(0,0,0,0.45) 55%,
+      rgba(0,0,0,0.18) 75%,
       rgba(0,0,0,0) 100%
     );
   }
