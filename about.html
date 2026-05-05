@@ -9,25 +9,20 @@
   html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
+    overflow-x: hidden;
     background: #000;
     color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   }
 
-  /* PAGE WRAPPER */
-  .page {
-    position: relative;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* BACKGROUND (FIXED ISSUE SOLVED) */
+  /* BACKGROUND (STABLE FIXED VERSION) */
   .about-bg {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 120%;
+    height: 100dvh;
 
     background-image: url('/flashvote-about-bg.png');
     background-size: cover;
@@ -39,9 +34,9 @@
     z-index: -2;
   }
 
-  /* CENTER PROTECTION OVERLAY */
+  /* CENTER PROTECTION */
   .about-overlay {
-    position: absolute;
+    position: fixed;
     inset: 0;
     z-index: -1;
 
@@ -180,78 +175,62 @@
     }
   }
 
-  /* subtle load */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
 </style>
 </head>
 
 <body>
 
-<div class="page">
+<div class="about-bg"></div>
+<div class="about-overlay"></div>
 
-  <div class="about-bg"></div>
-  <div class="about-overlay"></div>
+<div class="about-content">
+  <div class="container">
 
-  <div class="about-content">
-    <div class="container">
+    <div class="title">FlashVote</div>
 
-      <div class="title">FlashVote</div>
+    <div class="tagline">
+      Sentiment moves fast. Outcomes follow.
+    </div>
 
-      <div class="tagline">
-        Sentiment moves fast. Outcomes follow.
-      </div>
+    <div class="subtext">
+      FlashVote reflects real-time shifts in digital attention.
+    </div>
 
-      <div class="subtext">
-        FlashVote reflects real-time shifts in digital attention.
-      </div>
+    <div class="section-label">CONTRACT ADDRESS</div>
 
-      <div class="section-label">CONTRACT ADDRESS</div>
+    <div class="ca-box" id="contract">
+      0x1234567890abcdef1234567890abcdef12345678
+    </div>
 
-      <div class="ca-box" id="contract">
-        0x1234567890abcdef1234567890abcdef12345678
-      </div>
+    <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
 
-      <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
+    <div class="section-label">BUY FLASHVOTE</div>
 
-      <div class="section-label">BUY FLASHVOTE</div>
-
-      <div class="actions">
-        <a href="https://app.uniswap.org" target="_blank" class="btn">
-          Buy on Uniswap
-        </a>
-
-        <a href="https://dexscreener.com" target="_blank" class="btn">
-          View Chart
-        </a>
-      </div>
-
-      <div class="section-label">HOW TO BUY</div>
-
-      <div class="steps">
-        Connect wallet<br>
-        Paste contract address<br>
-        Swap for FlashVote
-      </div>
-
-      <div class="section-label">FOLLOW</div>
-
-      <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
-        X (Twitter)
+    <div class="actions">
+      <a href="https://app.uniswap.org" target="_blank" class="btn">
+        Buy on Uniswap
       </a>
 
+      <a href="https://dexscreener.com" target="_blank" class="btn">
+        View Chart
+      </a>
     </div>
-  </div>
 
+    <div class="section-label">HOW TO BUY</div>
+
+    <div class="steps">
+      Connect wallet<br>
+      Paste contract address<br>
+      Swap for FlashVote
+    </div>
+
+    <div class="section-label">FOLLOW</div>
+
+    <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
+      X (Twitter)
+    </a>
+
+  </div>
 </div>
 
 <script>
