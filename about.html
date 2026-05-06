@@ -9,30 +9,45 @@
   html, body {
     margin: 0;
     padding: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
     background: #000;
     color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    overflow-x: hidden;
   }
 
   body {
     position: relative;
   }
 
-  /* OVERLAY (REFINED — NOT TOO DARK) */
-  .about-overlay {
+  /* BACKGROUND SYSTEM (MATCHED TO INDEX) */
+  .background {
     position: fixed;
     inset: 0;
-    z-index: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 100svh;
 
-    background: radial-gradient(
-      ellipse at center,
-      rgba(0,0,0,0.85) 0%,
-      rgba(0,0,0,0.75) 28%,
-      rgba(0,0,0,0.45) 55%,
-      rgba(0,0,0,0.18) 75%,
-      rgba(0,0,0,0) 100%
-    );
+    object-fit: cover;
+    object-position: center 20.25%;
+
+    z-index: 0;
+  }
+
+  /* VIGNETTE (MATCHED TO INDEX) */
+  .vignette {
+    position: fixed;
+    inset: 0;
+
+    background:
+      radial-gradient(circle at center,
+        rgba(0,0,0,0) 46%,
+        rgba(0,0,0,0.18) 76%,
+        rgba(0,0,0,0.34) 100%);
+
+    z-index: 1;
+    pointer-events: none;
   }
 
   /* CONTENT */
@@ -40,7 +55,8 @@
     position: relative;
     z-index: 2;
 
-    min-height: 100vh;
+    min-height: 100svh;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,6 +106,9 @@
     margin-bottom: 6px;
     font-family: monospace;
     word-break: break-all;
+
+    background: rgba(0,0,0,0.18);
+    backdrop-filter: blur(2px);
   }
 
   .copy-btn {
@@ -122,6 +141,9 @@
     text-decoration: none;
     font-size: 14px;
     transition: all 0.2s ease;
+
+    background: rgba(0,0,0,0.18);
+    backdrop-filter: blur(2px);
   }
 
   .btn:hover {
@@ -146,12 +168,39 @@
     text-decoration: none;
     font-size: 14px;
     transition: all 0.2s ease;
+
+    background: rgba(0,0,0,0.18);
+    backdrop-filter: blur(2px);
   }
 
   .follow-btn:hover {
     background: rgba(255,140,0,0.06);
     border-color: rgba(255,140,0,0.85);
     color: #fff;
+  }
+
+  @media (max-width: 768px) {
+
+    .background {
+      object-position: center 53%;
+    }
+
+  }
+
+  @media (orientation: landscape) and (max-width: 950px) {
+
+    .background {
+      object-position: center 35%;
+    }
+
+  }
+
+  @supports (-webkit-touch-callout: none) and (orientation: landscape) {
+
+    .background {
+      object-position: center 34%;
+    }
+
   }
 
   @media (max-width: 600px) {
@@ -165,59 +214,62 @@
 
 <body>
 
-<!-- OVERLAY -->
-<div class="about-overlay"></div>
+  <!-- BACKGROUND -->
+  <img src="flashvote-backdrop.png" alt="FlashVote Background" class="background">
 
-<!-- CONTENT -->
-<div class="about-content">
-  <div class="container">
+  <!-- VIGNETTE -->
+  <div class="vignette"></div>
 
-    <div class="title">FlashVote</div>
+  <!-- CONTENT -->
+  <div class="about-content">
+    <div class="container">
 
-    <div class="tagline">
-      Sentiment moves fast. Outcomes follow.
-    </div>
+      <div class="title">FlashVote</div>
 
-    <div class="subtext">
-      FlashVote reflects real-time shifts in digital attention.
-    </div>
+      <div class="tagline">
+        Sentiment moves fast. Outcomes follow.
+      </div>
 
-    <div class="section-label">CONTRACT ADDRESS</div>
+      <div class="subtext">
+        FlashVote reflects real-time shifts in digital attention.
+      </div>
 
-    <div class="ca-box" id="contract">
-      0x1234567890abcdef1234567890abcdef12345678
-    </div>
+      <div class="section-label">CONTRACT ADDRESS</div>
 
-    <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
+      <div class="ca-box" id="contract">
+        0x1234567890abcdef1234567890abcdef12345678
+      </div>
 
-    <div class="section-label">BUY FLASHVOTE</div>
+      <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
 
-    <div class="actions">
-      <a href="https://app.uniswap.org" target="_blank" class="btn">
-        Buy on Uniswap
+      <div class="section-label">BUY FLASHVOTE</div>
+
+      <div class="actions">
+        <a href="https://app.uniswap.org" target="_blank" class="btn">
+          Buy on Uniswap
+        </a>
+
+        <a href="https://dexscreener.com" target="_blank" class="btn">
+          View Chart
+        </a>
+      </div>
+
+      <div class="section-label">HOW TO BUY</div>
+
+      <div class="steps">
+        Connect wallet<br>
+        Paste contract address<br>
+        Swap for FlashVote
+      </div>
+
+      <div class="section-label">FOLLOW</div>
+
+      <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
+        X (Twitter)
       </a>
 
-      <a href="https://dexscreener.com" target="_blank" class="btn">
-        View Chart
-      </a>
     </div>
-
-    <div class="section-label">HOW TO BUY</div>
-
-    <div class="steps">
-      Connect wallet<br>
-      Paste contract address<br>
-      Swap for FlashVote
-    </div>
-
-    <div class="section-label">FOLLOW</div>
-
-    <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
-      X (Twitter)
-    </a>
-
   </div>
-</div>
 
 <script>
 function copyCA() {
