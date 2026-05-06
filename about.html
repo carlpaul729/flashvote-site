@@ -19,52 +19,7 @@
     position: relative;
   }
 
-  /* BACKGROUND IMAGE SYSTEM */
-  .bg-image {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-
-    /* MOBILE DEFAULT */
-    object-fit: cover;
-    object-position: center center;
-
-    filter: brightness(0.88) contrast(1.1);
-
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-  }
-
-  /* DESKTOP / LAPTOP ONLY */
-  @media screen and (min-width: 1024px) {
-
-    .bg-image {
-
-      /*
-        ONLY horizontal adjustment for desktop/laptop.
-        Mobile portrait and mobile landscape remain untouched.
-      */
-
-      object-fit: contain;
-      object-position: center center;
-
-      /* Horizontal expansion ONLY */
-      width: 112vw;
-
-      /* Keep vertical identical */
-      height: 100vh;
-
-      /* Re-center after widening */
-      left: 50%;
-      transform: translateX(-50%) translateZ(0);
-      -webkit-transform: translateX(-50%) translateZ(0);
-    }
-
-  }
-
-  /* OVERLAY */
+  /* OVERLAY (REFINED — NOT TOO DARK) */
   .about-overlay {
     position: fixed;
     inset: 0;
@@ -78,8 +33,6 @@
       rgba(0,0,0,0.18) 75%,
       rgba(0,0,0,0) 100%
     );
-
-    pointer-events: none;
   }
 
   /* CONTENT */
@@ -212,9 +165,6 @@
 
 <body>
 
-<!-- BACKGROUND -->
-<img src="flashvote-about-bg.png" class="bg-image">
-
 <!-- OVERLAY -->
 <div class="about-overlay"></div>
 
@@ -263,7 +213,7 @@
     <div class="section-label">FOLLOW</div>
 
     <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
-      X (Twitter )
+      X (Twitter)
     </a>
 
   </div>
