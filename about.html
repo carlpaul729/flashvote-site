@@ -51,7 +51,7 @@ body{
     will-change:transform;
 }
 
-/* DARK OVERLAY */
+/* OVERLAY */
 
 .overlay{
     position:fixed;
@@ -64,12 +64,12 @@ body{
     linear-gradient(
         to bottom,
         rgba(0,0,0,0.72),
-        rgba(0,0,0,0.60),
+        rgba(0,0,0,0.58),
         rgba(0,0,0,0.72)
     );
 }
 
-/* CONTENT */
+/* MAIN */
 
 .container{
     width:100%;
@@ -98,33 +98,33 @@ body{
 /* TYPOGRAPHY */
 
 h1{
-    font-size:clamp(3.4rem, 7vw, 6rem);
+    font-size:clamp(4rem, 7vw, 6.5rem);
     font-weight:800;
     letter-spacing:-2px;
-    margin-bottom:28px;
+    margin-bottom:26px;
 }
 
 .tagline{
-    font-size:clamp(1.6rem, 2vw, 2.2rem);
+    font-size:clamp(1.4rem, 2vw, 2rem);
     color:rgba(255,255,255,0.82);
-    margin-bottom:34px;
     line-height:1.4;
+    margin-bottom:34px;
 }
 
 .description{
-    font-size:clamp(1.2rem, 1.5vw, 1.45rem);
+    font-size:clamp(1.1rem, 1.4vw, 1.35rem);
     color:rgba(255,255,255,0.58);
     line-height:1.7;
     margin-bottom:78px;
 }
 
-/* SECTION LABELS */
+/* LABELS */
 
 .section-label{
     font-size:0.95rem;
     letter-spacing:6px;
     color:rgba(255,255,255,0.42);
-    margin-bottom:22px;
+    margin-bottom:20px;
 }
 
 /* CONTRACT */
@@ -133,15 +133,15 @@ h1{
     width:100%;
     max-width:620px;
 
-    border:1px solid rgba(255,140,40,0.45);
-    border-radius:16px;
-
     padding:20px 24px;
 
-    background:rgba(0,0,0,0.35);
+    border:1px solid rgba(255,140,40,0.42);
+    border-radius:16px;
+
+    background:rgba(0,0,0,0.28);
 
     color:#ffffff;
-    font-size:1.1rem;
+    font-size:1.08rem;
 
     overflow:hidden;
     text-overflow:ellipsis;
@@ -166,9 +166,9 @@ h1{
 
 .button-row{
     display:flex;
-    gap:22px;
     flex-wrap:wrap;
     justify-content:center;
+    gap:22px;
 
     margin-bottom:76px;
 }
@@ -178,16 +178,16 @@ h1{
 
     padding:18px 34px;
 
-    border:1px solid rgba(255,140,40,0.45);
+    border:1px solid rgba(255,140,40,0.42);
     border-radius:16px;
 
-    background:rgba(0,0,0,0.28);
+    background:rgba(0,0,0,0.25);
 
     color:#ff9d3b;
 
     text-decoration:none;
 
-    font-size:1.2rem;
+    font-size:1.18rem;
     font-weight:500;
 
     transition:0.25s ease;
@@ -207,26 +207,27 @@ h1{
 
     margin-bottom:80px;
 
-    font-size:1.15rem;
+    font-size:1.12rem;
     line-height:1.6;
+
     color:rgba(255,255,255,0.86);
 }
 
-/* FOLLOW BUTTON */
+/* FOLLOW */
 
 .follow-btn{
     padding:18px 34px;
 
-    border:1px solid rgba(255,140,40,0.45);
+    border:1px solid rgba(255,140,40,0.42);
     border-radius:16px;
 
-    background:rgba(0,0,0,0.28);
+    background:rgba(0,0,0,0.25);
 
     color:#ff9d3b;
 
     text-decoration:none;
 
-    font-size:1.2rem;
+    font-size:1.18rem;
 
     transition:0.25s ease;
 }
@@ -251,12 +252,10 @@ h1{
 
     h1{
         font-size:4rem;
-        margin-bottom:24px;
     }
 
     .tagline{
         font-size:1.1rem;
-        margin-bottom:30px;
     }
 
     .description{
@@ -272,7 +271,7 @@ h1{
     .button{
         width:100%;
         min-width:unset;
-        font-size:1.1rem;
+        font-size:1.08rem;
     }
 
     .steps{
@@ -281,30 +280,14 @@ h1{
 
 }
 
-/* MOBILE LANDSCAPE */
+/* LANDSCAPE + LAPTOP FIX */
 
-@media (max-width:950px) and (orientation:landscape){
+@media (orientation:landscape){
 
     .background{
         background-size:contain;
         background-position:center center;
         background-color:#000;
-    }
-
-    .container{
-        padding:70px 30px;
-    }
-
-    h1{
-        font-size:3.5rem;
-    }
-
-    .tagline{
-        font-size:1.2rem;
-    }
-
-    .description{
-        font-size:1rem;
     }
 
 }
