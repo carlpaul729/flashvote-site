@@ -9,25 +9,29 @@
   html, body {
     margin: 0;
     padding: 0;
+    width: 100%;
+    min-height: 100svh;
+    overflow-x: hidden;
     background: #000;
     color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    overflow-x: hidden;
   }
 
   body {
     position: relative;
   }
 
-  /* BACKGROUND IMAGE SYSTEM */
+  /* BACKGROUND SYSTEM */
   .bg-image {
     position: fixed;
     inset: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    min-height: 100svh;
+
     z-index: 0;
 
-    /* MOBILE DEFAULT */
+    /* MOBILE PORTRAIT BASELINE */
     object-fit: cover;
     object-position: center center;
 
@@ -35,31 +39,6 @@
 
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
-  }
-
-  /* LAPTOP / DESKTOP ONLY */
-  @media screen and (min-width: 1024px) {
-
-    .bg-image {
-
-      /*
-        Previous desktop setting still cropped too much horizontally.
-        This keeps full image visible on laptop/desktops.
-      */
-
-      object-fit: contain;
-
-      /* fill screen cleanly */
-      width: 100vw;
-      height: 100vh;
-
-      /* center image */
-      object-position: center center;
-
-      /* prevent edge clipping */
-      background-color: #000;
-    }
-
   }
 
   /* OVERLAY */
@@ -85,7 +64,8 @@
     position: relative;
     z-index: 2;
 
-    min-height: 100vh;
+    min-height: 100svh;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -203,6 +183,61 @@
     .title {
       font-size: 34px;
     }
+  }
+
+  /* MOBILE PORTRAIT */
+  @media (max-width: 768px) and (orientation: portrait) {
+
+    .bg-image {
+      object-fit: cover;
+      object-position: center center;
+    }
+
+  }
+
+  /* MOBILE LANDSCAPE */
+  @media (orientation: landscape) and (max-width: 950px) {
+
+    .bg-image {
+      object-fit: contain;
+      object-position: center center;
+    }
+
+  }
+
+  /* LAPTOP / DESKTOP */
+  @media screen and (min-width: 1024px) {
+
+    .bg-image {
+
+      /*
+        Desktop-specific tuning.
+        Keeps more of image visible left/right.
+      */
+
+      object-fit: contain;
+      object-position: center center;
+    }
+
+  }
+
+  /* iOS SAFARI */
+  @supports (-webkit-touch-callout: none) {
+
+    .bg-image {
+      object-position: center center;
+    }
+
+  }
+
+  /* iOS SAFARI LANDSCAPE */
+  @supports (-webkit-touch-callout: none) and (orientation: landscape) {
+
+    .bg-image {
+      object-fit: contain;
+      object-position: center center;
+    }
+
   }
 
 </style>
