@@ -1,288 +1,509 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+/>
 <title>FlashVote</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+>
+
 <style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-    overflow-x: hidden;
-    background: #000;
-    color: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  background:#000;
+  overflow-x:hidden;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+  min-height:100svh;
+  position:relative;
+}
+
+/* =========================
+   BACKGROUND SYSTEM
+========================= */
+
+.background{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  background:#000;
+}
+
+.background::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background-image:url('flashvote-about-bg.png');
+  background-repeat:no-repeat;
+  background-position:center bottom;
+  background-size:cover;
+
+  filter:
+    brightness(0.88)
+    contrast(1.08)
+    saturate(1.02);
+
+  transform:scale(1.01);
+
+  z-index:1;
+}
+
+/* =========================
+   REFINED CINEMATIC OVERLAY
+========================= */
+
+.background::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+
+  background:
+
+    /* upper cinematic dark restraint */
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.92) 0%,
+      rgba(0,0,0,0.82) 18%,
+      rgba(0,0,0,0.66) 34%,
+      rgba(0,0,0,0.42) 52%,
+      rgba(0,0,0,0.20) 68%,
+      rgba(0,0,0,0.08) 82%,
+      rgba(0,0,0,0.00) 100%
+    ),
+
+    /* readability separation behind text */
+    radial-gradient(
+      ellipse at center 34%,
+      rgba(0,0,0,0.54) 0%,
+      rgba(0,0,0,0.40) 26%,
+      rgba(0,0,0,0.18) 48%,
+      rgba(0,0,0,0.00) 72%
+    ),
+
+    /* soften lower-middle competition */
+    radial-gradient(
+      ellipse at center 66%,
+      rgba(0,0,0,0.30) 0%,
+      rgba(0,0,0,0.18) 32%,
+      rgba(0,0,0,0.00) 64%
+    ),
+
+    /* cinematic edge vignette */
+    radial-gradient(
+      ellipse at center,
+      rgba(0,0,0,0.00) 48%,
+      rgba(0,0,0,0.16) 72%,
+      rgba(0,0,0,0.38) 100%
+    );
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.page{
+  position:relative;
+  z-index:5;
+
+  width:100%;
+  min-height:100svh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:
+    calc(env(safe-area-inset-top) + 40px)
+    24px
+    calc(env(safe-area-inset-bottom) + 80px);
+}
+
+.content{
+  width:100%;
+  max-width:760px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+h1{
+  font-size:clamp(54px,8vw,88px);
+  font-weight:800;
+  letter-spacing:-0.04em;
+
+  margin-bottom:26px;
+
+  color:#ffffff;
+}
+
+.tagline{
+  font-size:clamp(18px,2vw,28px);
+  line-height:1.4;
+  font-weight:500;
+
+  color:rgba(255,255,255,0.88);
+
+  margin-bottom:28px;
+}
+
+.subtext{
+  font-size:clamp(15px,1.3vw,19px);
+  line-height:1.7;
+
+  color:rgba(255,255,255,0.58);
+
+  max-width:720px;
+
+  margin-bottom:64px;
+}
+
+.section-label{
+  font-size:13px;
+  letter-spacing:0.28em;
+  text-transform:uppercase;
+
+  color:rgba(255,255,255,0.50);
+
+  margin-bottom:18px;
+}
+
+/* =========================
+   CONTRACT
+========================= */
+
+.contract-box{
+  width:min(100%,640px);
+
+  border:1px solid rgba(255,140,40,0.48);
+  border-radius:14px;
+
+  padding:18px 20px;
+
+  background:rgba(0,0,0,0.14);
+  backdrop-filter:blur(3px);
+
+  color:rgba(255,255,255,0.90);
+
+  font-size:clamp(14px,1.2vw,18px);
+  word-break:break-all;
+
+  margin-bottom:18px;
+}
+
+.copy-btn{
+  background:none;
+  border:none;
+
+  color:#ff9d3c;
+
+  font-size:17px;
+  font-weight:500;
+
+  cursor:pointer;
+
+  margin-bottom:64px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button-row{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+  justify-content:center;
+
+  margin-bottom:64px;
+}
+
+.action-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-width:190px;
+
+  padding:16px 28px;
+
+  border-radius:14px;
+  border:1px solid rgba(255,140,40,0.52);
+
+  background:rgba(0,0,0,0.14);
+  backdrop-filter:blur(2px);
+
+  color:#ff9d3c;
+
+  text-decoration:none;
+
+  font-size:18px;
+  font-weight:500;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.action-btn:hover{
+  background:rgba(255,140,40,0.08);
+  border-color:rgba(255,160,70,0.82);
+
+  transform:translateY(-1px);
+}
+
+/* =========================
+   GET STARTED
+========================= */
+
+.steps{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+
+  margin-bottom:70px;
+}
+
+.step{
+  font-size:clamp(17px,1.4vw,21px);
+  line-height:1.7;
+
+  color:rgba(255,255,255,0.82);
+}
+
+.wallet-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-top:12px;
+
+  padding:10px 18px;
+
+  border-radius:12px;
+  border:1px solid rgba(255,140,40,0.42);
+
+  text-decoration:none;
+
+  color:#ff9d3c;
+
+  font-size:15px;
+  font-weight:500;
+
+  background:rgba(0,0,0,0.12);
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.wallet-link:hover{
+  background:rgba(255,140,40,0.06);
+  border-color:rgba(255,160,70,0.72);
+}
+
+/* =========================
+   FOLLOW
+========================= */
+
+.follow-btn{
+  min-width:200px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width:768px){
+
+  .background::before{
+    background-position:center bottom;
+    background-size:cover;
   }
 
-  body {
-    position: relative;
+  .page{
+    padding-top:
+      calc(env(safe-area-inset-top) + 56px);
   }
 
-  /* BACKGROUND SYSTEM (MATCHED TO INDEX) */
-  .background {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 100svh;
-
-    object-fit: cover;
-    object-position: center 20.25%;
-
-    z-index: 0;
+  .button-row{
+    flex-direction:column;
+    width:100%;
+    align-items:center;
   }
 
-  /* VIGNETTE (MATCHED TO INDEX) */
-  .vignette {
-    position: fixed;
-    inset: 0;
+  .action-btn{
+    width:100%;
+    max-width:320px;
+  }
+}
 
-    background:
-      radial-gradient(circle at center,
-        rgba(0,0,0,0) 46%,
-        rgba(0,0,0,0.18) 76%,
-        rgba(0,0,0,0.34) 100%);
+/* landscape phones */
 
-    z-index: 1;
-    pointer-events: none;
+@media (max-height:600px) and (orientation:landscape){
+
+  .page{
+    padding-top:40px;
+    padding-bottom:50px;
   }
 
-  /* CONTENT */
-  .about-content {
-    position: relative;
-    z-index: 2;
-
-    min-height: 100svh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  h1{
+    margin-bottom:16px;
   }
 
-  .container {
-    max-width: 560px;
-    padding: 52px 20px 70px;
-    text-align: center;
+  .tagline{
+    margin-bottom:18px;
   }
 
-  .title {
-    font-size: clamp(36px, 5vw, 46px);
-    font-weight: 600;
-    letter-spacing: -0.3px;
-    margin-bottom: 10px;
+  .subtext{
+    margin-bottom:40px;
   }
+}
 
-  .tagline {
-    font-size: 16px;
-    line-height: 1.5;
-    color: #aaa;
-    margin-bottom: 14px;
+/* desktop */
+
+@media (min-width:1200px){
+
+  .background::before{
+    background-position:center center;
+    background-size:cover;
   }
-
-  .subtext {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #777;
-    margin-bottom: 36px;
-  }
-
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 1.6px;
-    color: #777;
-    margin-bottom: 10px;
-  }
-
-  .ca-box {
-    display: inline-block;
-    padding: 10px 14px;
-    border-radius: 6px;
-    font-size: 12px;
-    border: 1px solid rgba(255,140,0,0.42);
-    color: #ddd;
-    margin-bottom: 6px;
-    font-family: monospace;
-    word-break: break-all;
-
-    background: rgba(0,0,0,0.18);
-    backdrop-filter: blur(2px);
-  }
-
-  .copy-btn {
-    font-size: 11.5px;
-    letter-spacing: 0.4px;
-    color: #ff8c00;
-    cursor: pointer;
-    margin-bottom: 30px;
-    opacity: 0.75;
-    transition: opacity 0.2s ease;
-  }
-
-  .copy-btn:hover {
-    opacity: 1;
-  }
-
-  .actions {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 36px;
-  }
-
-  .btn {
-    padding: 11px 18px;
-    border-radius: 6px;
-    border: 1px solid rgba(255,140,0,0.42);
-    color: #ff8c00;
-    text-decoration: none;
-    font-size: 14px;
-    transition: all 0.2s ease;
-
-    background: rgba(0,0,0,0.18);
-    backdrop-filter: blur(2px);
-  }
-
-  .btn:hover {
-    background: rgba(255,140,0,0.06);
-    border-color: rgba(255,140,0,0.85);
-    color: #fff;
-  }
-
-  .steps {
-    font-size: 14px;
-    color: #bbb;
-    line-height: 1.8;
-    margin-bottom: 36px;
-  }
-
-  .follow-btn {
-    display: inline-block;
-    padding: 10px 18px;
-    border-radius: 6px;
-    border: 1px solid rgba(255,140,0,0.42);
-    color: #ff8c00;
-    text-decoration: none;
-    font-size: 14px;
-    transition: all 0.2s ease;
-
-    background: rgba(0,0,0,0.18);
-    backdrop-filter: blur(2px);
-  }
-
-  .follow-btn:hover {
-    background: rgba(255,140,0,0.06);
-    border-color: rgba(255,140,0,0.85);
-    color: #fff;
-  }
-
-  @media (max-width: 768px) {
-
-    .background {
-      object-position: center 53%;
-    }
-
-  }
-
-  @media (orientation: landscape) and (max-width: 950px) {
-
-    .background {
-      object-position: center 35%;
-    }
-
-  }
-
-  @supports (-webkit-touch-callout: none) and (orientation: landscape) {
-
-    .background {
-      object-position: center 34%;
-    }
-
-  }
-
-  @media (max-width: 600px) {
-    .title {
-      font-size: 34px;
-    }
-  }
+}
 
 </style>
 </head>
 
 <body>
 
-  <!-- BACKGROUND -->
-  <img src="flashvote-backdrop.png" alt="FlashVote Background" class="background">
+<div class="background"></div>
 
-  <!-- VIGNETTE -->
-  <div class="vignette"></div>
+<div class="page">
 
-  <!-- CONTENT -->
-  <div class="about-content">
-    <div class="container">
+  <div class="content">
 
-      <div class="title">FlashVote</div>
+    <h1>FlashVote</h1>
 
-      <div class="tagline">
-        Sentiment moves fast. Outcomes follow.
-      </div>
+    <div class="tagline">
+      Sentiment moves fast. Outcomes follow.
+    </div>
 
-      <div class="subtext">
-        FlashVote reflects real-time shifts in digital attention.
-      </div>
+    <div class="subtext">
+      FlashVote reflects real-time shifts in digital attention.
+    </div>
 
-      <div class="section-label">CONTRACT ADDRESS</div>
+    <div class="section-label">
+      Contract Address
+    </div>
 
-      <div class="ca-box" id="contract">
-        0x1234567890abcdef1234567890abcdef12345678
-      </div>
+    <div class="contract-box" id="contract">
+      0x1234567890abcdef1234567890abcdef12345678
+    </div>
 
-      <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
+    <button class="copy-btn" onclick="copyContract()">
+      Copy
+    </button>
 
-      <div class="section-label">BUY FLASHVOTE</div>
+    <div class="section-label">
+      Buy FlashVote
+    </div>
 
-      <div class="actions">
-        <a href="https://app.uniswap.org" target="_blank" class="btn">
-          Buy on Uniswap
-        </a>
+    <div class="button-row">
 
-        <a href="https://dexscreener.com" target="_blank" class="btn">
-          View Chart
-        </a>
-      </div>
+      <a
+        href="#"
+        class="action-btn"
+        target="_blank"
+      >
+        Buy on Uniswap
+      </a>
 
-      <div class="section-label">HOW TO BUY</div>
-
-      <div class="steps">
-        Connect wallet<br>
-        Paste contract address<br>
-        Swap for FlashVote
-      </div>
-
-      <div class="section-label">FOLLOW</div>
-
-      <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
-        X (Twitter)
+      <a
+        href="#"
+        class="action-btn"
+        target="_blank"
+      >
+        View Chart
       </a>
 
     </div>
+
+    <div class="section-label">
+      Get Started
+    </div>
+
+    <div class="steps">
+
+      <div class="step">
+        1. Create Wallet
+        <br>
+
+        <a
+          href="https://phantom.app/"
+          target="_blank"
+          class="wallet-link"
+        >
+          Get Phantom Wallet
+        </a>
+      </div>
+
+      <div class="step">
+        2. Buy ETH on Base
+      </div>
+
+      <div class="step">
+        3. Buy FlashVote
+      </div>
+
+    </div>
+
+    <div class="section-label">
+      Follow
+    </div>
+
+    <a
+      href="#"
+      class="action-btn follow-btn"
+      target="_blank"
+    >
+      X (Twitter)
+    </a>
+
   </div>
 
+</div>
+
 <script>
-function copyCA() {
-  const text = document.getElementById("contract").innerText;
-  const btn = document.getElementById("copyBtn");
+function copyContract() {
+  const text =
+    document.getElementById("contract").innerText;
 
   navigator.clipboard.writeText(text);
-
-  btn.innerText = "Copied";
-
-  setTimeout(() => {
-    btn.innerText = "Copy";
-  }, 1400);
 }
 </script>
 
