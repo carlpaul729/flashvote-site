@@ -35,37 +35,47 @@
     z-index: 0;
   }
 
-  /* REFINED VIGNETTE / OVERLAY */
+  /* REFINED CINEMATIC OVERLAY */
   .vignette {
     position: fixed;
     inset: 0;
 
     background:
 
-      /* upper readability restraint */
+      /* Primary cinematic vertical atmosphere */
       linear-gradient(
         to bottom,
-        rgba(0,0,0,0.10) 0%,
-        rgba(0,0,0,0.16) 18%,
-        rgba(0,0,0,0.22) 34%,
-        rgba(0,0,0,0.28) 52%,
-        rgba(0,0,0,0.20) 70%,
-        rgba(0,0,0,0.08) 100%
+        rgba(0,0,0,0.14) 0%,
+        rgba(0,0,0,0.18) 14%,
+        rgba(0,0,0,0.24) 30%,
+        rgba(0,0,0,0.30) 48%,
+        rgba(0,0,0,0.22) 68%,
+        rgba(0,0,0,0.10) 84%,
+        rgba(0,0,0,0.00) 100%
       ),
 
-      /* lower-middle readability separation */
+      /* Content readability separation */
       radial-gradient(
-        ellipse at center 68%,
-        rgba(0,0,0,0.24) 0%,
-        rgba(0,0,0,0.14) 36%,
+        ellipse at center 62%,
+        rgba(0,0,0,0.28) 0%,
+        rgba(0,0,0,0.18) 34%,
+        rgba(0,0,0,0.08) 52%,
         rgba(0,0,0,0.00) 74%
       ),
 
-      /* cinematic edge blend */
+      /* Upper content clarity */
+      radial-gradient(
+        ellipse at center 34%,
+        rgba(0,0,0,0.16) 0%,
+        rgba(0,0,0,0.10) 34%,
+        rgba(0,0,0,0.00) 72%
+      ),
+
+      /* Edge vignette preservation */
       radial-gradient(circle at center,
         rgba(0,0,0,0) 44%,
-        rgba(0,0,0,0.20) 74%,
-        rgba(0,0,0,0.38) 100%);
+        rgba(0,0,0,0.18) 76%,
+        rgba(0,0,0,0.36) 100%);
 
     z-index: 1;
     pointer-events: none;
