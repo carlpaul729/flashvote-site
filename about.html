@@ -27,14 +27,12 @@
     height: 100vh;
     z-index: 0;
 
-    /* Default for Portrait */
+    /* MOBILE DEFAULT */
     object-fit: cover;
     object-position: center center;
 
-    /* Slightly brighter orange energy */
     filter: brightness(0.88) contrast(1.1);
 
-    /* Hardware acceleration */
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
   }
@@ -43,12 +41,23 @@
   @media screen and (min-width: 1024px) {
 
     .bg-image {
-      object-fit: cover;
-      object-position: center center;
 
-      /* Fill full desktop width */
+      /*
+        Previous desktop setting still cropped too much horizontally.
+        This keeps full image visible on laptop/desktops.
+      */
+
+      object-fit: contain;
+
+      /* fill screen cleanly */
       width: 100vw;
       height: 100vh;
+
+      /* center image */
+      object-position: center center;
+
+      /* prevent edge clipping */
+      background-color: #000;
     }
 
   }
@@ -201,13 +210,10 @@
 
 <body>
 
-<!-- BACKGROUND -->
 <img src="flashvote-about-bg.png" class="bg-image">
 
-<!-- OVERLAY -->
 <div class="about-overlay"></div>
 
-<!-- CONTENT -->
 <div class="about-content">
   <div class="container">
 
