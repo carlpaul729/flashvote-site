@@ -1,451 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>FlashVote</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>FlashVote</title>
 
-  <style>
+<style>
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    width:100%;
+    min-height:100%;
+    background:#000;
+    overflow-x:hidden;
+}
+
+body{
+    width:100%;
+    min-height:100svh;
+    background:#000;
+    color:#ffffff;
+    font-family:Arial, Helvetica, sans-serif;
+    overflow-x:hidden;
+    position:relative;
+}
+
+/* BACKGROUND */
+
+.background{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:-2;
+
+    background-image:url('flashvote-about-bg.png');
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;
+
+    opacity:0.92;
+
+    transform:translateZ(0);
+    will-change:transform;
+}
+
+/* DARK OVERLAY */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+
+    background:
+    linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.72),
+        rgba(0,0,0,0.60),
+        rgba(0,0,0,0.72)
+    );
+}
+
+/* CONTENT */
+
+.container{
+    width:100%;
+    min-height:100svh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:120px 24px;
+
+    position:relative;
+    z-index:2;
+}
+
+.content{
+    width:100%;
+    max-width:760px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+}
+
+/* TYPOGRAPHY */
+
+h1{
+    font-size:clamp(3.4rem, 7vw, 6rem);
+    font-weight:800;
+    letter-spacing:-2px;
+    margin-bottom:28px;
+}
+
+.tagline{
+    font-size:clamp(1.6rem, 2vw, 2.2rem);
+    color:rgba(255,255,255,0.82);
+    margin-bottom:34px;
+    line-height:1.4;
+}
+
+.description{
+    font-size:clamp(1.2rem, 1.5vw, 1.45rem);
+    color:rgba(255,255,255,0.58);
+    line-height:1.7;
+    margin-bottom:78px;
+}
+
+/* SECTION LABELS */
+
+.section-label{
+    font-size:0.95rem;
+    letter-spacing:6px;
+    color:rgba(255,255,255,0.42);
+    margin-bottom:22px;
+}
+
+/* CONTRACT */
+
+.contract-box{
+    width:100%;
+    max-width:620px;
+
+    border:1px solid rgba(255,140,40,0.45);
+    border-radius:16px;
+
+    padding:20px 24px;
+
+    background:rgba(0,0,0,0.35);
+
+    color:#ffffff;
+    font-size:1.1rem;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    margin-bottom:18px;
+}
+
+.copy-btn{
+    background:none;
+    border:none;
+
+    color:#ff9d3b;
+    font-size:1rem;
+
+    cursor:pointer;
+
+    margin-bottom:70px;
+}
+
+/* BUTTONS */
+
+.button-row{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    justify-content:center;
+
+    margin-bottom:76px;
+}
+
+.button{
+    min-width:220px;
+
+    padding:18px 34px;
+
+    border:1px solid rgba(255,140,40,0.45);
+    border-radius:16px;
+
+    background:rgba(0,0,0,0.28);
+
+    color:#ff9d3b;
+
+    text-decoration:none;
+
+    font-size:1.2rem;
+    font-weight:500;
+
+    transition:0.25s ease;
+}
+
+.button:hover{
+    background:rgba(255,140,40,0.10);
+    border-color:#ff9d3b;
+}
+
+/* HOW TO BUY */
+
+.steps{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+
+    margin-bottom:80px;
+
+    font-size:1.15rem;
+    line-height:1.6;
+    color:rgba(255,255,255,0.86);
+}
+
+/* FOLLOW BUTTON */
+
+.follow-btn{
+    padding:18px 34px;
+
+    border:1px solid rgba(255,140,40,0.45);
+    border-radius:16px;
+
+    background:rgba(0,0,0,0.28);
+
+    color:#ff9d3b;
+
+    text-decoration:none;
+
+    font-size:1.2rem;
+
+    transition:0.25s ease;
+}
+
+.follow-btn:hover{
+    background:rgba(255,140,40,0.10);
+    border-color:#ff9d3b;
+}
+
+/* MOBILE PORTRAIT */
+
+@media (max-width:768px) and (orientation:portrait){
+
+    .background{
+        background-size:cover;
+        background-position:center center;
     }
-
-    html{
-      height:100%;
-      background:#000;
-      overflow-x:hidden;
-    }
-
-    body{
-      min-height:100%;
-      font-family:'Inter',sans-serif;
-      background:#000;
-      color:#fff;
-      overflow-x:hidden;
-      position:relative;
-    }
-
-    /* BACKGROUND */
-
-    .bg-layer{
-      position:fixed;
-      inset:0;
-      z-index:-5;
-
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(0,0,0,0.84) 0%,
-          rgba(0,0,0,0.72) 28%,
-          rgba(0,0,0,0.60) 50%,
-          rgba(0,0,0,0.70) 76%,
-          rgba(0,0,0,0.88) 100%
-        ),
-        url('flashvote-about-bg.png');
-
-      background-repeat:no-repeat;
-      background-position:center center;
-      background-size:cover;
-    }
-
-    /* EXTRA DEPTH */
-
-    .bg-overlay{
-      position:fixed;
-      inset:0;
-      z-index:-4;
-      pointer-events:none;
-
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(255,120,0,0.08) 0%,
-          rgba(0,0,0,0) 60%
-        );
-
-      mix-blend-mode:screen;
-    }
-
-    /* CONTENT */
 
     .container{
-      position:relative;
-      z-index:5;
-
-      width:100%;
-      min-height:100svh;
-
-      display:flex;
-      justify-content:center;
-      align-items:center;
-
-      padding:
-        clamp(120px,14vh,160px)
-        20px
-        clamp(120px,14vh,160px);
-    }
-
-    .content{
-      width:100%;
-      max-width:760px;
-      text-align:center;
+        padding:90px 22px 120px;
     }
 
     h1{
-      font-size:clamp(3.6rem,7vw,6rem);
-      font-weight:800;
-      letter-spacing:-0.04em;
-      margin-bottom:24px;
-      color:#fff;
-
-      text-shadow:
-        0 0 30px rgba(0,0,0,0.95);
+        font-size:4rem;
+        margin-bottom:24px;
     }
 
     .tagline{
-      font-size:clamp(1.35rem,2vw,2rem);
-      line-height:1.5;
-      color:rgba(255,255,255,0.82);
-
-      margin-bottom:38px;
-
-      text-shadow:
-        0 0 24px rgba(0,0,0,0.95);
+        font-size:1.1rem;
+        margin-bottom:30px;
     }
 
     .description{
-      font-size:clamp(1rem,1.2vw,1.18rem);
-      line-height:1.9;
-      color:rgba(255,255,255,0.56);
-
-      margin-bottom:82px;
-
-      text-shadow:
-        0 0 20px rgba(0,0,0,0.95);
-    }
-
-    .section-label{
-      font-size:0.92rem;
-      letter-spacing:0.34em;
-      color:rgba(255,255,255,0.45);
-      text-transform:uppercase;
-
-      margin-bottom:18px;
+        font-size:1rem;
+        margin-bottom:64px;
     }
 
     .contract-box{
-      width:100%;
-
-      padding:22px 20px;
-
-      border-radius:18px;
-
-      border:1px solid rgba(255,120,0,0.45);
-
-      background:rgba(0,0,0,0.45);
-
-      backdrop-filter:blur(10px);
-
-      color:rgba(255,255,255,0.92);
-
-      font-size:clamp(0.88rem,1vw,1rem);
-
-      overflow-wrap:break-word;
-
-      margin-bottom:18px;
-
-      box-shadow:
-        0 0 35px rgba(255,120,0,0.10),
-        inset 0 0 20px rgba(255,120,0,0.04);
-    }
-
-    .copy-btn{
-      display:inline-block;
-
-      margin-bottom:72px;
-
-      color:#ff9d42;
-
-      text-decoration:none;
-
-      font-size:1rem;
-
-      transition:opacity 0.3s ease;
-    }
-
-    .copy-btn:hover{
-      opacity:0.7;
-    }
-
-    .button-group{
-      display:flex;
-      justify-content:center;
-      gap:22px;
-      flex-wrap:wrap;
-
-      margin-bottom:78px;
+        font-size:0.92rem;
+        padding:18px 18px;
     }
 
     .button{
-      min-width:220px;
-
-      padding:18px 26px;
-
-      border-radius:18px;
-
-      border:1px solid rgba(255,120,0,0.42);
-
-      background:rgba(0,0,0,0.42);
-
-      backdrop-filter:blur(10px);
-
-      color:#ff9d42;
-
-      text-decoration:none;
-
-      font-size:1.15rem;
-      font-weight:500;
-
-      transition:
-        transform 0.3s ease,
-        background 0.3s ease,
-        border-color 0.3s ease;
-
-      box-shadow:
-        0 0 25px rgba(255,120,0,0.08),
-        inset 0 0 16px rgba(255,120,0,0.03);
-    }
-
-    .button:hover{
-      transform:translateY(-2px);
-
-      background:rgba(255,120,0,0.08);
-
-      border-color:rgba(255,140,40,0.7);
+        width:100%;
+        min-width:unset;
+        font-size:1.1rem;
     }
 
     .steps{
-      margin-bottom:82px;
-    }
-
-    .steps p{
-      color:rgba(255,255,255,0.82);
-
-      font-size:clamp(1.12rem,1.4vw,1.28rem);
-
-      line-height:2.1;
-
-      text-shadow:
-        0 0 16px rgba(0,0,0,0.95);
-    }
-
-    .social-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-
-      min-width:220px;
-
-      padding:18px 26px;
-
-      border-radius:18px;
-
-      border:1px solid rgba(255,120,0,0.42);
-
-      background:rgba(0,0,0,0.42);
-
-      backdrop-filter:blur(10px);
-
-      color:#ff9d42;
-
-      text-decoration:none;
-
-      font-size:1.15rem;
-
-      transition:
-        transform 0.3s ease,
-        background 0.3s ease;
-
-      box-shadow:
-        0 0 25px rgba(255,120,0,0.08),
-        inset 0 0 16px rgba(255,120,0,0.03);
-    }
-
-    .social-btn:hover{
-      transform:translateY(-2px);
-
-      background:rgba(255,120,0,0.08);
-    }
-
-    /* MOBILE PORTRAIT */
-
-    @media (max-width:768px) and (orientation:portrait){
-
-      .bg-layer{
-        background-size:cover;
-        background-position:center center;
-      }
-
-      .container{
-        align-items:flex-start;
-
-        padding-top:110px;
-        padding-bottom:120px;
-      }
-
-      h1{
-        font-size:4rem;
-      }
-
-      .tagline{
-        font-size:1.2rem;
-      }
-
-      .description{
         font-size:1rem;
-        line-height:1.8;
-      }
-
-      .button-group{
-        flex-direction:column;
-        align-items:center;
-      }
-
-      .button,
-      .social-btn{
-        width:100%;
-        max-width:320px;
-      }
     }
 
-    /* MOBILE LANDSCAPE */
+}
 
-    @media (max-width:950px) and (orientation:landscape){
+/* MOBILE LANDSCAPE */
 
-      .bg-layer{
+@media (max-width:950px) and (orientation:landscape){
+
+    .background{
         background-size:contain;
         background-position:center center;
         background-color:#000;
-      }
+    }
 
-      .container{
-        padding-top:80px;
-        padding-bottom:80px;
-      }
+    .container{
+        padding:70px 30px;
+    }
 
-      h1{
+    h1{
         font-size:3.5rem;
-      }
+    }
 
-      .tagline{
+    .tagline{
         font-size:1.2rem;
-      }
     }
 
-    /* TABLETS */
+    .description{
+        font-size:1rem;
+    }
 
-    @media (min-width:769px) and (max-width:1200px){
+}
 
-      .bg-layer{
+/* LARGE DESKTOP */
+
+@media (min-width:1600px){
+
+    .background{
         background-size:cover;
-        background-position:center center;
-      }
     }
 
-    /* LARGE DESKTOP */
+}
 
-    @media (min-width:1600px){
-
-      .content{
-        max-width:860px;
-      }
-
-      h1{
-        font-size:6.4rem;
-      }
-    }
-
-  </style>
+</style>
 </head>
+
 <body>
 
-  <div class="bg-layer"></div>
-  <div class="bg-overlay"></div>
+<div class="background"></div>
+<div class="overlay"></div>
 
-  <main class="container">
+<div class="container">
 
     <div class="content">
 
-      <h1>FlashVote</h1>
+        <h1>FlashVote</h1>
 
-      <p class="tagline">
-        Sentiment moves fast. Outcomes follow.
-      </p>
+        <div class="tagline">
+            Sentiment moves fast. Outcomes follow.
+        </div>
 
-      <p class="description">
-        FlashVote reflects real-time shifts in digital attention.
-      </p>
+        <div class="description">
+            FlashVote reflects real-time shifts in digital attention.
+        </div>
 
-      <div class="section-label">
-        Contract Address
-      </div>
+        <div class="section-label">
+            CONTRACT ADDRESS
+        </div>
 
-      <div class="contract-box">
-        0x1234567890abcdef1234567890abcdef12345678
-      </div>
+        <div class="contract-box">
+            0x1234567890abcdef1234567890abcdef12345678
+        </div>
 
-      <a href="#" class="copy-btn">
-        Copy
-      </a>
+        <button class="copy-btn">
+            Copy
+        </button>
 
-      <div class="section-label">
-        Buy FlashVote
-      </div>
+        <div class="section-label">
+            BUY FLASHVOTE
+        </div>
 
-      <div class="button-group">
+        <div class="button-row">
 
-        <a href="#" class="button">
-          Buy on Uniswap
+            <a href="#" class="button">
+                Buy on Uniswap
+            </a>
+
+            <a href="#" class="button">
+                View Chart
+            </a>
+
+        </div>
+
+        <div class="section-label">
+            HOW TO BUY
+        </div>
+
+        <div class="steps">
+            <div>Connect wallet</div>
+            <div>Paste contract address</div>
+            <div>Swap for FlashVote</div>
+        </div>
+
+        <div class="section-label">
+            FOLLOW
+        </div>
+
+        <a href="#" class="follow-btn">
+            X (Twitter)
         </a>
-
-        <a href="#" class="button">
-          View Chart
-        </a>
-
-      </div>
-
-      <div class="section-label">
-        How To Buy
-      </div>
-
-      <div class="steps">
-        <p>Connect wallet</p>
-        <p>Paste contract address</p>
-        <p>Swap for FlashVote</p>
-      </div>
-
-      <div class="section-label">
-        Follow
-      </div>
-
-      <a
-        href="https://x.com/flashvotehq"
-        class="social-btn"
-        target="_blank"
-      >
-        X (Twitter)
-      </a>
 
     </div>
 
-  </main>
+</div>
 
 </body>
 </html>
