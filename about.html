@@ -1,323 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FlashVote</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
 <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    overflow-x: hidden;
+  }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+  body {
+    position: relative;
+  }
 
-html{
-    width:100%;
-    min-height:100%;
-    background:#000;
-}
+  /* BACKGROUND IMAGE SYSTEM */
+  .bg-image {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    
+    /* Default for Portrait: Fill height, crop sides (User: "Looks Correct") */
+    object-fit: cover;
+    object-position: center center;
 
-body{
-    width:100%;
-    min-height:100vh;
-    min-height:100svh;
-    overflow-x:hidden;
-    background:#000;
-    font-family:'Orbitron',sans-serif;
-    color:#ffffff;
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-}
+    /* 🔥 Slightly brighter to restore orange energy */
+    filter: brightness(0.88) contrast(1.1);
+    
+    /* Hardware acceleration */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
 
-/* =========================
-   LOCKED BACKGROUND SYSTEM
-========================= */
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    width:100%;
-    height:100%;
-    background-image:url('flashvote-about-bg.png');
-    background-repeat:no-repeat;
-    background-position:center center;
-    background-size:auto 100%;
-    opacity:0.92;
-    z-index:-2;
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-        radial-gradient(circle at center,
-        rgba(0,0,0,0.18) 0%,
-        rgba(0,0,0,0.48) 45%,
-        rgba(0,0,0,0.78) 100%);
-    z-index:-1;
-}
-
-/* =========================
-   PAGE LAYOUT
-========================= */
-
-.page{
-    width:100%;
-    min-height:100vh;
-    min-height:100svh;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    padding:120px 24px 120px;
-}
-
-.content{
-    width:100%;
-    max-width:760px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-}
-
-/* =========================
-   TYPOGRAPHY
-========================= */
-
-.logo{
-    font-size:clamp(3.2rem,7vw,5.8rem);
-    font-weight:800;
-    letter-spacing:-0.04em;
-    line-height:1;
-    margin-bottom:32px;
-    color:#ffffff;
-}
-
-.tagline{
-    font-size:clamp(1rem,2vw,2rem);
-    color:rgba(255,255,255,0.78);
-    line-height:1.5;
-    margin-bottom:36px;
-    max-width:900px;
-}
-
-.description{
-    font-size:clamp(0.95rem,1.5vw,1.15rem);
-    color:rgba(255,255,255,0.55);
-    line-height:1.8;
-    max-width:760px;
-    margin-bottom:70px;
-}
-
-.section-label{
-    font-size:0.78rem;
-    letter-spacing:0.34em;
-    color:rgba(255,255,255,0.55);
-    margin-bottom:22px;
-}
-
-/* =========================
-   CONTRACT
-========================= */
-
-.contract-box{
-    width:min(100%,640px);
-    border:1px solid rgba(255,120,40,0.55);
-    border-radius:14px;
-    padding:18px 22px;
-    background:rgba(0,0,0,0.34);
-    color:#ffffff;
-    font-size:1rem;
-    overflow-wrap:anywhere;
-    margin-bottom:18px;
-}
-
-.copy{
-    color:#ff8a2d;
-    font-size:0.95rem;
-    margin-bottom:58px;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-
-.button-group{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-bottom:68px;
-}
-
-.btn{
-    min-width:200px;
-    padding:18px 26px;
-    border-radius:14px;
-    border:1px solid rgba(255,120,40,0.55);
-    color:#ff982f;
-    text-decoration:none;
-    font-size:1rem;
-    transition:0.25s ease;
-    background:rgba(0,0,0,0.28);
-}
-
-.btn:hover{
-    background:rgba(255,140,50,0.12);
-    border-color:#ff9a3c;
-}
-
-/* =========================
-   HOW TO BUY
-========================= */
-
-.steps{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-    margin-bottom:70px;
-}
-
-.steps div{
-    color:rgba(255,255,255,0.82);
-    font-size:1rem;
-    line-height:1.6;
-}
-
-/* =========================
-   MOBILE PORTRAIT
-========================= */
-
-@media screen and (max-width:768px) and (orientation:portrait){
-
-    body::before{
-        background-size:100% auto;
-        background-position:center center;
+  /* Optimize for Desktop and Landscape */
+  @media (orientation: landscape) {
+    .bg-image {
+      /* 
+         On wide screens, 'cover' zooms in too far and crops the top/bottom.
+         Switching to 'contain' preserves the full vertical digital structures 
+         and prevents the "zoomed-in" look while keeping the image centered.
+         Since the page background is #000, this remains seamless.
+      */
+      object-fit: contain;
     }
+  }
 
-    .page{
-        padding:100px 24px 100px;
+  /* OVERLAY (REFINED — NOT TOO DARK) */
+  .about-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+
+    background: radial-gradient(
+      ellipse at center,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.75) 28%,
+      rgba(0,0,0,0.45) 55%,
+      rgba(0,0,0,0.18) 75%,
+      rgba(0,0,0,0) 100%
+    );
+    
+    pointer-events: none;
+  }
+
+  /* CONTENT */
+  .about-content {
+    position: relative;
+    z-index: 2;
+
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    max-width: 560px;
+    padding: 52px 20px 70px;
+    text-align: center;
+  }
+
+  .title {
+    font-size: clamp(36px, 5vw, 46px);
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    margin-bottom: 10px;
+  }
+
+  .tagline {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #aaa;
+    margin-bottom: 14px;
+  }
+
+  .subtext {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #777;
+    margin-bottom: 36px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 1.6px;
+    color: #777;
+    margin-bottom: 10px;
+  }
+
+  .ca-box {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    border: 1px solid rgba(255,140,0,0.42);
+    color: #ddd;
+    margin-bottom: 6px;
+    font-family: monospace;
+    word-break: break-all;
+  }
+
+  .copy-btn {
+    font-size: 11.5px;
+    letter-spacing: 0.4px;
+    color: #ff8c00;
+    cursor: pointer;
+    margin-bottom: 30px;
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+  }
+
+  .copy-btn:hover {
+    opacity: 1;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .btn {
+    padding: 11px 18px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,140,0,0.42);
+    color: #ff8c00;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  .btn:hover {
+    background: rgba(255,140,0,0.06);
+    border-color: rgba(255,140,0,0.85);
+    color: #fff;
+  }
+
+  .steps {
+    font-size: 14px;
+    color: #bbb;
+    line-height: 1.8;
+    margin-bottom: 36px;
+  }
+
+  .follow-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,140,0,0.42);
+    color: #ff8c00;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  .follow-btn:hover {
+    background: rgba(255,140,0,0.06);
+    border-color: rgba(255,140,0,0.85);
+    color: #fff;
+  }
+
+  @media (max-width: 600px) {
+    .title {
+      font-size: 34px;
     }
-
-    .button-group{
-        flex-direction:row;
-        gap:16px;
-    }
-
-    .btn{
-        min-width:unset;
-        width:calc(50% - 8px);
-        padding:16px 14px;
-        font-size:0.95rem;
-    }
-
-    .contract-box{
-        font-size:0.92rem;
-        padding:16px;
-    }
-
-}
-
-/* =========================
-   MOBILE LANDSCAPE
-========================= */
-
-@media screen and (max-width:950px) and (orientation:landscape){
-
-    body::before{
-        background-size:auto 100%;
-        background-position:center center;
-    }
-
-    .page{
-        padding:60px 24px 80px;
-    }
-
-}
-
-/* =========================
-   LAPTOP / DESKTOP
-========================= */
-
-@media screen and (min-width:1024px){
-
-    body::before{
-        background-size:auto 92% !important;
-        background-position:center center !important;
-        background-repeat:no-repeat !important;
-    }
-
-}
+  }
 
 </style>
 </head>
 
 <body>
 
-<div class="page">
+<!-- BACKGROUND -->
+<img src="flashvote-about-bg.png" class="bg-image">
 
-<div class="content">
+<!-- OVERLAY -->
+<div class="about-overlay"></div>
 
-<h1 class="logo">FlashVote</h1>
+<!-- CONTENT -->
+<div class="about-content">
+  <div class="container">
 
-<div class="tagline">
-Sentiment moves fast. Outcomes follow.
+    <div class="title">FlashVote</div>
+
+    <div class="tagline">
+      Sentiment moves fast. Outcomes follow.
+    </div>
+
+    <div class="subtext">
+      FlashVote reflects real-time shifts in digital attention.
+    </div>
+
+    <div class="section-label">CONTRACT ADDRESS</div>
+
+    <div class="ca-box" id="contract">
+      0x1234567890abcdef1234567890abcdef12345678
+    </div>
+
+    <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
+
+    <div class="section-label">BUY FLASHVOTE</div>
+
+    <div class="actions">
+      <a href="https://app.uniswap.org" target="_blank" class="btn">
+        Buy on Uniswap
+      </a>
+
+      <a href="https://dexscreener.com" target="_blank" class="btn">
+        View Chart
+      </a>
+    </div>
+
+    <div class="section-label">HOW TO BUY</div>
+
+    <div class="steps">
+      Connect wallet  
+
+      Paste contract address  
+
+      Swap for FlashVote
+    </div>
+
+    <div class="section-label">FOLLOW</div>
+
+    <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
+      X (Twitter )
+    </a>
+
+  </div>
 </div>
 
-<div class="description">
-FlashVote reflects real-time shifts in digital attention.
-</div>
+<script>
+function copyCA() {
+  const text = document.getElementById("contract").innerText;
+  const btn = document.getElementById("copyBtn");
 
-<div class="section-label">
-CONTRACT ADDRESS
-</div>
+  navigator.clipboard.writeText(text);
 
-<div class="contract-box">
-0x1234567890abcdef1234567890abcdef12345678
-</div>
+  btn.innerText = "Copied";
 
-<div class="copy">
-Copy
-</div>
-
-<div class="section-label">
-BUY FLASHVOTE
-</div>
-
-<div class="button-group">
-<a href="#" class="btn">Buy on Uniswap</a>
-<a href="#" class="btn">View Chart</a>
-</div>
-
-<div class="section-label">
-HOW TO BUY
-</div>
-
-<div class="steps">
-<div>Connect wallet</div>
-<div>Paste contract address</div>
-<div>Swap for FlashVote</div>
-</div>
-
-<div class="section-label">
-FOLLOW
-</div>
-
-<div class="button-group">
-<a href="#" class="btn">X (Twitter)</a>
-</div>
-
-</div>
-</div>
+  setTimeout(() => {
+    btn.innerText = "Copy";
+  }, 1400);
+}
+</script>
 
 </body>
 </html>
