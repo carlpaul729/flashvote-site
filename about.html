@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>FlashVote</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   html, body {
@@ -14,7 +20,13 @@
     overflow-x: hidden;
     background: #000;
     color: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    text-rendering: optimizeLegibility;
   }
 
   body {
@@ -42,7 +54,6 @@
 
     background:
 
-      /* Primary cinematic vertical atmosphere */
       linear-gradient(
         to bottom,
         rgba(0,0,0,0.14) 0%,
@@ -54,7 +65,6 @@
         rgba(0,0,0,0.00) 100%
       ),
 
-      /* Content readability separation */
       radial-gradient(
         ellipse at center 62%,
         rgba(0,0,0,0.28) 0%,
@@ -63,7 +73,6 @@
         rgba(0,0,0,0.00) 74%
       ),
 
-      /* Upper content clarity */
       radial-gradient(
         ellipse at center 34%,
         rgba(0,0,0,0.16) 0%,
@@ -71,7 +80,6 @@
         rgba(0,0,0,0.00) 72%
       ),
 
-      /* Edge vignette preservation */
       radial-gradient(circle at center,
         rgba(0,0,0,0) 44%,
         rgba(0,0,0,0.18) 76%,
@@ -99,11 +107,30 @@
     text-align: center;
   }
 
+  /* REFINED TITLE TYPOGRAPHY */
   .title {
+    font-family: "Inter", sans-serif;
+
     font-size: clamp(36px, 5vw, 46px);
-    font-weight: 600;
-    letter-spacing: -0.3px;
-    margin-bottom: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.045em;
+
+    line-height: 1;
+
+    margin-bottom: 12px;
+
+    color: rgba(248,248,246,0.96);
+
+    text-rendering: optimizeLegibility;
+
+    -webkit-font-smoothing: antialiased;
+
+    text-shadow:
+      0 0 18px rgba(255,140,0,0.045);
+
+    transform: translateZ(0);
   }
 
   .tagline {
