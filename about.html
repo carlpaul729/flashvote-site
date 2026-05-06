@@ -107,44 +107,56 @@
     text-align: center;
   }
 
-  /* PREMIUM HERO TYPOGRAPHY REFINEMENT */
+  /* HERO TYPOGRAPHY REFINED TO MATCH EMBLEM DNA */
   .title {
 
     font-family: "Inter", sans-serif;
 
     font-size: clamp(44px, 6vw, 64px);
 
-    font-weight: 700;
+    font-weight: 680;
 
-    letter-spacing: -0.072em;
+    letter-spacing: -0.082em;
 
-    line-height: 0.96;
+    line-height: 0.94;
 
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 
-    color: rgba(244,241,234,0.96);
+    color: rgba(244,241,234,0.965);
 
     text-rendering: geometricPrecision;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
+    font-feature-settings:
+      "ss01" on,
+      "cv01" on,
+      "cv02" on;
+
     text-shadow:
-      0 0 14px rgba(255,248,240,0.028);
+      0 0 10px rgba(255,248,240,0.020);
 
     transform: translateZ(0);
 
     position: relative;
+
+    display: inline-block;
+
+    padding-left: 0.01em;
+
+    /* subtle engineered sharpness */
+    filter: contrast(1.015);
   }
 
-  /* subtle cinematic density */
+  /* subtle emblem-inspired cinematic underline */
   .title::after{
     content:"";
     position:absolute;
     left:50%;
-    bottom:-10px;
+    bottom:-11px;
 
-    width:62px;
+    width:66px;
     height:1px;
 
     transform:translateX(-50%);
@@ -153,11 +165,11 @@
       linear-gradient(
         90deg,
         rgba(255,140,0,0),
-        rgba(255,140,0,0.16),
+        rgba(255,140,0,0.17),
         rgba(255,140,0,0)
       );
 
-    opacity:0.32;
+    opacity:0.30;
   }
 
   .tagline {
@@ -368,7 +380,8 @@
 
     .title {
       font-size: 42px;
-      letter-spacing: -0.062em;
+      letter-spacing: -0.070em;
+      font-weight: 670;
     }
 
   }
