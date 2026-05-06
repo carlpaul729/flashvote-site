@@ -36,7 +36,10 @@ body{
     align-items:flex-start;
 }
 
-/* BACKGROUND */
+/* =========================
+   LOCKED BACKGROUND SYSTEM
+========================= */
+
 body::before{
     content:"";
     position:fixed;
@@ -51,7 +54,6 @@ body::before{
     z-index:-2;
 }
 
-/* DARK OVERLAY */
 body::after{
     content:"";
     position:fixed;
@@ -63,6 +65,10 @@ body::after{
         rgba(0,0,0,0.78) 100%);
     z-index:-1;
 }
+
+/* =========================
+   PAGE LAYOUT
+========================= */
 
 .page{
     width:100%;
@@ -83,7 +89,10 @@ body::after{
     text-align:center;
 }
 
-/* TYPOGRAPHY */
+/* =========================
+   TYPOGRAPHY
+========================= */
+
 .logo{
     font-size:clamp(3.2rem,7vw,5.8rem);
     font-weight:800;
@@ -116,7 +125,10 @@ body::after{
     margin-bottom:22px;
 }
 
-/* CONTRACT */
+/* =========================
+   CONTRACT
+========================= */
+
 .contract-box{
     width:min(100%,640px);
     border:1px solid rgba(255,120,40,0.55);
@@ -135,7 +147,10 @@ body::after{
     margin-bottom:58px;
 }
 
-/* BUTTONS */
+/* =========================
+   BUTTONS
+========================= */
+
 .button-group{
     display:flex;
     gap:20px;
@@ -161,7 +176,10 @@ body::after{
     border-color:#ff9a3c;
 }
 
-/* HOW TO BUY */
+/* =========================
+   HOW TO BUY
+========================= */
+
 .steps{
     display:flex;
     flex-direction:column;
@@ -175,7 +193,10 @@ body::after{
     line-height:1.6;
 }
 
-/* MOBILE PORTRAIT */
+/* =========================
+   MOBILE PORTRAIT
+========================= */
+
 @media screen and (max-width:768px) and (orientation:portrait){
 
     body::before{
@@ -206,7 +227,10 @@ body::after{
 
 }
 
-/* MOBILE LANDSCAPE */
+/* =========================
+   MOBILE LANDSCAPE
+========================= */
+
 @media screen and (max-width:950px) and (orientation:landscape){
 
     body::before{
@@ -220,14 +244,17 @@ body::after{
 
 }
 
-/* LAPTOP / DESKTOP ONLY */
-@media screen and (min-width:1024px) {
+/* =========================
+   LAPTOP / DESKTOP
+========================= */
 
-  body::before{
-    background-size:auto 92% !important;
-    background-position:center center !important;
-    background-repeat:no-repeat !important;
-  }
+@media screen and (min-width:1024px){
+
+    body::before{
+        background-size:auto 92% !important;
+        background-position:center center !important;
+        background-repeat:no-repeat !important;
+    }
 
 }
 
