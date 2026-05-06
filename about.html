@@ -26,33 +26,34 @@
     width: 100vw;
     height: 100vh;
     z-index: 0;
-    
-    /* Default for Portrait: Fill height, crop sides (User: "Looks Correct") */
+
+    /* Default for Portrait */
     object-fit: cover;
     object-position: center center;
 
-    /* 🔥 Slightly brighter to restore orange energy */
+    /* Slightly brighter orange energy */
     filter: brightness(0.88) contrast(1.1);
-    
+
     /* Hardware acceleration */
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
   }
 
-  /* Optimize for Desktop and Landscape */
-  @media (orientation: landscape) {
+  /* LAPTOP / DESKTOP ONLY */
+  @media screen and (min-width: 1024px) {
+
     .bg-image {
-      /* 
-         On wide screens, 'cover' zooms in too far and crops the top/bottom.
-         Switching to 'contain' preserves the full vertical digital structures 
-         and prevents the "zoomed-in" look while keeping the image centered.
-         Since the page background is #000, this remains seamless.
-      */
-      object-fit: contain;
+      object-fit: cover;
+      object-position: center center;
+
+      /* Fill full desktop width */
+      width: 100vw;
+      height: 100vh;
     }
+
   }
 
-  /* OVERLAY (REFINED — NOT TOO DARK) */
+  /* OVERLAY */
   .about-overlay {
     position: fixed;
     inset: 0;
@@ -66,7 +67,7 @@
       rgba(0,0,0,0.18) 75%,
       rgba(0,0,0,0) 100%
     );
-    
+
     pointer-events: none;
   }
 
@@ -243,10 +244,8 @@
     <div class="section-label">HOW TO BUY</div>
 
     <div class="steps">
-      Connect wallet  
-
-      Paste contract address  
-
+      Connect wallet<br>
+      Paste contract address<br>
       Swap for FlashVote
     </div>
 
