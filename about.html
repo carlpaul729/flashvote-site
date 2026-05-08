@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>FlashVote</title>
 
@@ -12,6 +12,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
+  :root{
+    --vh: 1vh;
+  }
+
   html, body {
     margin: 0;
     padding: 0;
@@ -27,30 +32,48 @@
     -moz-osx-font-smoothing: grayscale;
 
     text-rendering: optimizeLegibility;
+
+    overscroll-behavior-y: none;
   }
 
   body {
     position: relative;
   }
 
-  /* BACKGROUND SYSTEM (LOCKED) */
+  /* BACKGROUND SYSTEM (STABILIZED) */
   .background {
     position: fixed;
-    inset: 0;
+
+    top: 0;
+    left: 0;
+
     width: 100%;
-    height: 100%;
-    min-height: 100svh;
+    height: calc(var(--vh, 1vh) * 100);
+
+    min-height: -webkit-fill-available;
 
     object-fit: cover;
     object-position: center 20.25%;
 
     z-index: 0;
+
+    pointer-events: none;
+
+    will-change: transform;
+
+    transform: translateZ(0);
+
+    backface-visibility: hidden;
+
+    -webkit-backface-visibility: hidden;
   }
 
   /* REFINED CINEMATIC OVERLAY */
   .vignette {
     position: fixed;
     inset: 0;
+
+    height: calc(var(--vh, 1vh) * 100);
 
     background:
 
@@ -87,6 +110,8 @@
 
     z-index: 1;
     pointer-events: none;
+
+    transform: translateZ(0);
   }
 
   /* CONTENT */
@@ -94,7 +119,7 @@
     position: relative;
     z-index: 2;
 
-    min-height: 100svh;
+    min-height: calc(var(--vh, 1vh) * 100);
 
     display: flex;
     justify-content: center;
@@ -107,16 +132,16 @@
     text-align: center;
   }
 
-  /* HERO TYPOGRAPHY */
+  /* FINAL CINEMATIC HEADER INTEGRATION */
   .title {
 
     font-family: "Inter", sans-serif;
 
     font-size: clamp(44px, 6vw, 64px);
 
-    font-weight: 695;
+    font-weight: 700;
 
-    letter-spacing: -0.044em;
+    letter-spacing: -0.038em;
 
     line-height: 0.96;
 
@@ -126,7 +151,8 @@
 
     display: inline-block;
 
-    color: rgba(250,246,240,0.992);
+    /* premium silver-white metallic atmosphere */
+    color: rgba(250,247,242,0.995);
 
     text-rendering: geometricPrecision;
 
@@ -138,14 +164,35 @@
       "cv01" on,
       "cv02" on;
 
-    /* refined cinematic material depth */
+    /* cinematic material depth */
     text-shadow:
-      0 0 1px rgba(255,252,248,0.20),
-      0 0 14px rgba(255,170,70,0.028),
-      0 1px 2px rgba(0,0,0,0.28),
-      0 0 28px rgba(255,255,255,0.012);
+      0 0 1px rgba(255,255,255,0.24),
+      0 0 14px rgba(255,170,70,0.045),
+      0 1px 2px rgba(0,0,0,0.34),
+      0 0 30px rgba(255,255,255,0.018);
 
     opacity: 0.998;
+  }
+
+  /* cinematic metallic edge influence */
+  .title::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255,255,255,0.08) 0%,
+        rgba(255,180,90,0.025) 42%,
+        rgba(255,255,255,0.015) 100%
+      );
+
+    mix-blend-mode: screen;
+
+    opacity:0.55;
+
+    pointer-events:none;
   }
 
   /* restrained cinematic underline */
@@ -155,7 +202,7 @@
     left:50%;
     bottom:-11px;
 
-    width:66px;
+    width:68px;
     height:1px;
 
     transform:translateX(-50%);
@@ -164,22 +211,22 @@
       linear-gradient(
         90deg,
         rgba(255,140,0,0),
-        rgba(255,140,0,0.16),
+        rgba(255,140,0,0.22),
         rgba(255,140,0,0)
       );
 
-    opacity:0.28;
+    opacity:0.36;
   }
 
   /* TICKER */
   .ticker {
-    font-size: 13px;
+    font-size: 14px;
 
-    letter-spacing: 0.28em;
+    letter-spacing: 0.24em;
 
     font-weight: 650;
 
-    color: rgba(255,188,98,0.82);
+    color: rgba(255,194,110,0.88);
 
     margin-top: 12px;
     margin-bottom: 24px;
@@ -187,10 +234,10 @@
     text-transform: uppercase;
 
     text-shadow:
-      0 0 8px rgba(255,140,0,0.045),
-      0 1px 1px rgba(0,0,0,0.20);
+      0 0 10px rgba(255,140,0,0.055),
+      0 1px 1px rgba(0,0,0,0.24);
 
-    opacity: 0.92;
+    opacity: 0.94;
   }
 
   .tagline {
@@ -401,13 +448,13 @@
 
     .title {
       font-size: 42px;
-      letter-spacing: -0.040em;
-      font-weight: 685;
+      letter-spacing: -0.036em;
+      font-weight: 690;
     }
 
     .ticker {
-      font-size: 11px;
-      letter-spacing: 0.24em;
+      font-size: 12px;
+      letter-spacing: 0.20em;
     }
 
   }
@@ -494,18 +541,29 @@
   </div>
 
 <script>
-function copyCA() {
-  const text = document.getElementById("contract").innerText;
-  const btn = document.getElementById("copyBtn");
+  // MOBILE VIEWPORT STABILIZATION
+  function setViewportHeight() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
 
-  navigator.clipboard.writeText(text);
+  setViewportHeight();
 
-  btn.innerText = "Copied";
+  window.addEventListener('resize', setViewportHeight);
+  window.addEventListener('orientationchange', setViewportHeight);
 
-  setTimeout(() => {
-    btn.innerText = "Copy";
-  }, 1400);
-}
+  function copyCA() {
+    const text = document.getElementById("contract").innerText;
+    const btn = document.getElementById("copyBtn");
+
+    navigator.clipboard.writeText(text);
+
+    btn.innerText = "Copied";
+
+    setTimeout(() => {
+      btn.innerText = "Copy";
+    }, 1400);
+  }
 </script>
 
 </body>
