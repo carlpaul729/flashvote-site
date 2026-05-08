@@ -13,18 +13,15 @@
 
 <style>
 
-  :root{
-    --vh: 1vh;
-  }
-
   html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     min-height: 100%;
-    overflow-x: hidden;
     background: #000;
     color: #fff;
+
+    overflow-x: hidden;
 
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 
@@ -33,24 +30,20 @@
 
     text-rendering: optimizeLegibility;
 
-    overscroll-behavior-y: none;
+    -webkit-overflow-scrolling: touch;
   }
 
   body {
     position: relative;
   }
 
-  /* BACKGROUND SYSTEM (STABILIZED) */
+  /* BACKGROUND SYSTEM */
   .background {
     position: fixed;
-
-    top: 0;
-    left: 0;
+    inset: 0;
 
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
-
-    min-height: -webkit-fill-available;
+    height: 100%;
 
     object-fit: cover;
     object-position: center 20.25%;
@@ -59,21 +52,17 @@
 
     pointer-events: none;
 
-    will-change: transform;
-
-    transform: translateZ(0);
-
+    transform: translate3d(0,0,0);
     backface-visibility: hidden;
-
     -webkit-backface-visibility: hidden;
+
+    will-change: transform;
   }
 
-  /* REFINED CINEMATIC OVERLAY */
+  /* CINEMATIC OVERLAY */
   .vignette {
     position: fixed;
     inset: 0;
-
-    height: calc(var(--vh, 1vh) * 100);
 
     background:
 
@@ -110,8 +99,6 @@
 
     z-index: 1;
     pointer-events: none;
-
-    transform: translateZ(0);
   }
 
   /* CONTENT */
@@ -119,7 +106,7 @@
     position: relative;
     z-index: 2;
 
-    min-height: calc(var(--vh, 1vh) * 100);
+    min-height: 100vh;
 
     display: flex;
     justify-content: center;
@@ -132,27 +119,26 @@
     text-align: center;
   }
 
-  /* FINAL CINEMATIC HEADER INTEGRATION */
+  /* PREMIUM CINEMATIC HEADER */
   .title {
-
-    font-family: "Inter", sans-serif;
-
-    font-size: clamp(44px, 6vw, 64px);
-
-    font-weight: 700;
-
-    letter-spacing: -0.038em;
-
-    line-height: 0.96;
-
-    margin-bottom: 8px;
 
     position: relative;
 
     display: inline-block;
 
-    /* premium silver-white metallic atmosphere */
-    color: rgba(250,247,242,0.995);
+    font-family: "Inter", sans-serif;
+
+    font-size: clamp(46px, 6vw, 66px);
+
+    font-weight: 720;
+
+    letter-spacing: -0.042em;
+
+    line-height: 0.95;
+
+    margin-bottom: 8px;
+
+    color: rgba(252,248,242,0.995);
 
     text-rendering: geometricPrecision;
 
@@ -164,17 +150,17 @@
       "cv01" on,
       "cv02" on;
 
-    /* cinematic material depth */
+    /* stronger premium metallic atmosphere */
     text-shadow:
-      0 0 1px rgba(255,255,255,0.24),
-      0 0 14px rgba(255,170,70,0.045),
-      0 1px 2px rgba(0,0,0,0.34),
-      0 0 30px rgba(255,255,255,0.018);
+      0 0 1px rgba(255,255,255,0.34),
+      0 0 14px rgba(255,190,90,0.055),
+      0 0 32px rgba(255,170,70,0.022),
+      0 2px 4px rgba(0,0,0,0.34);
 
     opacity: 0.998;
   }
 
-  /* cinematic metallic edge influence */
+  /* cinematic metallic highlight influence */
   .title::before{
     content:"";
     position:absolute;
@@ -183,26 +169,26 @@
     background:
       linear-gradient(
         180deg,
-        rgba(255,255,255,0.08) 0%,
-        rgba(255,180,90,0.025) 42%,
-        rgba(255,255,255,0.015) 100%
+        rgba(255,255,255,0.16) 0%,
+        rgba(255,210,120,0.05) 42%,
+        rgba(255,255,255,0.02) 100%
       );
 
     mix-blend-mode: screen;
 
-    opacity:0.55;
+    opacity:0.78;
 
     pointer-events:none;
   }
 
-  /* restrained cinematic underline */
+  /* premium underline */
   .title::after{
     content:"";
     position:absolute;
     left:50%;
-    bottom:-11px;
+    bottom:-12px;
 
-    width:68px;
+    width:72px;
     height:1px;
 
     transform:translateX(-50%);
@@ -211,33 +197,34 @@
       linear-gradient(
         90deg,
         rgba(255,140,0,0),
-        rgba(255,140,0,0.22),
+        rgba(255,170,70,0.32),
         rgba(255,140,0,0)
       );
 
-    opacity:0.36;
+    opacity:0.55;
   }
 
   /* TICKER */
   .ticker {
+
     font-size: 14px;
 
-    letter-spacing: 0.24em;
+    letter-spacing: 0.22em;
 
     font-weight: 650;
 
-    color: rgba(255,194,110,0.88);
+    color: rgba(255,198,116,0.92);
 
-    margin-top: 12px;
+    margin-top: 14px;
     margin-bottom: 24px;
 
     text-transform: uppercase;
 
     text-shadow:
-      0 0 10px rgba(255,140,0,0.055),
-      0 1px 1px rgba(0,0,0,0.24);
+      0 0 10px rgba(255,160,60,0.08),
+      0 1px 2px rgba(0,0,0,0.24);
 
-    opacity: 0.94;
+    opacity: 0.96;
   }
 
   .tagline {
@@ -449,12 +436,12 @@
     .title {
       font-size: 42px;
       letter-spacing: -0.036em;
-      font-weight: 690;
+      font-weight: 700;
     }
 
     .ticker {
       font-size: 12px;
-      letter-spacing: 0.20em;
+      letter-spacing: 0.18em;
     }
 
   }
@@ -541,29 +528,18 @@
   </div>
 
 <script>
-  // MOBILE VIEWPORT STABILIZATION
-  function setViewportHeight() {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  }
+function copyCA() {
+  const text = document.getElementById("contract").innerText;
+  const btn = document.getElementById("copyBtn");
 
-  setViewportHeight();
+  navigator.clipboard.writeText(text);
 
-  window.addEventListener('resize', setViewportHeight);
-  window.addEventListener('orientationchange', setViewportHeight);
+  btn.innerText = "Copied";
 
-  function copyCA() {
-    const text = document.getElementById("contract").innerText;
-    const btn = document.getElementById("copyBtn");
-
-    navigator.clipboard.writeText(text);
-
-    btn.innerText = "Copied";
-
-    setTimeout(() => {
-      btn.innerText = "Copy";
-    }, 1400);
-  }
+  setTimeout(() => {
+    btn.innerText = "Copy";
+  }, 1400);
+}
 </script>
 
 </body>
