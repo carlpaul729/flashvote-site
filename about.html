@@ -46,15 +46,14 @@
     height: 100dvh;
     min-height: 100svh;
 
-    object-fit: cover;
-    object-position: center 20.25%;
+    background-image: url("flashvote-backdrop.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 20.25%;
 
     z-index: 0;
 
     pointer-events: none;
-
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
 
     will-change: auto;
   }
@@ -432,7 +431,7 @@
   @media (max-width: 768px) {
 
     .background {
-      object-position: center 53%;
+      background-position: center 53%;
     }
 
   }
@@ -440,7 +439,7 @@
   @media (orientation: landscape) and (max-width: 950px) {
 
     .background {
-      object-position: center 35%;
+      background-position: center 35%;
     }
 
   }
@@ -448,7 +447,7 @@
   @supports (-webkit-touch-callout: none) and (orientation: landscape) {
 
     .background {
-      object-position: center 34%;
+      background-position: center 34%;
     }
 
   }
@@ -474,7 +473,7 @@
 <body>
 
   <!-- BACKGROUND -->
-  <img src="flashvote-backdrop.png" alt="FlashVote Background" class="background">
+  <div class="background"></div>
 
   <!-- VIGNETTE -->
   <div class="vignette"></div>
