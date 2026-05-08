@@ -43,7 +43,7 @@
     inset: 0;
 
     width: 100%;
-    height: 100svh;
+    height: 100dvh;
     min-height: 100svh;
 
     object-fit: cover;
@@ -55,6 +55,28 @@
 
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+
+    will-change: auto;
+  }
+
+  /* ANDROID STABILIZATION */
+  @media screen and (max-width: 950px) {
+
+    .background {
+      height: 100svh;
+      min-height: 100svh;
+    }
+
+  }
+
+  /* iPHONE SAFARI STABILIZATION */
+  @supports (-webkit-touch-callout: none) {
+
+    .background {
+      height: 100lvh;
+      min-height: 100lvh;
+    }
+
   }
 
   /* CINEMATIC OVERLAY */
@@ -63,7 +85,7 @@
     inset: 0;
 
     width: 100%;
-    height: 100svh;
+    height: 100dvh;
     min-height: 100svh;
 
     background:
@@ -101,6 +123,26 @@
 
     z-index: 1;
     pointer-events: none;
+  }
+
+  /* ANDROID OVERLAY STABILIZATION */
+  @media screen and (max-width: 950px) {
+
+    .vignette {
+      height: 100svh;
+      min-height: 100svh;
+    }
+
+  }
+
+  /* iPHONE SAFARI OVERLAY STABILIZATION */
+  @supports (-webkit-touch-callout: none) {
+
+    .vignette {
+      height: 100lvh;
+      min-height: 100lvh;
+    }
+
   }
 
   /* CONTENT */
@@ -152,7 +194,6 @@
       "cv01" on,
       "cv02" on;
 
-    /* stronger premium metallic atmosphere */
     text-shadow:
       0 0 1px rgba(255,255,255,0.34),
       0 0 14px rgba(255,190,90,0.055),
