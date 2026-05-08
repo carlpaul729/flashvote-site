@@ -37,20 +37,14 @@
     position: relative;
   }
 
-  /* PAGE WRAPPER */
-  .page {
-    position: relative;
-    min-height: 100svh;
-  }
-
   /* BACKGROUND SYSTEM */
   .background {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: fixed;
+    inset: 0;
 
     width: 100%;
     height: 100svh;
+    min-height: 100svh;
 
     object-fit: cover;
     object-position: center 20.25%;
@@ -58,16 +52,19 @@
     z-index: 0;
 
     pointer-events: none;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   /* CINEMATIC OVERLAY */
   .vignette {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: fixed;
+    inset: 0;
 
     width: 100%;
     height: 100svh;
+    min-height: 100svh;
 
     background:
 
@@ -155,6 +152,7 @@
       "cv01" on,
       "cv02" on;
 
+    /* stronger premium metallic atmosphere */
     text-shadow:
       0 0 1px rgba(255,255,255,0.34),
       0 0 14px rgba(255,190,90,0.055),
@@ -434,84 +432,80 @@
 
 <body>
 
-  <div class="page">
+  <!-- BACKGROUND -->
+  <img src="flashvote-backdrop.png" alt="FlashVote Background" class="background">
 
-    <!-- BACKGROUND -->
-    <img src="flashvote-backdrop.png" alt="FlashVote Background" class="background">
+  <!-- VIGNETTE -->
+  <div class="vignette"></div>
 
-    <!-- VIGNETTE -->
-    <div class="vignette"></div>
+  <!-- CONTENT -->
+  <div class="about-content">
+    <div class="container">
 
-    <!-- CONTENT -->
-    <div class="about-content">
-      <div class="container">
+      <div class="title">FlashVote</div>
 
-        <div class="title">FlashVote</div>
+      <div class="ticker">$FVOTE</div>
 
-        <div class="ticker">$FVOTE</div>
+      <div class="tagline">
+        Sentiment moves fast. Outcomes follow.
+      </div>
 
-        <div class="tagline">
-          Sentiment moves fast. Outcomes follow.
-        </div>
+      <div class="subtext">
+        FlashVote reflects real-time shifts in digital attention.
+      </div>
 
-        <div class="subtext">
-          FlashVote reflects real-time shifts in digital attention.
-        </div>
+      <div class="section-label">CONTRACT ADDRESS</div>
 
-        <div class="section-label">CONTRACT ADDRESS</div>
+      <div class="ca-box" id="contract">
+        0x1234567890abcdef1234567890abcdef12345678
+      </div>
 
-        <div class="ca-box" id="contract">
-          0x1234567890abcdef1234567890abcdef12345678
-        </div>
+      <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
 
-        <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
+      <div class="section-label">BUY FLASHVOTE</div>
 
-        <div class="section-label">BUY FLASHVOTE</div>
-
-        <div class="actions">
-          <a href="https://app.uniswap.org" target="_blank" class="btn">
-            Buy on Uniswap
-          </a>
-
-          <a href="https://dexscreener.com" target="_blank" class="btn">
-            View Chart
-          </a>
-        </div>
-
-        <div class="section-label">GET STARTED</div>
-
-        <div class="steps">
-
-          1. Create Phantom Wallet
-          <br>
-
-          <a
-            href="https://phantom.app/"
-            target="_blank"
-            class="wallet-link"
-          >
-            Get Phantom Wallet
-          </a>
-
-          <br><br>
-
-          2. Add ETH to Wallet
-
-          <br><br>
-
-          3. Buy FlashVote
-
-        </div>
-
-        <div class="section-label">FOLLOW</div>
-
-        <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
-          X (Twitter)
+      <div class="actions">
+        <a href="https://app.uniswap.org" target="_blank" class="btn">
+          Buy on Uniswap
         </a>
 
+        <a href="https://dexscreener.com" target="_blank" class="btn">
+          View Chart
+        </a>
       </div>
-    </div>
 
+      <div class="section-label">GET STARTED</div>
+
+      <div class="steps">
+
+        1. Create Phantom Wallet
+        <br>
+
+        <a
+          href="https://phantom.app/"
+          target="_blank"
+          class="wallet-link"
+        >
+          Get Phantom Wallet
+        </a>
+
+        <br><br>
+
+        2. Add ETH to Wallet
+
+        <br><br>
+
+        3. Buy FlashVote
+
+      </div>
+
+      <div class="section-label">FOLLOW</div>
+
+      <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
+        X (Twitter)
+      </a>
+
+    </div>
   </div>
 
 <script>
