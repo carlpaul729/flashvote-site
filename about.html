@@ -18,34 +18,39 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
-  min-height: 100svh;
-
-  overflow: hidden;
-
+  min-height: 100%;
   background: #000;
   color: #fff;
+  overflow-x: hidden;
 
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Arial, sans-serif;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   text-rendering: optimizeLegibility;
+
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
   position: relative;
 }
 
-/* BACKGROUND */
+/* PAGE */
+.page {
+  position: relative;
+  min-height: 100svh;
+}
+
+/* BACKGROUND SYSTEM */
 .background {
-  position: absolute;
+  position: fixed;
   inset: 0;
 
   width: 100%;
-  height: 100%;
-  min-height: 100svh;
+  height: 100svh;
 
   background-image: url("flashvote-backdrop.png");
   background-repeat: no-repeat;
@@ -53,14 +58,23 @@ body {
   background-position: center 20.25%;
 
   z-index: 0;
+
+  pointer-events: none;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-/* OVERLAY */
+/* CINEMATIC OVERLAY */
 .vignette {
-  position: absolute;
+  position: fixed;
   inset: 0;
 
+  width: 100%;
+  height: 100svh;
+
   background:
+
     linear-gradient(
       to bottom,
       rgba(0,0,0,0.14) 0%,
@@ -87,10 +101,12 @@ body {
       rgba(0,0,0,0.00) 72%
     ),
 
-    radial-gradient(circle at center,
+    radial-gradient(
+      circle at center,
       rgba(0,0,0,0) 44%,
       rgba(0,0,0,0.18) 76%,
-      rgba(0,0,0,0.36) 100%);
+      rgba(0,0,0,0.36) 100%
+    );
 
   z-index: 1;
   pointer-events: none;
@@ -101,66 +117,65 @@ body {
   position: relative;
   z-index: 2;
 
-  width: 100%;
-  height: 100%;
   min-height: 100svh;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
-  overflow: hidden;
 }
 
 .container {
-  width: 100%;
   max-width: 560px;
-
-  padding: 34px 20px 38px;
-
+  padding: 52px 20px 70px;
   text-align: center;
-
-  box-sizing: border-box;
 }
 
 /* TITLE */
 .title {
-
   position: relative;
 
   display: inline-block;
 
-  font-size: clamp(40px, 5vw, 62px);
+  font-family: "Inter", sans-serif;
+
+  font-size: clamp(46px, 6vw, 66px);
 
   font-weight: 720;
 
-  line-height: 0.95;
-
   letter-spacing: -0.042em;
 
-  margin-bottom: 6px;
+  line-height: 0.95;
+
+  margin-bottom: 8px;
 
   color: rgba(252,248,242,0.995);
 
   text-rendering: geometricPrecision;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   text-shadow:
     0 0 1px rgba(255,255,255,0.34),
     0 0 14px rgba(255,190,90,0.055),
     0 0 32px rgba(255,170,70,0.022),
     0 2px 4px rgba(0,0,0,0.34);
+
+  opacity: 0.998;
 }
 
-.title::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  bottom:-10px;
+.title::after {
+  content: "";
 
-  width:72px;
-  height:1px;
+  position: absolute;
 
-  transform:translateX(-50%);
+  left: 50%;
+  bottom: -12px;
+
+  width: 72px;
+  height: 1px;
+
+  transform: translateX(-50%);
 
   background:
     linear-gradient(
@@ -170,72 +185,75 @@ body {
       rgba(255,140,0,0)
     );
 
-  opacity:0.55;
+  opacity: 0.55;
 }
 
 /* TICKER */
 .ticker {
+  font-size: 14px;
 
-  font-size: 13px;
-
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
 
   font-weight: 650;
 
   color: rgba(255,198,116,0.92);
 
   margin-top: 14px;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 
   text-transform: uppercase;
 
   text-shadow:
     0 0 10px rgba(255,160,60,0.08),
     0 1px 2px rgba(0,0,0,0.24);
+
+  opacity: 0.96;
 }
 
 .tagline {
-  font-size: 15px;
-  line-height: 1.45;
+  font-size: 16px;
+  line-height: 1.5;
 
   color: rgba(255,255,255,0.72);
 
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+
+  letter-spacing: -0.01em;
 }
 
 .subtext {
-  font-size: 13px;
-  line-height: 1.55;
+  font-size: 14px;
+  line-height: 1.65;
 
   color: rgba(255,255,255,0.48);
 
-  margin-bottom: 28px;
+  margin-bottom: 40px;
 }
 
 .section-label {
-  font-size: 10px;
+  font-size: 11px;
 
-  letter-spacing: 1.5px;
+  letter-spacing: 1.6px;
 
   color: rgba(255,255,255,0.42);
 
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .ca-box {
   display: inline-block;
 
-  padding: 9px 12px;
+  padding: 10px 14px;
 
   border-radius: 6px;
 
-  font-size: 11px;
+  font-size: 12px;
 
   border: 1px solid rgba(255,140,0,0.42);
 
   color: #ddd;
 
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 
   font-family: monospace;
 
@@ -247,7 +265,7 @@ body {
 }
 
 .copy-btn {
-  font-size: 11px;
+  font-size: 11.5px;
 
   letter-spacing: 0.4px;
 
@@ -255,28 +273,31 @@ body {
 
   cursor: pointer;
 
-  margin-bottom: 24px;
+  margin-bottom: 30px;
 
   opacity: 0.75;
+
+  transition: opacity 0.2s ease;
+}
+
+.copy-btn:hover {
+  opacity: 1;
 }
 
 .actions {
   display: flex;
-  gap: 10px;
+
+  gap: 12px;
 
   justify-content: center;
+
   flex-wrap: wrap;
 
-  margin-bottom: 26px;
+  margin-bottom: 36px;
 }
 
-.btn,
-.follow-btn,
-.wallet-link {
-
-  display: inline-block;
-
-  padding: 10px 16px;
+.btn {
+  padding: 11px 18px;
 
   border-radius: 6px;
 
@@ -286,18 +307,16 @@ body {
 
   text-decoration: none;
 
-  font-size: 13px;
+  font-size: 14px;
+
+  transition: all 0.2s ease;
 
   background: rgba(0,0,0,0.18);
 
   backdrop-filter: blur(2px);
-
-  transition: all 0.2s ease;
 }
 
-.btn:hover,
-.follow-btn:hover,
-.wallet-link:hover {
+.btn:hover {
   background: rgba(255,140,0,0.06);
 
   border-color: rgba(255,140,0,0.85);
@@ -306,19 +325,75 @@ body {
 }
 
 .steps {
-  font-size: 13px;
-
-  line-height: 1.7;
+  font-size: 14px;
 
   color: rgba(255,255,255,0.72);
 
-  margin-bottom: 26px;
+  line-height: 1.95;
+
+  margin-bottom: 36px;
 }
 
 .wallet-link {
+  display: inline-block;
+
   margin-top: 8px;
-  font-size: 11px;
+
   padding: 7px 12px;
+
+  border-radius: 6px;
+
+  border: 1px solid rgba(255,140,0,0.35);
+
+  color: #ff8c00;
+
+  text-decoration: none;
+
+  font-size: 12px;
+
+  transition: all 0.2s ease;
+
+  background: rgba(0,0,0,0.18);
+
+  backdrop-filter: blur(2px);
+}
+
+.wallet-link:hover {
+  background: rgba(255,140,0,0.06);
+
+  border-color: rgba(255,140,0,0.75);
+
+  color: #fff;
+}
+
+.follow-btn {
+  display: inline-block;
+
+  padding: 10px 18px;
+
+  border-radius: 6px;
+
+  border: 1px solid rgba(255,140,0,0.42);
+
+  color: #ff8c00;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  transition: all 0.2s ease;
+
+  background: rgba(0,0,0,0.18);
+
+  backdrop-filter: blur(2px);
+}
+
+.follow-btn:hover {
+  background: rgba(255,140,0,0.06);
+
+  border-color: rgba(255,140,0,0.85);
+
+  color: #fff;
 }
 
 /* MOBILE PORTRAIT */
@@ -338,13 +413,22 @@ body {
   }
 
   .container {
-    transform: scale(0.84);
+    transform: scale(0.76);
     transform-origin: center center;
   }
 
 }
 
-/* iPHONE SAFARI LANDSCAPE */
+/* IPHONE SAFARI */
+@supports (-webkit-touch-callout: none) {
+
+  .background {
+    height: 100svh;
+  }
+
+}
+
+/* IPHONE LANDSCAPE */
 @supports (-webkit-touch-callout: none) and (orientation: landscape) {
 
   .background {
@@ -352,7 +436,8 @@ body {
   }
 
   .container {
-    transform: scale(0.80);
+    transform: scale(0.72);
+    transform-origin: center center;
   }
 
 }
@@ -361,12 +446,13 @@ body {
 @media (max-width: 600px) {
 
   .title {
-    font-size: 38px;
-    letter-spacing: -0.034em;
+    font-size: 42px;
+    letter-spacing: -0.036em;
+    font-weight: 700;
   }
 
   .ticker {
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.18em;
   }
 
@@ -377,10 +463,12 @@ body {
 
 <body>
 
+<div class="page">
+
   <!-- BACKGROUND -->
   <div class="background"></div>
 
-  <!-- OVERLAY -->
+  <!-- VIGNETTE -->
   <div class="vignette"></div>
 
   <!-- CONTENT -->
@@ -388,9 +476,13 @@ body {
 
     <div class="container">
 
-      <div class="title">FlashVote</div>
+      <div class="title">
+        FlashVote
+      </div>
 
-      <div class="ticker">$FVOTE</div>
+      <div class="ticker">
+        $FVOTE
+      </div>
 
       <div class="tagline">
         Sentiment moves fast. Outcomes follow.
@@ -400,33 +492,54 @@ body {
         FlashVote reflects real-time shifts in digital attention.
       </div>
 
-      <div class="section-label">CONTRACT ADDRESS</div>
+      <div class="section-label">
+        CONTRACT ADDRESS
+      </div>
 
       <div class="ca-box" id="contract">
         0x1234567890abcdef1234567890abcdef12345678
       </div>
 
-      <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
+      <div
+        class="copy-btn"
+        id="copyBtn"
+        onclick="copyCA()"
+      >
+        Copy
+      </div>
 
-      <div class="section-label">BUY FLASHVOTE</div>
+      <div class="section-label">
+        BUY FLASHVOTE
+      </div>
 
       <div class="actions">
 
-        <a href="https://app.uniswap.org" target="_blank" class="btn">
+        <a
+          href="https://app.uniswap.org"
+          target="_blank"
+          class="btn"
+        >
           Buy on Uniswap
         </a>
 
-        <a href="https://dexscreener.com" target="_blank" class="btn">
+        <a
+          href="https://dexscreener.com"
+          target="_blank"
+          class="btn"
+        >
           View Chart
         </a>
 
       </div>
 
-      <div class="section-label">GET STARTED</div>
+      <div class="section-label">
+        GET STARTED
+      </div>
 
       <div class="steps">
 
         1. Create Phantom Wallet
+
         <br>
 
         <a
@@ -447,9 +560,15 @@ body {
 
       </div>
 
-      <div class="section-label">FOLLOW</div>
+      <div class="section-label">
+        FOLLOW
+      </div>
 
-      <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
+      <a
+        href="https://x.com/flashvotehq"
+        target="_blank"
+        class="follow-btn"
+      >
         X (Twitter)
       </a>
 
@@ -457,19 +576,30 @@ body {
 
   </div>
 
+</div>
+
 <script>
+
 function copyCA() {
-  const text = document.getElementById("contract").innerText;
-  const btn = document.getElementById("copyBtn");
+
+  const text =
+    document.getElementById("contract").innerText;
+
+  const btn =
+    document.getElementById("copyBtn");
 
   navigator.clipboard.writeText(text);
 
   btn.innerText = "Copied";
 
   setTimeout(() => {
+
     btn.innerText = "Copy";
+
   }, 1400);
+
 }
+
 </script>
 
 </body>
