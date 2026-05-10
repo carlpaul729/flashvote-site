@@ -13,512 +13,506 @@
 
 <style>
 
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-    background: #000;
-    color: #fff;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #000;
+  color: #fff;
 
-    overflow-x: hidden;
+  overflow-x: hidden;
 
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
-    text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
 
-    -webkit-overflow-scrolling: touch;
-  }
+  -webkit-overflow-scrolling: touch;
+}
 
-  body {
-    position: relative;
-  }
+body {
+  position: relative;
+}
 
-  /* PAGE SYSTEM */
-  .page {
-    position: relative;
-    min-height: 100svh;
-  }
+/* PAGE WRAPPER */
+.page {
+  position: relative;
+  min-height: 100%;
+}
 
-  /* BACKGROUND SYSTEM */
+/* BACKGROUND SYSTEM */
+.background {
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+
+  background-image: url("flashvote-backdrop.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 20.25%;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* CINEMATIC OVERLAY */
+.vignette {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  bottom: 0;
+
+  background:
+
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.14) 0%,
+      rgba(0,0,0,0.18) 14%,
+      rgba(0,0,0,0.24) 30%,
+      rgba(0,0,0,0.30) 48%,
+      rgba(0,0,0,0.22) 68%,
+      rgba(0,0,0,0.10) 84%,
+      rgba(0,0,0,0.00) 100%
+    ),
+
+    radial-gradient(
+      ellipse at center 62%,
+      rgba(0,0,0,0.28) 0%,
+      rgba(0,0,0,0.18) 34%,
+      rgba(0,0,0,0.08) 52%,
+      rgba(0,0,0,0.00) 74%
+    ),
+
+    radial-gradient(
+      ellipse at center 34%,
+      rgba(0,0,0,0.16) 0%,
+      rgba(0,0,0,0.10) 34%,
+      rgba(0,0,0,0.00) 72%
+    ),
+
+    radial-gradient(circle at center,
+      rgba(0,0,0,0) 44%,
+      rgba(0,0,0,0.18) 76%,
+      rgba(0,0,0,0.36) 100%);
+
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* CONTENT */
+.about-content {
+  position: relative;
+  z-index: 2;
+
+  min-height: 100svh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 560px;
+  padding: 52px 20px 70px;
+  text-align: center;
+}
+
+/* PREMIUM HEADER */
+.title {
+
+  position: relative;
+
+  display: inline-block;
+
+  font-family: "Inter", sans-serif;
+
+  font-size: clamp(46px, 6vw, 66px);
+
+  font-weight: 720;
+
+  letter-spacing: -0.042em;
+
+  line-height: 0.95;
+
+  margin-bottom: 8px;
+
+  color: rgba(252,248,242,0.995);
+
+  text-rendering: geometricPrecision;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  text-shadow:
+    0 0 1px rgba(255,255,255,0.34),
+    0 0 14px rgba(255,190,90,0.055),
+    0 0 32px rgba(255,170,70,0.022),
+    0 2px 4px rgba(0,0,0,0.34);
+
+  opacity: 0.998;
+}
+
+.title::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-12px;
+
+  width:72px;
+  height:1px;
+
+  transform:translateX(-50%);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,140,0,0),
+      rgba(255,170,70,0.32),
+      rgba(255,140,0,0)
+    );
+
+  opacity:0.55;
+}
+
+/* TICKER */
+.ticker {
+
+  font-size: 14px;
+
+  letter-spacing: 0.22em;
+
+  font-weight: 650;
+
+  color: rgba(255,198,116,0.92);
+
+  margin-top: 14px;
+  margin-bottom: 24px;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    0 0 10px rgba(255,160,60,0.08),
+    0 1px 2px rgba(0,0,0,0.24);
+
+  opacity: 0.96;
+}
+
+.tagline {
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.72);
+
+  margin-bottom: 16px;
+
+  letter-spacing: -0.01em;
+}
+
+.subtext {
+  font-size: 14px;
+  line-height: 1.65;
+
+  color: rgba(255,255,255,0.48);
+
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  color: rgba(255,255,255,0.42);
+
+  margin-bottom: 10px;
+}
+
+.ca-box {
+  display: inline-block;
+
+  padding: 10px 14px;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+
+  border: 1px solid rgba(255,140,0,0.42);
+
+  color: #ddd;
+
+  margin-bottom: 6px;
+
+  font-family: monospace;
+
+  word-break: break-all;
+
+  background: rgba(0,0,0,0.18);
+
+  backdrop-filter: blur(2px);
+}
+
+.copy-btn {
+  font-size: 11.5px;
+
+  letter-spacing: 0.4px;
+
+  color: #ff8c00;
+
+  cursor: pointer;
+
+  margin-bottom: 30px;
+
+  opacity: 0.75;
+
+  transition: opacity 0.2s ease;
+}
+
+.copy-btn:hover {
+  opacity: 1;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  margin-bottom: 36px;
+}
+
+.btn {
+  padding: 11px 18px;
+
+  border-radius: 6px;
+
+  border: 1px solid rgba(255,140,0,0.42);
+
+  color: #ff8c00;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  transition: all 0.2s ease;
+
+  background: rgba(0,0,0,0.18);
+
+  backdrop-filter: blur(2px);
+}
+
+.btn:hover {
+  background: rgba(255,140,0,0.06);
+
+  border-color: rgba(255,140,0,0.85);
+
+  color: #fff;
+}
+
+.steps {
+  font-size: 14px;
+
+  color: rgba(255,255,255,0.72);
+
+  line-height: 1.95;
+
+  margin-bottom: 36px;
+}
+
+.wallet-link {
+  display: inline-block;
+
+  margin-top: 8px;
+
+  padding: 7px 12px;
+
+  border-radius: 6px;
+
+  border: 1px solid rgba(255,140,0,0.35);
+
+  color: #ff8c00;
+
+  text-decoration: none;
+
+  font-size: 12px;
+
+  transition: all 0.2s ease;
+
+  background: rgba(0,0,0,0.18);
+
+  backdrop-filter: blur(2px);
+}
+
+.wallet-link:hover {
+  background: rgba(255,140,0,0.06);
+
+  border-color: rgba(255,140,0,0.75);
+
+  color: #fff;
+}
+
+.follow-btn {
+  display: inline-block;
+
+  padding: 10px 18px;
+
+  border-radius: 6px;
+
+  border: 1px solid rgba(255,140,0,0.42);
+
+  color: #ff8c00;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  transition: all 0.2s ease;
+
+  background: rgba(0,0,0,0.18);
+
+  backdrop-filter: blur(2px);
+}
+
+.follow-btn:hover {
+  background: rgba(255,140,0,0.06);
+
+  border-color: rgba(255,140,0,0.85);
+
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+
   .background {
-    position: fixed;
-    inset: 0;
-
-    width: 100%;
-    height: 100svh;
-
-    background-image: url("flashvote-backdrop.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center 20.25%;
-
-    z-index: 0;
-
-    pointer-events: none;
-
-    will-change: auto;
-
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
+    background-position: center 53%;
   }
 
-  /* CINEMATIC OVERLAY */
-  .vignette {
-    position: absolute;
-    inset: 0;
+}
 
-    width: 100%;
-    height: 100svh;
+@media (orientation: landscape) and (max-width: 950px) {
 
-    background:
-
-      linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.14) 0%,
-        rgba(0,0,0,0.18) 14%,
-        rgba(0,0,0,0.24) 30%,
-        rgba(0,0,0,0.30) 48%,
-        rgba(0,0,0,0.22) 68%,
-        rgba(0,0,0,0.10) 84%,
-        rgba(0,0,0,0.00) 100%
-      ),
-
-      radial-gradient(
-        ellipse at center 62%,
-        rgba(0,0,0,0.28) 0%,
-        rgba(0,0,0,0.18) 34%,
-        rgba(0,0,0,0.08) 52%,
-        rgba(0,0,0,0.00) 74%
-      ),
-
-      radial-gradient(
-        ellipse at center 34%,
-        rgba(0,0,0,0.16) 0%,
-        rgba(0,0,0,0.10) 34%,
-        rgba(0,0,0,0.00) 72%
-      ),
-
-      radial-gradient(circle at center,
-        rgba(0,0,0,0) 44%,
-        rgba(0,0,0,0.18) 76%,
-        rgba(0,0,0,0.36) 100%);
-
-    z-index: 1;
-
-    pointer-events: none;
+  .background {
+    background-position: center 35%;
   }
 
-  /* CONTENT */
-  .about-content {
-    position: relative;
-    z-index: 2;
+}
 
-    min-height: 100svh;
+@supports (-webkit-touch-callout: none) and (orientation: landscape) {
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .background {
+    background-position: center 34%;
   }
 
-  .container {
-    max-width: 560px;
-    padding: 52px 20px 70px;
-    text-align: center;
-  }
+}
 
-  /* PREMIUM CINEMATIC HEADER */
+@media (max-width: 600px) {
+
   .title {
-
-    position: relative;
-
-    display: inline-block;
-
-    font-family: "Inter", sans-serif;
-
-    font-size: clamp(46px, 6vw, 66px);
-
-    font-weight: 720;
-
-    letter-spacing: -0.042em;
-
-    line-height: 0.95;
-
-    margin-bottom: 8px;
-
-    color: rgba(252,248,242,0.995);
-
-    text-rendering: geometricPrecision;
-
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    font-feature-settings:
-      "ss01" on,
-      "cv01" on,
-      "cv02" on;
-
-    text-shadow:
-      0 0 1px rgba(255,255,255,0.34),
-      0 0 14px rgba(255,190,90,0.055),
-      0 0 32px rgba(255,170,70,0.022),
-      0 2px 4px rgba(0,0,0,0.34);
-
-    opacity: 0.998;
+    font-size: 42px;
+    letter-spacing: -0.036em;
+    font-weight: 700;
   }
 
-  /* premium underline */
-  .title::after{
-    content:"";
-    position:absolute;
-    left:50%;
-    bottom:-12px;
-
-    width:72px;
-    height:1px;
-
-    transform:translateX(-50%);
-
-    background:
-      linear-gradient(
-        90deg,
-        rgba(255,140,0,0),
-        rgba(255,170,70,0.32),
-        rgba(255,140,0,0)
-      );
-
-    opacity:0.55;
-  }
-
-  /* TICKER */
   .ticker {
-
-    font-size: 14px;
-
-    letter-spacing: 0.22em;
-
-    font-weight: 650;
-
-    color: rgba(255,198,116,0.92);
-
-    margin-top: 14px;
-    margin-bottom: 24px;
-
-    text-transform: uppercase;
-
-    text-shadow:
-      0 0 10px rgba(255,160,60,0.08),
-      0 1px 2px rgba(0,0,0,0.24);
-
-    opacity: 0.96;
-  }
-
-  .tagline {
-    font-size: 16px;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.72);
-
-    margin-bottom: 16px;
-
-    letter-spacing: -0.01em;
-  }
-
-  .subtext {
-    font-size: 14px;
-    line-height: 1.65;
-
-    color: rgba(255,255,255,0.48);
-
-    margin-bottom: 40px;
-  }
-
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 1.6px;
-    color: rgba(255,255,255,0.42);
-
-    margin-bottom: 10px;
-  }
-
-  .ca-box {
-    display: inline-block;
-
-    padding: 10px 14px;
-
-    border-radius: 6px;
-
     font-size: 12px;
-
-    border: 1px solid rgba(255,140,0,0.42);
-
-    color: #ddd;
-
-    margin-bottom: 6px;
-
-    font-family: monospace;
-
-    word-break: break-all;
-
-    background: rgba(0,0,0,0.18);
-
-    backdrop-filter: blur(2px);
+    letter-spacing: 0.18em;
   }
 
-  .copy-btn {
-    font-size: 11.5px;
-
-    letter-spacing: 0.4px;
-
-    color: #ff8c00;
-
-    cursor: pointer;
-
-    margin-bottom: 30px;
-
-    opacity: 0.75;
-
-    transition: opacity 0.2s ease;
-  }
-
-  .copy-btn:hover {
-    opacity: 1;
-  }
-
-  .actions {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-
-    margin-bottom: 36px;
-  }
-
-  .btn {
-    padding: 11px 18px;
-
-    border-radius: 6px;
-
-    border: 1px solid rgba(255,140,0,0.42);
-
-    color: #ff8c00;
-
-    text-decoration: none;
-
-    font-size: 14px;
-
-    transition: all 0.2s ease;
-
-    background: rgba(0,0,0,0.18);
-
-    backdrop-filter: blur(2px);
-  }
-
-  .btn:hover {
-    background: rgba(255,140,0,0.06);
-
-    border-color: rgba(255,140,0,0.85);
-
-    color: #fff;
-  }
-
-  .steps {
-    font-size: 14px;
-
-    color: rgba(255,255,255,0.72);
-
-    line-height: 1.95;
-
-    margin-bottom: 36px;
-  }
-
-  .wallet-link {
-    display: inline-block;
-
-    margin-top: 8px;
-
-    padding: 7px 12px;
-
-    border-radius: 6px;
-
-    border: 1px solid rgba(255,140,0,0.35);
-
-    color: #ff8c00;
-
-    text-decoration: none;
-
-    font-size: 12px;
-
-    transition: all 0.2s ease;
-
-    background: rgba(0,0,0,0.18);
-
-    backdrop-filter: blur(2px);
-  }
-
-  .wallet-link:hover {
-    background: rgba(255,140,0,0.06);
-
-    border-color: rgba(255,140,0,0.75);
-
-    color: #fff;
-  }
-
-  .follow-btn {
-    display: inline-block;
-
-    padding: 10px 18px;
-
-    border-radius: 6px;
-
-    border: 1px solid rgba(255,140,0,0.42);
-
-    color: #ff8c00;
-
-    text-decoration: none;
-
-    font-size: 14px;
-
-    transition: all 0.2s ease;
-
-    background: rgba(0,0,0,0.18);
-
-    backdrop-filter: blur(2px);
-  }
-
-  .follow-btn:hover {
-    background: rgba(255,140,0,0.06);
-
-    border-color: rgba(255,140,0,0.85);
-
-    color: #fff;
-  }
-
-  @media (max-width: 768px) {
-
-    .background {
-      background-position: center 53%;
-    }
-
-  }
-
-  @media (orientation: landscape) and (max-width: 950px) {
-
-    .background {
-      background-position: center 35%;
-    }
-
-  }
-
-  @supports (-webkit-touch-callout: none) and (orientation: landscape) {
-
-    .background {
-      background-position: center 34%;
-    }
-
-  }
-
-  @media (max-width: 600px) {
-
-    .title {
-      font-size: 42px;
-      letter-spacing: -0.036em;
-      font-weight: 700;
-    }
-
-    .ticker {
-      font-size: 12px;
-      letter-spacing: 0.18em;
-    }
-
-  }
+}
 
 </style>
 </head>
 
 <body>
 
-  <div class="page">
+<div class="page">
 
-    <!-- BACKGROUND -->
-    <div class="background"></div>
+  <!-- BACKGROUND -->
+  <div class="background"></div>
 
-    <!-- VIGNETTE -->
-    <div class="vignette"></div>
+  <!-- VIGNETTE -->
+  <div class="vignette"></div>
 
-    <!-- CONTENT -->
-    <div class="about-content">
-      <div class="container">
+  <!-- CONTENT -->
+  <div class="about-content">
+    <div class="container">
 
-        <div class="title">FlashVote</div>
+      <div class="title">FlashVote</div>
 
-        <div class="ticker">$FVOTE</div>
+      <div class="ticker">$FVOTE</div>
 
-        <div class="tagline">
-          Sentiment moves fast. Outcomes follow.
-        </div>
+      <div class="tagline">
+        Sentiment moves fast. Outcomes follow.
+      </div>
 
-        <div class="subtext">
-          FlashVote reflects real-time shifts in digital attention.
-        </div>
+      <div class="subtext">
+        FlashVote reflects real-time shifts in digital attention.
+      </div>
 
-        <div class="section-label">CONTRACT ADDRESS</div>
+      <div class="section-label">CONTRACT ADDRESS</div>
 
-        <div class="ca-box" id="contract">
-          0x1234567890abcdef1234567890abcdef12345678
-        </div>
+      <div class="ca-box" id="contract">
+        0x1234567890abcdef1234567890abcdef12345678
+      </div>
 
-        <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
+      <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
 
-        <div class="section-label">BUY FLASHVOTE</div>
+      <div class="section-label">BUY FLASHVOTE</div>
 
-        <div class="actions">
-          <a href="https://app.uniswap.org" target="_blank" class="btn">
-            Buy on Uniswap
-          </a>
-
-          <a href="https://dexscreener.com" target="_blank" class="btn">
-            View Chart
-          </a>
-        </div>
-
-        <div class="section-label">GET STARTED</div>
-
-        <div class="steps">
-
-          1. Create Phantom Wallet
-          <br>
-
-          <a
-            href="https://phantom.app/"
-            target="_blank"
-            class="wallet-link"
-          >
-            Get Phantom Wallet
-          </a>
-
-          <br><br>
-
-          2. Add ETH to Wallet
-
-          <br><br>
-
-          3. Buy FlashVote
-
-        </div>
-
-        <div class="section-label">FOLLOW</div>
-
-        <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
-          X (Twitter)
+      <div class="actions">
+        <a href="https://app.uniswap.org" target="_blank" class="btn">
+          Buy on Uniswap
         </a>
 
+        <a href="https://dexscreener.com" target="_blank" class="btn">
+          View Chart
+        </a>
       </div>
-    </div>
 
+      <div class="section-label">GET STARTED</div>
+
+      <div class="steps">
+
+        1. Create Phantom Wallet
+        <br>
+
+        <a
+          href="https://phantom.app/"
+          target="_blank"
+          class="wallet-link"
+        >
+          Get Phantom Wallet
+        </a>
+
+        <br><br>
+
+        2. Add ETH to Wallet
+
+        <br><br>
+
+        3. Buy FlashVote
+
+      </div>
+
+      <div class="section-label">FOLLOW</div>
+
+      <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
+        X (Twitter)
+      </a>
+
+    </div>
   </div>
+
+</div>
 
 <script>
 function copyCA() {
