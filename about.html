@@ -124,26 +124,6 @@
     pointer-events: none;
   }
 
-  /* ANDROID OVERLAY STABILIZATION */
-  @media screen and (max-width: 950px) {
-
-    .vignette {
-      height: 100svh;
-      min-height: 100svh;
-    }
-
-  }
-
-  /* iPHONE SAFARI OVERLAY STABILIZATION */
-  @supports (-webkit-touch-callout: none) {
-
-    .vignette {
-      height: 100lvh;
-      min-height: 100lvh;
-    }
-
-  }
-
   /* CONTENT */
   .about-content {
     position: relative;
@@ -202,7 +182,6 @@
     opacity: 0.998;
   }
 
-  /* premium underline */
   .title::after{
     content:"";
     position:absolute;
@@ -436,18 +415,31 @@
 
   }
 
+  /* ANDROID LANDSCAPE FIX */
   @media (orientation: landscape) and (max-width: 950px) {
 
     .background {
       background-position: center 35%;
     }
 
+    .about-content {
+      align-items: flex-start;
+      padding-top: 88px;
+      padding-bottom: 40px;
+      min-height: auto;
+    }
+
   }
 
+  /* iPHONE LANDSCAPE */
   @supports (-webkit-touch-callout: none) and (orientation: landscape) {
 
     .background {
       background-position: center 34%;
+    }
+
+    .about-content {
+      padding-top: 74px;
     }
 
   }
