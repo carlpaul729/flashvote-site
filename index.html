@@ -68,7 +68,7 @@
 
     .overlay {
       position: absolute;
-      top: calc(var(--hero-top, 50%));
+      top: calc(var(--vh, 1vh) * 50);
       left: 50%;
       width: 68%;
       max-width: 1000px;
@@ -167,7 +167,7 @@
       }
 
       .overlay {
-        top: 47.4%;
+        top: calc(var(--vh, 1vh) * 47.4);
         min-height: 0;
         will-change: transform;
       }
