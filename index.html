@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>FlashVote</title>
 
   <meta property="og:title" content="FlashVote">
@@ -17,12 +17,18 @@
   <meta name="twitter:image" content="https://flashvotehq.com/flashvote-preview.png">
 
   <style>
+
+    :root {
+      --hero-top: 50%;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
       width: 100%;
       height: 100%;
       min-height: 100svh;
+      min-height: 100dvh;
       overflow: hidden;
       background: black;
     }
@@ -55,7 +61,7 @@
 
     .overlay {
       position: absolute;
-      top: 50%;
+      top: calc(var(--hero-top, 50%));
       left: 50%;
       width: 68%;
       max-width: 1000px;
@@ -121,6 +127,7 @@
     }
 
     @media (max-width: 768px) {
+
       .background {
         object-position: center 53%;
       }
@@ -130,9 +137,11 @@
         max-width: none;
         top: 51%;
       }
+
     }
 
     @media (orientation: landscape) and (max-width: 950px) {
+
       .overlay {
         width: 58%;
         top: 50%;
@@ -141,15 +150,25 @@
       .background {
         object-position: center 35%;
       }
+
     }
 
     @supports (-webkit-touch-callout: none) {
+
+      body {
+        min-height: 100dvh;
+      }
+
       .overlay {
         top: 47.4%;
+        min-height: 0;
+        will-change: transform;
       }
+
     }
 
     @supports (-webkit-touch-callout: none) and (orientation: landscape) {
+
       .overlay {
         width: 54%;
         top: 49%;
@@ -158,19 +177,71 @@
       .background {
         object-position: center 34%;
       }
+
     }
+
   </style>
 </head>
 
 <body>
 
   <img src="flashvote-backdrop.png" alt="FlashVote Background" class="background">
+
   <div class="vignette"></div>
 
   <div class="overlay">
     <img src="flashvote-overlay.png" alt="FlashVote Overlay">
     <a href="about.html" class="enter-button"></a>
   </div>
+
+<script>
+
+(function () {
+
+  const overlay = document.querySelector('.overlay');
+
+  if (!overlay) return;
+
+  function stabilizeHero() {
+
+    requestAnimationFrame(() => {
+
+      const vh = window.innerHeight;
+
+      document.documentElement.style.setProperty(
+        '--vh',
+        `${vh * 0.01}px`
+      );
+
+      overlay.style.visibility = 'hidden';
+
+      requestAnimationFrame(() => {
+
+        overlay.offsetHeight;
+
+        overlay.style.visibility = 'visible';
+
+      });
+
+    });
+
+  }
+
+  window.addEventListener('load', () => {
+    setTimeout(stabilizeHero, 80);
+  });
+
+  window.addEventListener('orientationchange', () => {
+    setTimeout(stabilizeHero, 120);
+  });
+
+  window.addEventListener('resize', () => {
+    requestAnimationFrame(stabilizeHero);
+  });
+
+})();
+
+</script>
 
 </body>
 </html>
