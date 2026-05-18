@@ -20,16 +20,11 @@
     min-height: 100%;
     background: #000;
     color: #fff;
-
     overflow-x: hidden;
-
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
     text-rendering: optimizeLegibility;
-
     -webkit-overflow-scrolling: touch;
   }
 
@@ -37,52 +32,38 @@
     position: relative;
   }
 
-  /* BACKGROUND SYSTEM */
   .background {
     position: fixed;
     inset: 0;
-
     width: 100%;
     height: 100svh;
     min-height: 100svh;
-
     background-image: url("flashvote-backdrop.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center 20.25%;
-
     z-index: 0;
-
     pointer-events: none;
-
     will-change: auto;
   }
 
-  /* ANDROID STABILIZATION */
   @media screen and (max-width: 950px) {
-
     .background {
       height: 100svh;
       min-height: 100svh;
     }
-
   }
 
-  /* iPHONE SAFARI STABILIZATION */
   @supports (-webkit-touch-callout: none) {
-
     .background {
       height: 100lvh;
       min-height: 100lvh;
     }
-
   }
 
-  /* CINEMATIC OVERLAY */
   .vignette {
     position: fixed;
     inset: 0;
-
     width: 100%;
     height: 100svh;
     min-height: 100svh;
@@ -125,18 +106,13 @@
     pointer-events: none;
   }
 
-  /* HORIZON ENERGY */
   .horizon-glow {
     position: fixed;
-
     left: 50%;
     top: 56%;
-
     width: 42vw;
     height: 10vw;
-
     transform: translate(-50%, -50%);
-
     background:
       radial-gradient(
         ellipse at center,
@@ -146,11 +122,8 @@
       );
 
     filter: blur(28px);
-
     opacity: 0.36;
-
     animation: horizonPulse 14s ease-in-out infinite;
-
     z-index: 1;
     pointer-events: none;
   }
@@ -174,11 +147,9 @@
 
   }
 
-  /* PARTICLES */
   .particles {
     position: fixed;
     inset: 0;
-
     z-index: 1;
     pointer-events: none;
     overflow: hidden;
@@ -186,18 +157,12 @@
 
   .particle {
     position: absolute;
-
     width: 1.5px;
     height: 1.5px;
-
     border-radius: 50%;
-
     background: rgba(255,255,255,0.10);
-
     filter: blur(0.2px);
-
     opacity: 0;
-
     animation: drift linear infinite;
   }
 
@@ -265,13 +230,10 @@
 
   }
 
-  /* CONTENT */
   .about-content {
     position: relative;
     z-index: 2;
-
     min-height: 100svh;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -283,36 +245,17 @@
     text-align: center;
   }
 
-  /* PREMIUM HEADER */
   .title {
 
     position: relative;
-
     display: inline-block;
-
     font-family: "Inter", sans-serif;
-
     font-size: clamp(46px, 6vw, 66px);
-
     font-weight: 720;
-
     letter-spacing: -0.048em;
-
     line-height: 0.94;
-
     margin-bottom: 8px;
-
     color: rgba(255,250,244,0.995);
-
-    text-rendering: geometricPrecision;
-
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    font-feature-settings:
-      "ss01" on,
-      "cv01" on,
-      "cv02" on;
 
     text-shadow:
       0 0 1px rgba(255,255,255,0.34),
@@ -328,10 +271,8 @@
     position:absolute;
     left:50%;
     bottom:-12px;
-
     width:72px;
     height:1px;
-
     transform:translateX(-50%);
 
     background:
@@ -345,30 +286,23 @@
     opacity:0.58;
   }
 
-  /* LIVE STATUS */
   .live-status {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
-
     margin-top: -2px;
     margin-bottom: 18px;
-
     font-size: 10px;
     letter-spacing: 0.18em;
-
     text-transform: uppercase;
-
     color: rgba(255,255,255,0.38);
   }
 
   .status-dot {
     width: 5px;
     height: 5px;
-
     border-radius: 50%;
-
     background: rgba(255,170,70,0.92);
 
     box-shadow:
@@ -397,20 +331,14 @@
 
   }
 
-  /* TICKER */
   .ticker {
 
     font-size: 14px;
-
     letter-spacing: 0.22em;
-
     font-weight: 650;
-
     color: rgba(255,198,116,0.92);
-
     margin-top: 14px;
     margin-bottom: 20px;
-
     text-transform: uppercase;
 
     text-shadow:
@@ -424,18 +352,14 @@
     font-size: 16px;
     line-height: 1.5;
     color: rgba(255,255,255,0.72);
-
     margin-bottom: 16px;
-
     letter-spacing: -0.01em;
   }
 
   .subtext {
     font-size: 14px;
     line-height: 1.65;
-
     color: rgba(255,255,255,0.48);
-
     margin-bottom: 40px;
   }
 
@@ -443,30 +367,19 @@
     font-size: 11px;
     letter-spacing: 1.6px;
     color: rgba(255,255,255,0.42);
-
     margin-bottom: 10px;
   }
 
-  /* CONTRACT BOX */
   .ca-box {
     display: inline-block;
-
     padding: 10px 14px;
-
     border-radius: 6px;
-
     font-size: 12px;
-
     border: 1px solid rgba(255,140,0,0.42);
-
     color: #ddd;
-
     margin-bottom: 6px;
-
     font-family: monospace;
-
     letter-spacing: 0.025em;
-
     word-break: break-all;
 
     background:
@@ -486,47 +399,13 @@
     overflow: hidden;
   }
 
-  .ca-box::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-      repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.012),
-        rgba(255,255,255,0.012) 1px,
-        transparent 1px,
-        transparent 3px
-      );
-
-    opacity: 0.16;
-
-    pointer-events: none;
-  }
-
   .copy-btn {
     font-size: 11.5px;
-
     letter-spacing: 0.4px;
-
     color: #ff8c00;
-
     cursor: pointer;
-
     margin-bottom: 30px;
-
     opacity: 0.75;
-
-    transition:
-      opacity 0.25s ease,
-      transform 0.25s ease;
-  }
-
-  .copy-btn:hover {
-    opacity: 1;
-    transform: translateY(-1px);
   }
 
   .actions {
@@ -534,37 +413,21 @@
     gap: 12px;
     justify-content: center;
     flex-wrap: wrap;
-
     margin-bottom: 36px;
   }
 
-  /* BUTTONS */
   .btn,
   .follow-btn,
   .wallet-link {
 
     position: relative;
-
     overflow: hidden;
-
     padding: 11px 18px;
-
     border-radius: 6px;
-
     border: 1px solid rgba(255,140,0,0.42);
-
     color: #ff8c00;
-
     text-decoration: none;
-
     font-size: 14px;
-
-    transition:
-      border-color 0.28s ease,
-      background 0.28s ease,
-      color 0.28s ease,
-      box-shadow 0.28s ease,
-      transform 0.28s cubic-bezier(.2,.8,.2,1);
 
     background:
       linear-gradient(
@@ -576,66 +439,17 @@
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,0.05),
       0 0 16px rgba(255,140,0,0.025);
-
-    backdrop-filter: blur(2px);
-
-    will-change: transform;
-  }
-
-  .btn::before,
-  .follow-btn::before,
-  .wallet-link::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 1px;
-
-    background: rgba(255,255,255,0.08);
-
-    opacity: 0.45;
-  }
-
-  .btn:hover,
-  .follow-btn:hover,
-  .wallet-link:hover {
-
-    background:
-      linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.025),
-        rgba(255,140,0,0.05)
-      );
-
-    border-color: rgba(255,140,0,0.72);
-
-    color: #fff;
-
-    transform: translateY(-1px) scale(1.01);
-
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.08),
-      0 0 22px rgba(255,140,0,0.08);
   }
 
   .steps {
     font-size: 14px;
-
     color: rgba(255,255,255,0.72);
-
     line-height: 2.15;
-
     margin-bottom: 36px;
   }
 
   .wallet-link {
     display: inline-block;
-
     margin-top: 14px;
   }
 
@@ -688,103 +502,122 @@
 
 <body>
 
-  <!-- BACKGROUND -->
-  <div class="background"></div>
+<div class="background"></div>
+<div class="vignette"></div>
+<div class="horizon-glow"></div>
 
-  <!-- OVERLAY -->
-  <div class="vignette"></div>
+<div class="particles">
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+</div>
 
-  <!-- HORIZON ENERGY -->
-  <div class="horizon-glow"></div>
+<div class="about-content">
 
-  <!-- PARTICLES -->
-  <div class="particles">
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-  </div>
+  <div class="container">
 
-  <!-- CONTENT -->
-  <div class="about-content">
-    <div class="container">
+    <div class="title">FlashVote</div>
 
-      <div class="title">FlashVote</div>
+    <div class="ticker">$FVOTE</div>
 
-      <div class="ticker">$FVOTE</div>
+    <div class="live-status">
+      <div class="status-dot"></div>
+      Signal Active
+    </div>
 
-      <div class="live-status">
-        <div class="status-dot"></div>
-        Signal Active
-      </div>
+    <div class="tagline">
+      Sentiment moves fast. Outcomes follow.
+    </div>
 
-      <div class="tagline">
-        Sentiment moves fast. Outcomes follow.
-      </div>
+    <div class="subtext">
+      FlashVote reflects real-time shifts in digital attention.
+    </div>
 
-      <div class="subtext">
-        FlashVote reflects real-time shifts in digital attention.
-      </div>
+    <div class="section-label">SOLANA MINT ADDRESS</div>
 
-      <div class="section-label">CONTRACT ADDRESS</div>
+    <div class="ca-box" id="contract">
+      PASTE_YOUR_REAL_MINT_ADDRESS_HERE
+    </div>
 
-      <div class="ca-box" id="contract">
-        0x1234567890abcdef1234567890abcdef12345678
-      </div>
+    <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
 
-      <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
+    <div class="section-label">BUY FLASHVOTE</div>
 
-      <div class="section-label">BUY FLASHVOTE</div>
+    <div class="actions">
 
-      <div class="actions">
-        <a href="https://app.uniswap.org" target="_blank" class="btn">
-          Buy on Uniswap
-        </a>
+      <a
+        href="https://jup.ag/"
+        target="_blank"
+        class="btn"
+      >
+        Buy on Jupiter
+      </a>
 
-        <a href="https://dexscreener.com" target="_blank" class="btn">
-          View Chart
-        </a>
-      </div>
-
-      <div class="section-label">GET STARTED</div>
-
-      <div class="steps">
-
-        1. Create Phantom Wallet
-        <br>
-
-        <a
-          href="https://phantom.app/"
-          target="_blank"
-          class="wallet-link"
-        >
-          Get Phantom Wallet
-        </a>
-
-        <br><br>
-
-        2. Add ETH to Wallet
-
-        <br><br>
-
-        3. Buy FlashVote
-
-      </div>
-
-      <div class="section-label">FOLLOW</div>
-
-      <a href="https://x.com/flashvotehq" target="_blank" class="follow-btn">
-        X (Twitter)
+      <a
+        href="https://dexscreener.com/solana"
+        target="_blank"
+        class="btn"
+      >
+        View Chart
       </a>
 
     </div>
+
+    <div class="section-label">GET STARTED</div>
+
+    <div class="steps">
+
+      1. Create Phantom Wallet
+
+      <br>
+
+      <a
+        href="https://phantom.app/"
+        target="_blank"
+        class="wallet-link"
+      >
+        Get Phantom Wallet
+      </a>
+
+      <br><br>
+
+      2. Add SOL to Wallet
+
+      <br><br>
+
+      3. Swap SOL for FVOTE
+
+    </div>
+
+    <div class="section-label">NETWORK</div>
+
+    <div class="subtext">
+      Solana SPL Token
+    </div>
+
+    <div class="section-label">FOLLOW</div>
+
+    <a
+      href="https://x.com/flashvotehq"
+      target="_blank"
+      class="follow-btn"
+    >
+      X (Twitter)
+    </a>
+
   </div>
 
+</div>
+
 <script>
+
 function copyCA() {
+
   const text = document.getElementById("contract").innerText;
+
   const btn = document.getElementById("copyBtn");
 
   navigator.clipboard.writeText(text);
@@ -794,7 +627,9 @@ function copyCA() {
   setTimeout(() => {
     btn.innerText = "Copy";
   }, 1400);
+
 }
+
 </script>
 
 </body>
