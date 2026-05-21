@@ -1,746 +1,717 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlashVote</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <meta property="og:title" content="FlashVote">
-  <meta property="og:description" content="Sentiment moves fast. Outcomes follow.">
-  <meta property="og:image" content="https://flashvotehq.com/flashvote-preview.png">
-  <meta property="og:url" content="https://flashvotehq.com">
-  <meta property="og:type" content="website">
+<title>FlashVote</title>
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="FlashVote">
-  <meta name="twitter:description" content="Sentiment moves fast. Outcomes follow.">
-  <meta name="twitter:image" content="https://flashvotehq.com/flashvote-preview.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    :root {
-      --vh: 1vh;
+<style>
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    position: relative;
+  }
+
+  .background {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+    background-image: url("flashvote-backdrop.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 20.25%;
+    z-index: 0;
+    pointer-events: none;
+    will-change: auto;
+  }
+
+  @media screen and (max-width: 950px) {
+    .background {
+      height: 100svh;
+      min-height: 100svh;
+    }
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    .background {
+      height: 100lvh;
+      min-height: 100lvh;
+    }
+  }
+
+  .vignette {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+
+    background:
+
+      radial-gradient(
+        ellipse at center 52%,
+        rgba(0,0,0,0.22) 0%,
+        rgba(0,0,0,0.15) 30%,
+        rgba(0,0,0,0.05) 54%,
+        rgba(0,0,0,0.00) 76%
+      ),
+
+      radial-gradient(
+        ellipse at center 62%,
+        rgba(0,0,0,0.28) 0%,
+        rgba(0,0,0,0.18) 34%,
+        rgba(0,0,0,0.08) 52%,
+        rgba(0,0,0,0.00) 74%
+      ),
+
+      linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.16) 0%,
+        rgba(0,0,0,0.18) 14%,
+        rgba(0,0,0,0.24) 30%,
+        rgba(0,0,0,0.30) 48%,
+        rgba(0,0,0,0.22) 68%,
+        rgba(0,0,0,0.10) 84%,
+        rgba(0,0,0,0.00) 100%
+      ),
+
+      radial-gradient(circle at center,
+        rgba(0,0,0,0) 44%,
+        rgba(0,0,0,0.18) 76%,
+        rgba(0,0,0,0.36) 100%);
+
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .horizon-glow {
+    position: fixed;
+    left: 50%;
+    top: 56%;
+    width: 42vw;
+    height: 10vw;
+    transform: translate(-50%, -50%);
+    background:
+      radial-gradient(
+        ellipse at center,
+        rgba(255,140,0,0.13) 0%,
+        rgba(255,140,0,0.05) 38%,
+        rgba(255,140,0,0.00) 74%
+      );
+
+    filter: blur(28px);
+    opacity: 0.36;
+    animation: horizonPulse 14s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  @keyframes horizonPulse {
+
+    0% {
+      opacity: 0.28;
+      transform: translate(-50%, -50%) scale(1);
     }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      min-height: 100%;
-      overflow-x: hidden;
-      background: black;
+    50% {
+      opacity: 0.42;
+      transform: translate(-50%, -50%) scale(1.035);
     }
 
-    body {
-      position: relative;
-      font-family: Arial, sans-serif;
-      min-height: calc(var(--vh, 1vh) * 100);
-      color: white;
+    100% {
+      opacity: 0.28;
+      transform: translate(-50%, -50%) scale(1);
     }
 
-    .page {
-      position: relative;
-      min-height: calc(var(--vh, 1vh) * 100);
-      overflow: hidden;
+  }
+
+  .particles {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    width: 1.5px;
+    height: 1.5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.10);
+    filter: blur(0.2px);
+    opacity: 0;
+    animation: drift linear infinite;
+  }
+
+  .particle:nth-child(1) {
+    left: 18%;
+    top: 84%;
+    animation-duration: 34s;
+    animation-delay: -8s;
+  }
+
+  .particle:nth-child(2) {
+    left: 72%;
+    top: 76%;
+    animation-duration: 38s;
+    animation-delay: -12s;
+  }
+
+  .particle:nth-child(3) {
+    left: 46%;
+    top: 88%;
+    animation-duration: 42s;
+    animation-delay: -18s;
+  }
+
+  .particle:nth-child(4) {
+    left: 84%;
+    top: 64%;
+    animation-duration: 36s;
+    animation-delay: -10s;
+  }
+
+  .particle:nth-child(5) {
+    left: 28%;
+    top: 72%;
+    animation-duration: 40s;
+    animation-delay: -6s;
+  }
+
+  .particle:nth-child(6) {
+    left: 58%;
+    top: 82%;
+    animation-duration: 44s;
+    animation-delay: -16s;
+  }
+
+  @keyframes drift {
+
+    0% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0;
     }
+
+    18% {
+      opacity: 0.16;
+    }
+
+    82% {
+      opacity: 0.10;
+    }
+
+    100% {
+      transform: translateY(-42px) translateX(12px);
+      opacity: 0;
+    }
+
+  }
+
+  .about-content {
+    position: relative;
+    z-index: 2;
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    max-width: 560px;
+    padding: 52px 20px 70px;
+    text-align: center;
+  }
+
+  .title {
+
+    position: relative;
+    display: inline-block;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(46px, 6vw, 66px);
+    font-weight: 720;
+    letter-spacing: -0.048em;
+    line-height: 0.94;
+    margin-bottom: 8px;
+    color: rgba(255,250,244,0.995);
+
+    text-shadow:
+      0 0 1px rgba(255,255,255,0.34),
+      0 0 10px rgba(255,210,120,0.06),
+      0 0 22px rgba(255,150,40,0.045),
+      0 3px 6px rgba(0,0,0,0.34);
+
+    opacity: 0.998;
+  }
+
+  .title::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-12px;
+    width:72px;
+    height:1px;
+    transform:translateX(-50%);
+
+    background:
+      linear-gradient(
+        90deg,
+        rgba(255,140,0,0),
+        rgba(255,176,88,0.34),
+        rgba(255,140,0,0)
+      );
+
+    opacity:0.58;
+  }
+
+  .live-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: -2px;
+    margin-bottom: 18px;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+  }
+
+  .status-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,170,70,0.92);
+
+    box-shadow:
+      0 0 10px rgba(255,140,0,0.26),
+      0 0 18px rgba(255,140,0,0.10);
+
+    animation: pulseDot 4.2s ease-in-out infinite;
+  }
+
+  @keyframes pulseDot {
+
+    0% {
+      opacity: 0.58;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+
+    100% {
+      opacity: 0.58;
+      transform: scale(1);
+    }
+
+  }
+
+  .ticker {
+
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    font-weight: 650;
+    color: rgba(255,198,116,0.92);
+    margin-top: 14px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+
+    text-shadow:
+      0 0 10px rgba(255,160,60,0.08),
+      0 1px 2px rgba(0,0,0,0.24);
+
+    opacity: 0.96;
+  }
+
+  .tagline {
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .subtext {
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.48);
+    margin-bottom: 40px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 1.6px;
+    color: rgba(255,255,255,0.42);
+    margin-bottom: 10px;
+  }
+
+  .ca-box {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    border: 1px solid rgba(255,140,0,0.42);
+    color: #ddd;
+    margin-bottom: 6px;
+    font-family: monospace;
+    letter-spacing: 0.025em;
+    word-break: break-all;
+
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.018),
+        rgba(0,0,0,0.14)
+      );
+
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.04),
+      0 0 18px rgba(255,140,0,0.04);
+
+    backdrop-filter: blur(2px);
+
+    position: relative;
+    overflow: hidden;
+  }
+
+  .copy-btn {
+    font-size: 11.5px;
+    letter-spacing: 0.4px;
+    color: #ff8c00;
+    cursor: pointer;
+    margin-bottom: 30px;
+    opacity: 0.75;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .btn,
+  .follow-btn,
+  .wallet-link {
+
+    position: relative;
+    overflow: hidden;
+    padding: 11px 18px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,140,0,0.42);
+    color: #ff8c00;
+    text-decoration: none;
+    font-size: 14px;
+
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.018),
+        rgba(0,0,0,0.16)
+      );
+
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.05),
+      0 0 16px rgba(255,140,0,0.025);
+  }
+
+  .steps {
+    font-size: 14px;
+    color: rgba(255,255,255,0.72);
+    line-height: 2.15;
+    margin-bottom: 36px;
+  }
+
+  .wallet-link {
+    display: inline-block;
+    margin-top: 14px;
+  }
+
+  @media (max-width: 768px) {
 
     .background {
-      position: fixed;
-      inset: 0;
-
-      width: 100%;
-      height: calc(var(--vh, 1vh) * 100);
-
-      background-image: url("flashvote-backdrop.png");
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center 20.25%;
-
-      z-index: 0;
-      pointer-events: none;
+      background-position: center 53%;
     }
 
-    .vignette {
-      position: fixed;
-      inset: 0;
-
-      width: 100%;
-      height: calc(var(--vh, 1vh) * 100);
-
-      background:
-        radial-gradient(circle at center,
-          rgba(0,0,0,0) 46%,
-          rgba(0,0,0,0.18) 76%,
-          rgba(0,0,0,0.34) 100%);
-
-      z-index: 1;
-      pointer-events: none;
+    .horizon-glow {
+      width: 68vw;
+      height: 20vw;
     }
 
-    .content-glow {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
+  }
 
-      background:
-        radial-gradient(
-          circle at center 58%,
-          rgba(255,120,20,0.10) 0%,
-          rgba(255,120,20,0.05) 18%,
-          rgba(255,120,20,0.02) 32%,
-          rgba(0,0,0,0) 62%
-        );
+  @media (orientation: landscape) and (max-width: 950px) {
+
+    .background {
+      background-position: center 35%;
     }
 
-    .about-content {
-      position: relative;
-      z-index: 3;
+  }
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  @supports (-webkit-touch-callout: none) and (orientation: landscape) {
 
-      min-height: calc(var(--vh, 1vh) * 100);
-
-      padding: 70px 0 90px;
-      box-sizing: border-box;
+    .background {
+      background-position: center 34%;
     }
 
-    .container {
-      width: 100%;
-      max-width: 560px;
-      padding: 0 22px;
-      text-align: center;
-      box-sizing: border-box;
-    }
+  }
+
+  @media (max-width: 600px) {
 
     .title {
-      font-size: clamp(48px, 7vw, 74px);
-      font-weight: 800;
-
-      letter-spacing: -0.05em;
-      line-height: 0.96;
-
-      margin: 0 0 12px;
-
-      color: rgba(255,248,240,0.97);
-
-      text-shadow:
-        0 0 1px rgba(255,255,255,0.55),
-        0 0 12px rgba(255,170,70,0.08),
-        0 2px 12px rgba(0,0,0,0.45);
-
-      -webkit-font-smoothing: antialiased;
-      text-rendering: geometricPrecision;
+      font-size: 42px;
+      letter-spacing: -0.036em;
+      font-weight: 700;
     }
 
     .ticker {
-      font-size: 15px;
-      letter-spacing: 0.26em;
-      font-weight: 700;
-
-      color: rgba(255,190,115,0.95);
-
-      margin-bottom: 28px;
-
-      text-shadow:
-        0 0 10px rgba(255,140,40,0.10);
-
-      text-transform: uppercase;
-    }
-
-    .tagline {
-      font-size: 16px;
-      line-height: 1.55;
-
-      color: rgba(255,255,255,0.84);
-
-      margin-bottom: 18px;
-    }
-
-    .subtext {
-      font-size: 14px;
-      line-height: 1.75;
-
-      color: rgba(255,255,255,0.52);
-
-      margin-bottom: 42px;
-    }
-
-    .signal-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      margin-bottom: 34px;
-
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.18em;
-      text-transform: uppercase;
-
-      color: rgba(255,210,150,0.72);
     }
 
-    .signal-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
+  }
 
-      background: rgba(255,140,40,0.92);
-
-      box-shadow:
-        0 0 8px rgba(255,140,40,0.55),
-        0 0 14px rgba(255,140,40,0.22);
-
-      animation: signalPulse 4s ease-in-out infinite;
-    }
-
-    @keyframes signalPulse {
-      0% {
-        opacity: 0.72;
-        transform: scale(1);
-      }
-
-      50% {
-        opacity: 1;
-        transform: scale(1.08);
-      }
-
-      100% {
-        opacity: 0.72;
-        transform: scale(1);
-      }
-    }
-
-    .section-label {
-      font-size: 11.5px;
-      letter-spacing: 2.4px;
-      font-weight: 600;
-
-      color: rgba(255,245,235,0.72);
-
-      text-shadow:
-        0 0 6px rgba(255,160,60,0.10),
-        0 0 14px rgba(255,120,20,0.06);
-
-      margin-bottom: 10px;
-
-      text-transform: uppercase;
-
-      -webkit-font-smoothing: antialiased;
-      text-rendering: geometricPrecision;
-    }
-
-    .ca-box {
-      display: inline-block;
-
-      width: 100%;
-      max-width: 100%;
-
-      padding: 14px 16px;
-
-      border-radius: 10px;
-
-      border: 1px solid rgba(255,140,0,0.34);
-
-      background: rgba(0,0,0,0.22);
-
-      color: rgba(255,255,255,0.90);
-
-      font-family: monospace;
-      font-size: 12px;
-
-      box-sizing: border-box;
-      word-break: break-all;
-
-      backdrop-filter: blur(3px);
-
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.03),
-        0 0 16px rgba(255,120,20,0.05);
-    }
-
-    .copy-btn {
-      font-size: 12px;
-
-      color: rgba(255,155,60,0.92);
-
-      margin-top: 12px;
-      margin-bottom: 34px;
-
-      cursor: pointer;
-
-      transition: opacity 0.25s ease;
-    }
-
-    .copy-btn:hover {
-      opacity: 0.85;
-    }
-
-    .actions {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-
-      margin-bottom: 42px;
-    }
-
-    .btn,
-    .wallet-link,
-    .follow-btn {
-      position: relative;
-
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      padding: 12px 22px;
-
-      border-radius: 10px;
-
-      border: 1px solid rgba(255,140,0,0.34);
-
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(255,255,255,0.03),
-          rgba(255,255,255,0.00)
-        ),
-        rgba(0,0,0,0.20);
-
-      color: #ff9b3c;
-
-      text-decoration: none;
-
-      font-size: 14px;
-
-      backdrop-filter: blur(4px);
-
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.05),
-        0 0 14px rgba(255,120,20,0.04);
-
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease,
-        background 0.25s ease;
-    }
-
-    .btn:hover,
-    .wallet-link:hover,
-    .follow-btn:hover {
-      transform: scale(1.02);
-
-      border-color: rgba(255,160,60,0.65);
-
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.07),
-        0 0 18px rgba(255,130,40,0.12);
-
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(255,255,255,0.04),
-          rgba(255,255,255,0.00)
-        ),
-        rgba(255,120,20,0.05);
-    }
-
-    .steps {
-      font-size: 14px;
-      line-height: 2;
-
-      color: rgba(255,255,255,0.80);
-
-      margin-bottom: 44px;
-    }
-
-    .wallet-link {
-      margin-top: 18px;
-      margin-bottom: 18px;
-    }
-
-    .trust-section {
-      margin-top: 10px;
-      margin-bottom: 58px;
-    }
-
-    .trust-items {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-
-      margin-bottom: 28px;
-
-      font-size: 14px;
-      line-height: 1.7;
-
-      color: rgba(255,255,255,0.68);
-    }
-
-    .concept-section {
-      max-width: 640px;
-      margin: 0 auto;
-
-      padding-bottom: 40px;
-    }
-
-    .concept-title {
-      margin-bottom: 18px;
-    }
-
-    .concept-copy {
-      font-size: 15px;
-      line-height: 2;
-
-      color: rgba(255,255,255,0.78);
-    }
-
-    .concept-copy p {
-      margin: 0 0 20px;
-    }
-
-    .particles {
-      position: fixed;
-      inset: 0;
-
-      overflow: hidden;
-
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .particle {
-      position: absolute;
-
-      width: 2px;
-      height: 2px;
-
-      border-radius: 50%;
-
-      background: rgba(255,130,40,0.22);
-
-      animation: drift linear infinite;
-    }
-
-    .particle:nth-child(1) {
-      left: 12%;
-      top: 82%;
-      animation-duration: 26s;
-      animation-delay: -4s;
-    }
-
-    .particle:nth-child(2) {
-      left: 28%;
-      top: 74%;
-      animation-duration: 32s;
-      animation-delay: -8s;
-    }
-
-    .particle:nth-child(3) {
-      left: 46%;
-      top: 88%;
-      animation-duration: 29s;
-      animation-delay: -12s;
-    }
-
-    .particle:nth-child(4) {
-      left: 64%;
-      top: 79%;
-      animation-duration: 34s;
-      animation-delay: -6s;
-    }
-
-    .particle:nth-child(5) {
-      left: 82%;
-      top: 86%;
-      animation-duration: 31s;
-      animation-delay: -10s;
-    }
-
-    @keyframes drift {
-      0% {
-        transform: translate3d(0, 0, 0);
-        opacity: 0;
-      }
-
-      10% {
-        opacity: 1;
-      }
-
-      90% {
-        opacity: 1;
-      }
-
-      100% {
-        transform: translate3d(0, -120px, 0);
-        opacity: 0;
-      }
-    }
-
-    @media (max-width: 768px) {
-
-      .background {
-        background-position: center 53%;
-      }
-
-    }
-
-    @media (orientation: landscape) and (max-width: 950px) {
-
-      .background {
-        background-position: center 35%;
-      }
-
-    }
-
-    @supports (-webkit-touch-callout: none) and (orientation: landscape) {
-
-      .background {
-        background-position: center 34%;
-      }
-
-    }
-
-    @media (max-width: 600px) {
-
-      .title {
-        font-size: 44px;
-      }
-
-      .ticker {
-        font-size: 13px;
-      }
-
-      .btn,
-      .wallet-link,
-      .follow-btn {
-        width: 100%;
-      }
-
-    }
-
-  </style>
+</style>
 </head>
 
 <body>
 
-  <div class="page">
+<div class="background"></div>
+<div class="vignette"></div>
+<div class="horizon-glow"></div>
 
-    <div class="background"></div>
+<div class="particles">
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+</div>
 
-    <div class="vignette"></div>
+<div class="about-content">
 
-    <div class="content-glow"></div>
+  <div class="container">
 
-    <div class="particles">
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
+    <div class="title">FlashVote</div>
+
+    <div class="ticker">$FVOTE</div>
+
+    <div class="live-status">
+      <div class="status-dot"></div>
+      Signal Active
     </div>
 
-    <div class="about-content">
+    <div class="tagline">
+      Sentiment moves fast. Outcomes follow.
+    </div>
 
-      <div class="container">
+    <div class="subtext">
+      FlashVote reflects real-time shifts in digital attention.
+    </div>
 
-        <div class="title">FlashVote</div>
+    <div class="section-label">SOLANA MINT ADDRESS</div>
 
-        <div class="ticker">$FVOTE</div>
+    <div class="ca-box" id="contract">
+      4fN6nU7G42T6we2EuPM9tSoqgbN9dTJu4BCvpBNUQyMN
+    </div>
 
-        <div class="tagline">
-          Sentiment moves fast. Outcomes follow.
-        </div>
+    <div class="copy-btn" id="copyBtn" onclick="copyCA()">Copy</div>
 
-        <div class="subtext">
-          FlashVote reflects real-time shifts in digital attention.
-        </div>
+    <div class="section-label">BUY FLASHVOTE</div>
 
-        <div class="signal-status">
-          <span class="signal-dot"></span>
-          <span>Signal Active</span>
-        </div>
+    <div class="actions">
 
-        <div class="section-label">CONTRACT ADDRESS</div>
+      <a
+        href="https://jup.ag/tokens/4fN6nU7G42T6we2EuPM9tSoqgbN9dTJu4BCvpBNUQyMN"
+        target="_blank"
+        class="btn"
+      >
+        Buy on Jupiter
+      </a>
 
-        <div class="ca-box" id="contract">
-          0x1234567890abcdef1234567890abcdef12345678
-        </div>
+      <a
+        href="https://dexscreener.com/solana/gsax7irqxnnlebeny2dnhqvku6da5mxhghdpfcnmrrmt"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn"
+      >
+        View Chart
+      </a>
 
-        <div class="copy-btn" id="copyBtn" onclick="copyCA()">
-          Copy
-        </div>
+    </div>
 
-        <div class="section-label">BUY FLASHVOTE</div>
+    <div class="section-label">GET STARTED</div>
 
-        <div class="actions">
+    <div class="steps">
 
-          <a
-            href="https://dexscreener.com"
-            target="_blank"
-            class="btn"
-          >
-            Buy on Uniswap
-          </a>
+      1. Create Phantom Wallet
 
-          <a
-            href="https://dexscreener.com"
-            target="_blank"
-            class="btn"
-          >
-            View Chart
-          </a>
+      <br>
 
-        </div>
+      <a
+        href="https://phantom.app/"
+        target="_blank"
+        class="wallet-link"
+      >
+        Get Phantom Wallet
+      </a>
 
-        <div class="section-label">GET STARTED</div>
+      <br><br>
 
-        <div class="steps">
+      2. Add SOL to Wallet
 
-          1. Create Phantom Wallet
+      <br><br>
 
-          <br>
+      3. Swap SOL for FVOTE
 
-          <a
-            href="https://phantom.app/"
-            target="_blank"
-            class="wallet-link"
-          >
-            Get Phantom Wallet
-          </a>
+    </div>
 
-          <br><br>
+    <div class="section-label">NETWORK</div>
 
-          2. Add ETH to Wallet
+    <div class="subtext">
+      Solana SPL Token
+    </div>
 
-          <br><br>
+    <div class="section-label">FOLLOW</div>
 
-          3. Buy FlashVote
+    <a
+      href="https://x.com/flashvotehq"
+      target="_blank"
+      class="follow-btn"
+    >
+      X (Twitter)
+    </a>
 
-        </div>
+    <!-- LIQUIDITY STATUS -->
 
-        <div class="section-label">FOLLOW</div>
+    <div style="margin-top: 54px; margin-bottom: 52px;">
+
+      <div class="section-label">LIQUIDITY STATUS</div>
+
+      <div
+        style="
+          font-size: 14px;
+          line-height: 2;
+          color: rgba(255,255,255,0.66);
+          margin-bottom: 26px;
+        "
+      >
+        • LP Locked Until Nov 22, 2026
+        <br>
+        • Solana SPL Token
+        <br>
+        • Transparent Market Structure
+        <br>
+        • Long-Term Alignment
+      </div>
+
+      <div class="actions">
 
         <a
-          href="https://x.com/flashvotehq"
+          href="https://dexscreener.com/solana/gsax7irqxnnlebeny2dnhqvku6da5mxhghdpfcnmrrmt"
           target="_blank"
-          class="follow-btn"
+          rel="noopener noreferrer"
+          class="btn"
         >
-          X (Twitter)
+          View Dex
         </a>
 
-        <div class="trust-section">
+        <a
+          href="https://solscan.io/token/4fN6nU7G42T6we2EuPM9tSoqgbN9dTJu4BCvpBNUQyMN"
+          target="_blank"
+          class="btn"
+        >
+          View Solscan
+        </a>
 
-          <div class="section-label" style="margin-top: 52px;">
-            LIQUIDITY STATUS
-          </div>
+        <a
+          href="https://app.streamflow.finance/contract/solana/mainnet/GMGfw4sbYZpu2MNpU6gcaS2H7L9UJPeV59xb3DxnxeEo6"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn"
+        >
+          View LP Lock
+        </a>
 
-          <div class="trust-items">
-            <div>• LP Locked Until Nov 22, 2026</div>
-            <div>• Solana SPL Token</div>
-            <div>• Transparent Market Structure</div>
-            <div>• Long-Term Alignment</div>
-          </div>
+      </div>
 
-          <div class="actions">
+    </div>
 
-            <a
-              href="https://dexscreener.com"
-              target="_blank"
-              class="btn"
-            >
-              View Dex
-            </a>
+    <!-- CONCEPTUAL ANCHORING -->
 
-            <a
-              href="https://solscan.io"
-              target="_blank"
-              class="btn"
-            >
-              View Solscan
-            </a>
+    <div style="margin-top: 4px;">
 
-            <a
-              href="https://app.streamflow.finance/contract/solana/mainnet/GMGfw4sbYZpu2MNpU6gcaS2H7L9UJPeV59xb3DxnxEo6"
-              target="_blank"
-              class="btn"
-            >
-              View LP Lock
-            </a>
+      <div class="section-label">FLASHVOTE</div>
 
-          </div>
-
-        </div>
-
-        <div class="concept-section">
-
-          <div class="section-label concept-title">
-            FLASHVOTE
-          </div>
-
-          <div class="concept-copy">
-
-            <p>
-              FlashVote reflects the speed of digital attention.
-            </p>
-
-            <p>
-              Markets increasingly move through narrative velocity,
-              public sentiment, and information flow.
-            </p>
-
-            <p>
-              FlashVote is built around that reality.
-            </p>
-
-          </div>
-
-        </div>
-
+      <div
+        style="
+          max-width: 500px;
+          margin: 0 auto;
+          font-size: 14px;
+          line-height: 1.9;
+          color: rgba(255,255,255,0.58);
+        "
+      >
+        FlashVote reflects the speed of digital attention.
+        <br><br>
+        Markets increasingly move through narrative velocity,
+        public sentiment, and information flow.
+        <br><br>
+        FlashVote is built around that reality.
       </div>
 
     </div>
 
   </div>
 
-  <script>
+</div>
 
-    function setViewportHeight() {
-      document.documentElement.style.setProperty(
-        '--vh',
-        `${window.innerHeight * 0.01}px`
-      );
-    }
+<script>
 
-    setViewportHeight();
+function copyCA() {
 
-    window.addEventListener('resize', setViewportHeight);
+  const text = document.getElementById("contract").innerText;
 
-    window.addEventListener('orientationchange', () => {
-      setTimeout(setViewportHeight, 120);
-    });
+  const btn = document.getElementById("copyBtn");
 
-    function copyCA() {
+  navigator.clipboard.writeText(text);
 
-      const text = document.getElementById("contract").innerText;
+  btn.innerText = "Copied";
 
-      const btn = document.getElementById("copyBtn");
+  setTimeout(() => {
+    btn.innerText = "Copy";
+  }, 1400);
 
-      navigator.clipboard.writeText(text);
+}
 
-      btn.innerText = "Copied";
-
-      setTimeout(() => {
-        btn.innerText = "Copy";
-      }, 1400);
-
-    }
-
-  </script>
+</script>
 
 </body>
 </html>
